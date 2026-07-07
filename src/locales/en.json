@@ -1,0 +1,14 @@
+{
+  "nav": {
+    "home": "Home",
+    "news": "News",
+    "about": "About",
+    "contact": "Contact"
+  },
+
+  "news": {
+    "title": "Latest news and articles",
+    "filter": "Filter",
+    "scroll": "Scroll"
+  }
+}
