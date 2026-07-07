@@ -10,6 +10,7 @@ import { Minus, Plus, RotateCcw } from "lucide-react";
 import {
   PARTNER_CATEGORY_STYLE,
   PARTNER_LOCATIONS,
+  partnerCategories,
   type PartnerCategory,
   type PartnerLocation,
 } from "@app/data/content";
@@ -25,14 +26,6 @@ type MapPosition = {
   coordinates: [number, number];
   zoom: number;
 };
-
-const partnerCategories: PartnerCategory[] = [
-  "BioData",
-  "AI Tech for Bio",
-  "CRO & Wet Lab",
-  "Academic",
-  "Clinical",
-];
 
 const categories: Array<"All" | PartnerCategory> = [
   "All",

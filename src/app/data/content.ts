@@ -282,8 +282,10 @@ export type PartnerCategory =
   | "BioData"
   | "AI Tech for Bio"
   | "CRO & Wet Lab"
-  | "Academic"
-  | "Clinical";
+  | "Research Institute"
+  | "Medical Center"
+  | "Bio Pharma"
+  | "Patient Group";
 
 export type PartnerLocation = {
   id: string;
@@ -292,14 +294,24 @@ export type PartnerLocation = {
   category: PartnerCategory;
   city: string;
   country: string;
-  address: string;
-  coordinates: [number, number];
-  mapsUrl: string;
+  address?: string;
+  coordinates: [number, number]; // [longitude, latitude]
+  mapsUrl?: string;
   websiteUrl?: string;
   description?: string;
   logoText: string;
   logoUrl?: string;
 };
+
+export const partnerCategories: PartnerCategory[] = [
+  "BioData",
+  "AI Tech for Bio",
+  "CRO & Wet Lab",
+  "Research Institute",
+  "Medical Center",
+  "Bio Pharma",
+  "Patient Group",
+];
 
 export const PARTNER_CATEGORY_STYLE: Record<
   PartnerCategory,
@@ -324,20 +336,69 @@ export const PARTNER_CATEGORY_STYLE: Record<
     color: "#62B08A",
     bg: "#ECFDF3",
   },
-  Academic: {
-    label: "Academic",
+  "Research Institute": {
+    label: "Research Institute",
     color: "#F09F74",
     bg: "#FFF4ED",
   },
-  Clinical: {
-    label: "Clinical",
+  "Medical Center": {
+    label: "Medical Center",
     color: "#E87C4A",
     bg: "#FFF1E8",
+  },
+  "Bio Pharma": {
+    label: "Bio Pharma",
+    color: "#2F80ED",
+    bg: "#EEF6FF",
+  },
+  "Patient Group": {
+    label: "Patient Group",
+    color: "#E05297",
+    bg: "#FFF0F7",
   },
 };
 
 
 export const PARTNER_LOCATIONS: PartnerLocation[] = [
+  {
+    id: "trinetx",
+    name: "TriNetX",
+    displayName: "TriNetX",
+    category: "BioData",
+    city: "Cambridge, MA",
+    country: "United States",
+    coordinates: [-71.1097, 42.3736],
+    websiteUrl: "https://trinetx.com",
+    description:
+      "Real world healthcare data and analytics network supporting clinical research and evidence generation.",
+    logoText: "TX",
+  },
+  {
+    id: "seedsupply",
+    name: "SEEDSUPPLY",
+    displayName: "SEEDSUPPLY",
+    category: "BioData",
+    city: "Tokyo",
+    country: "Japan",
+    coordinates: [139.6917, 35.6895],
+    websiteUrl: "",
+    description:
+      "Japan based BioData partner. Replace this summary after confirming the official company profile.",
+    logoText: "SS",
+  },
+  {
+    id: "medinsights",
+    name: "MedInsights",
+    displayName: "MedInsights",
+    category: "AI Tech for Bio",
+    city: "Paris",
+    country: "France",
+    coordinates: [2.3522, 48.8566],
+    websiteUrl: "",
+    description:
+      "France based AI technology partner for biomedical insights. Replace this after confirming official details.",
+    logoText: "MI",
+  },
   {
     id: "energenesis-biomedical",
     name: "Energenesis Biomedical 華安醫學",
@@ -355,7 +416,98 @@ export const PARTNER_LOCATIONS: PartnerLocation[] = [
     logoText: "EB",
     logoUrl: energenesisBiomedicalLogo,
   },
+  {
+    id: "quodata",
+    name: "QuoData",
+    displayName: "QuoData",
+    category: "Research Institute",
+    city: "Dresden",
+    country: "Germany",
+    coordinates: [13.7373, 51.0504],
+    websiteUrl: "https://www.quodata.de",
+    description:
+      "Germany based research and data analytics organization. Replace this summary after confirming the exact collaboration scope.",
+    logoText: "QD",
+  },
+  {
+    id: "itri",
+    name: "Industrial Technology Research Institute",
+    displayName: "ITRI",
+    category: "Research Institute",
+    city: "Hsinchu",
+    country: "Taiwan",
+    coordinates: [120.9719, 24.8016],
+    websiteUrl: "https://www.itri.org.tw/english/",
+    description:
+      "Taiwanese applied research and technology development institute.",
+    logoText: "ITRI",
+  },
+  {
+    id: "taichung-vgh",
+    name: "Taichung Veterans General Hospital",
+    displayName: "Taichung VGH",
+    category: "Medical Center",
+    city: "Taichung",
+    country: "Taiwan",
+    address: "No.1650, Sec. 4, Taiwan Blvd., Xitun Dist., Taichung, Taiwan",
+    coordinates: [120.6039, 24.1837],
+    websiteUrl: "https://www.vghtc.gov.tw",
+    description:
+      "Major medical center in Taichung supporting clinical and translational healthcare collaboration.",
+    logoText: "VGH",
+  },
+  {
+    id: "orfenix",
+    name: "Orfenix",
+    displayName: "Orfenix",
+    category: "Bio Pharma",
+    city: "Netherlands",
+    country: "Netherlands",
+    coordinates: [5.2913, 52.1326],
+    websiteUrl: "",
+    description:
+      "Netherlands based Bio Pharma partner. Replace this summary after confirming official company details.",
+    logoText: "OF",
+  },
+  {
+    id: "twi-biotech",
+    name: "TWi Biotechnology",
+    displayName: "TWi Biotech",
+    category: "Bio Pharma",
+    city: "Taipei",
+    country: "Taiwan",
+    coordinates: [121.5654, 25.0330],
+    websiteUrl: "",
+    description:
+      "Taiwan based Bio Pharma partner. Replace this summary after confirming official website and location.",
+    logoText: "TWi",
+  },
+  {
+    id: "exonox-bioscience",
+    name: "ExoNox BioScience",
+    displayName: "ExoNox BioScience",
+    category: "Bio Pharma",
+    city: "Taipei",
+    country: "Taiwan",
+    coordinates: [121.5654, 25.0330],
+    websiteUrl: "",
+    description:
+      "Taiwan based Bio Pharma partner. Replace this summary after confirming official company details.",
+    logoText: "EX",
+  },
+  {
+    id: "debra-uk",
+    name: "DEBRA UK",
+    displayName: "DEBRA UK",
+    category: "Patient Group",
+    city: "United Kingdom",
+    country: "United Kingdom",
+    coordinates: [-0.1276, 51.5072],
+    websiteUrl: "https://www.debra.org.uk",
+    description:
+      "Patient organization and medical research charity supporting people affected by epidermolysis bullosa.",
+    logoText: "DEBRA",
+  },
 ];
-
 export type NewsArticle = typeof ALL_NEWS[number];
 export type Person = typeof people[number];
