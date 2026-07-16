@@ -58,63 +58,145 @@ export function AboutPage({
       <section
         className="
           mx-auto
-          grid
-          max-w-7xl
-          grid-cols-1
-          items-center
-          gap-16
+          max-w-[1500px]
           px-6
           py-16
-          lg:grid-cols-2
         "
       >
-        <div>
-          <SectionLabel>
-            {t("about.intro.label")}
-          </SectionLabel>
+        <div
+          className="
+            grid
+            grid-cols-1
+            gap-x-16
+            gap-y-10
+            lg:grid-cols-2
+            lg:items-center
+          "
+        >
+          {/* 
+            Smaller desktop:
+            title stays in the left column beside the image.
 
-          <SectionHeading>
-            {t("about.intro.title")}
-          </SectionHeading>
-
-          <p
+            Very large desktop:
+            title spans both columns.
+          */}
+          <header
             className="
-              mt-4
-              leading-relaxed
-              text-muted-foreground
+              min-w-0
+              lg:col-start-1
+              lg:row-start-1
+              2xl:col-span-2
+              2xl:col-start-1
             "
           >
-            {t("about.intro.paragraph1")}
-          </p>
+            <SectionLabel>
+              {t("about.intro.label")}
+            </SectionLabel>
 
-          <p
+            <h1
+              className="
+                mt-4
+                text-[clamp(2.7rem,4vw,4rem)]
+                font-bold
+                leading-[1.08]
+                tracking-[-0.045em]
+                text-foreground
+                2xl:whitespace-nowrap
+                2xl:text-[3.25rem]
+              "
+              style={{
+                fontFamily:
+                  "'Plus Jakarta Sans', sans-serif",
+              }}
+            >
+              <span className="block 2xl:inline">
+                {t("about.intro.titleLine1")}
+              </span>
+
+              <span
+                aria-hidden="true"
+                className="hidden 2xl:inline"
+              >
+                {" "}
+              </span>
+
+              <span className="block 2xl:inline">
+                {t("about.intro.titleLine2")}
+              </span>
+
+              <span
+                aria-hidden="true"
+                className="hidden 2xl:inline"
+              >
+                {" "}
+              </span>
+
+              <span className="block 2xl:inline">
+                {t("about.intro.titleLine3")}
+              </span>
+            </h1>
+          </header>
+
+          {/* Description */}
+          <div
             className="
-              mt-3
-              leading-relaxed
-              text-muted-foreground
+              max-w-2xl
+              self-start
+              lg:col-start-1
+              lg:row-start-2
+              2xl:row-start-2
             "
           >
-            {t("about.intro.paragraph2")}
-          </p>
-        </div>
+            <p
+              className="
+                text-base
+                leading-7
+                text-muted-foreground
+              "
+            >
+              {t("about.intro.paragraph1")}
+            </p>
 
-        <div>
-          <img
-            src={ABOUT_PAGE_DATA.introImage}
-            alt={t(
-              ABOUT_PAGE_DATA.introImageAltKey,
-            )}
+            <p
+              className="
+                mt-4
+                text-base
+                leading-7
+                text-muted-foreground
+              "
+            >
+              {t("about.intro.paragraph2")}
+            </p>
+          </div>
+
+          {/* Image */}
+          <div
             className="
-              h-80
-              w-full
-              rounded-3xl
-              bg-muted
-              object-cover
+              self-start
+              lg:col-start-2
+              lg:row-span-2
+              lg:row-start-1
+              2xl:row-span-1
+              2xl:row-start-2
             "
-          />
+          >
+            <img
+              src={ABOUT_PAGE_DATA.introImage}
+              alt={t(
+                ABOUT_PAGE_DATA.introImageAltKey,
+              )}
+              className="
+                h-80
+                w-full
+                rounded-3xl
+                bg-muted
+                object-cover
+                lg:h-[360px]
+              "
+            />
+          </div>
         </div>
       </section>
-
       {/* Journey */}
       <section
         className="
@@ -382,6 +464,7 @@ export function AboutPage({
                       inset-0
                       flex
                       items-end
+                      justify-end
                       bg-gradient-to-t
                       from-black/60
                       via-black/5

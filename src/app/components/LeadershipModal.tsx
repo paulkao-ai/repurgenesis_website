@@ -7,11 +7,11 @@ import {
   createPortal,
 } from "react-dom";
 
+import { X } from "lucide-react";
 import {
-  Linkedin,
-  Mail,
-  X,
-} from "lucide-react";
+  BiEnvelope,
+  BiLogoLinkedinSquare,
+} from "react-icons/bi";
 
 import type {
   LeadershipMemberDefinition,
@@ -353,7 +353,7 @@ export function LeadershipModal({
               className="
                 mt-8
                 flex
-                flex-wrap
+                items-center
                 gap-3
                 border-t
                 border-slate-200
@@ -362,61 +362,27 @@ export function LeadershipModal({
             >
               {member.linkedinUrl && (
                 <a
-                  href={
-                    member.linkedinUrl
-                  }
+                  href={member.linkedinUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="
-                    inline-flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-full
-                    bg-[#0a66c2]
-                    px-5
-                    py-2.5
-                    text-sm
-                    font-semibold
-                    text-white
-                    transition-all
-                    hover:-translate-y-0.5
-                    hover:bg-[#084f96]
-                    hover:shadow-md
-                    focus-visible:outline
-                    focus-visible:outline-2
-                    focus-visible:outline-offset-2
-                    focus-visible:outline-[#0a66c2]
-                  "
-                >
-                  <Linkedin
-                    size={17}
-                    aria-hidden="true"
-                  />
-
-                  {t(
+                  aria-label={t(
                     "about.leadership.actions.linkedin",
                   )}
-                </a>
-              )}
-
-              {member.email && (
-                <a
-                  href={`mailto:${member.email}`}
+                  title={t(
+                    "about.leadership.actions.linkedin",
+                  )}
                   className="
                     inline-flex
+                    h-11
+                    w-11
                     items-center
                     justify-center
-                    gap-2
                     rounded-full
                     border
                     border-primary
-                    px-5
-                    py-2.5
-                    text-sm
-                    font-semibold
                     text-primary
                     transition-all
+                    duration-200
                     hover:-translate-y-0.5
                     hover:bg-primary
                     hover:text-white
@@ -427,14 +393,48 @@ export function LeadershipModal({
                     focus-visible:outline-primary
                   "
                 >
-                  <Mail
-                    size={17}
+                  <BiLogoLinkedinSquare
+                    size={23}
                     aria-hidden="true"
                   />
+                </a>
+              )}
 
-                  {t(
+              {member.email && (
+                <a
+                  href={`mailto:${member.email}`}
+                  aria-label={t(
                     "about.leadership.actions.email",
                   )}
+                  title={t(
+                    "about.leadership.actions.email",
+                  )}
+                  className="
+                    inline-flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-primary
+                    text-primary
+                    transition-all
+                    duration-200
+                    hover:-translate-y-0.5
+                    hover:bg-primary
+                    hover:text-white
+                    hover:shadow-md
+                    focus-visible:outline
+                    focus-visible:outline-2
+                    focus-visible:outline-offset-2
+                    focus-visible:outline-primary
+                  "
+                >
+                  <BiEnvelope
+                    size={23}
+                    aria-hidden="true"
+                  />
                 </a>
               )}
             </div>

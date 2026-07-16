@@ -7,7 +7,6 @@ import repurgenesisWhiteLogo from "./company_logo/processed/bg_remove/repurgenes
 import repurgenesisWhiteText from "./company_logo/processed/bg_remove/repurgenesis_white2.png";
 import repurgenesisColorLogo from "./company_logo/processed/bg_remove/repurgenesis_bg1.png";
 import repurgenesisColorText from "./company_logo/processed/bg_remove/repurgenesis_bg2.png";
-// import memberOneImage from "./people/hsu.jpg";
 import memberOneImage from "./people/hsu.jpg?url";
 
 // ─── Company Assets (Logo + Text) ────────────────────────────────────────────────────────────
@@ -243,10 +242,10 @@ export const TEXT = {
           "Integrated Evidence",
 
         title:
-          "Three Evidence Layers. One Decision.",
+          "3 Evidence Layers. 1 Decision.",
 
         description:
-          "Stronger candidates from structure, knowledge graphs, and gene expression.",
+          "Strong candidates: Structure, Knowledge graphs and Gene expression.",
 
         layers: {
           expression: {
@@ -330,15 +329,26 @@ export const TEXT = {
     // about page 
     about: {
       intro: {
-        label: "Who We Are",
-        title:
-          "Science-driven. Patient-focused. Relentlessly curious.",
+        label:
+          "Who We Are",
+
+        titleLine1:
+          "Science-driven.",
+
+        titleLine2:
+          "Patient-focused.",
+
+        titleLine3:
+          "Relentlessly curious.",
+
         paragraph1:
-          "Founded in 2013 in Taipei, Repurgenesis was built on a simple conviction: the world already has many of the molecules it needs to treat more diseases — they just haven't been matched to the right targets yet.",
+          "Repurgenesis combines biomedical expertise with orchestrated AI to uncover new therapeutic uses for existing medicines.",
+
         paragraph2:
-          "We operate at the intersection of machine learning and wet-lab science, combining high-throughput data analysis with rigorous empirical validation across discovery, preclinical development, and early clinical translation.",
+          "Promising candidates advance through evidence review, experimental validation, and IP assessment.",
+
         imageAlt:
-          "Repurgenesis research team at work",
+          "Repurgenesis biomedical research team",
       },
       journey: {
         label: "Our Journey",
@@ -386,7 +396,7 @@ export const TEXT = {
               "Dr. Yin-Hsong Hsu",
 
             role:
-              "Founder & President",
+              "President",
 
             bio:
               "Dr. Yin-Hsong Hsu is the Founder and President of Repurgenesis. He leads the development of the company's Bio + AI platform for drug repurposing that combines basic biomedical practice together with computer-based methods, trials, experimental validation and strategic collaboration.",
@@ -397,7 +407,7 @@ export const TEXT = {
               "Dr. Yin-Hsong Hsu",
 
             role:
-              "Founder & President",
+              "President",
 
             bio:
               "Dr. Yin-Hsong Hsu is the Founder and President of Repurgenesis. He leads the development of the company's Bio + AI platform for drug repurposing that combines basic biomedical practice together with computer-based methods, trials, experimental validation and strategic collaboration.",
@@ -1282,15 +1292,26 @@ export const TEXT = {
     // about page
     about: {
       intro: {
-        label: "關於我們",
-        title:
-          "以科學為本、以病患為中心，持續探索未知。",
+        label:
+          "關於我們",
+
+        titleLine1:
+          "科學驅動。",
+
+        titleLine2:
+          "以病患為核心。",
+
+        titleLine3:
+          "持續探索。",
+
         paragraph1:
-          "Repurgenesis 於 2013 年在台北成立。我們相信，現有的許多分子已具備治療更多疾病的潛力，只是尚未與正確的治療標靶進行配對。",
+          "源華智醫結合生醫專業與智慧協奏 AI，探索既有藥物的新治療用途。",
+
         paragraph2:
-          "我們結合機器學習與濕實驗室科學，透過高通量資料分析與嚴謹的實驗驗證，推動藥物探索、臨床前開發及早期臨床轉譯。",
+          "具潛力的候選項目將經證據評估、實驗驗證與智財分析。",
+          
         imageAlt:
-          "Repurgenesis 研究團隊工作情形",
+          "源華智醫生醫研發團隊",
       },
 
       journey: {

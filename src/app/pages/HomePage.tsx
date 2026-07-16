@@ -270,23 +270,18 @@ export function HomePage({
           {/* Lower Hero row */}
           <div
             className="
-              mt-2
+              mt-4
               grid
               grid-cols-1
               gap-10
               lg:col-span-2
-              lg:mt-4
               lg:grid-cols-2
+              lg:items-start
               lg:gap-x-16
             "
           >
             {/* Left: vertically centered against all four cards */}
-            <div
-              className="
-                flex
-                items-center
-              "
-            >
+            <div className="self-start">
               <div className="w-full max-w-xl">
                 <p
                   className="
@@ -319,7 +314,6 @@ export function HomePage({
                     }
                     className="
                       inline-flex
-                      cursor-pointer
                       items-center
                       justify-center
                       gap-2
@@ -343,10 +337,11 @@ export function HomePage({
               </div>
             </div>
 
-            {/* Right: fixed 2 × 2 cards */}
+            {/* Right: 2 × 2 highlight cards */}
             <div
               className="
                 grid
+                self-start
                 grid-cols-1
                 gap-4
                 sm:grid-cols-2
@@ -492,6 +487,7 @@ export function HomePage({
                     mb-3
                     flex
                     items-center
+                    justify-center
                     gap-3
                     font-mono
                     text-xs
