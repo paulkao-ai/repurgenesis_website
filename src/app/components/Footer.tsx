@@ -1,103 +1,242 @@
-import { Mail, MapPin, Phone, Printer } from "lucide-react";
-import { FaXTwitter, FaYoutube } from "react-icons/fa6";
-import { BiLogoLinkedinSquare } from "react-icons/bi";
-import { NAV_ITEMS } from "../data/content";
-import type { Page, Translator } from "@app/types";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Printer,
+} from "lucide-react";
+import {
+  FaXTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
+import {
+  BiLogoLinkedinSquare,
+} from "react-icons/bi";
+
+import {
+  CONTACT_DETAILS,
+  CONTACT_MAPS,
+  FOOTER_LINKS,
+  NAV_ITEMS,
+} from "@app/data/content";
+
+import type {
+  Language,
+  Page,
+  Translator,
+} from "@app/types";
+
+import {
+  BrandLogo,
+} from "@app/components/BrandLogo";
 
 export function Footer({
-    navigate,
-    t,
+  navigate,
+  language,
+  t,
 }: {
-    navigate: (p: Page) => void;
-    t: Translator;
+  navigate: (page: Page) => void;
+  language: Language;
+  t: Translator;
 }) {
+  const contactMap =
+    CONTACT_MAPS[language];
+
+  const currentYear =
+    new Date().getFullYear();
+
   return (
     <footer className="bg-[#141827] text-white">
-      <div className="
-        max-w-7xl
-        mx-auto
-        px-6
-        py-16
-        grid
-        grid-cols-1
-        md:grid-cols-[1.4fr_1fr_1fr]
-        gap-16
-        ">
-        <div>  {/* LEFT COLUMN */} 
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-white font-bold text-sm">R</span>
-            </div>
+      <div
+        className="
+          max-w-7xl
+          mx-auto
+          px-6
+          py-16
+          grid
+          grid-cols-1
+          md:grid-cols-[1.4fr_1fr_1fr]
+          gap-16
+        "
+      >
+        {/* Left column */}
+        <div>
+          <button
+            type="button"
+            onClick={() => navigate("home")}
+            aria-label={t("footer.brandName")}
+            className="
+              group
+              mb-8
+              inline-flex
+              items-center
+              rounded-lg
+              text-left
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-primary
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-[#141827]
+            "
+          >
+            <BrandLogo
+              variant="footer"
+              footerTone="white"
+              className="
+                transition-transform
+                duration-300
+                group-hover:scale-[1.02]
+              "
+            />
+          </button>
 
-            <span
-              className="font-bold text-lg tracking-tight"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-            >
-              Repurgenesis
-            </span>
-          </div>
-
-          {/* <p className="text-sm text-white/60 leading-7 max-w-sm mb-8">
-            Accelerating drug repurposing through AI-driven discovery.
-            Transforming approved compounds into new therapies for underserved patients.
-          </p> */}
-        
-          {/*  Contact Info */} 
           <div className="space-y-3.5 text-sm">
-
+            {/* Email */}
             <a
-              href="mailto:rp@repurgenesis.com"
-              className="flex items-center gap-3 ml-2 text-white/70 hover:text-primary transition"
+              href={CONTACT_DETAILS.emailHref}
+              className="
+                flex
+                items-center
+                gap-3
+                ml-2
+                text-white/70
+                hover:text-primary
+                transition
+              "
             >
-              <Mail size={18} className="text-primary" />
-              rp@repurgenesis.com
+              <Mail
+                size={18}
+                className="text-primary shrink-0"
+              />
+
+              <span>
+                {CONTACT_DETAILS.email}
+              </span>
             </a>
 
+            {/* Phone */}
             <a
-              href="tel:+886287511368"
-              className="flex items-center gap-3 ml-2 text-white/70 hover:text-primary transition"
+              href={CONTACT_DETAILS.phoneHref}
+              className="
+                flex
+                items-center
+                gap-3
+                ml-2
+                text-white/70
+                hover:text-primary
+                transition
+              "
             >
-              <Phone size={18} className="text-primary" />
-              (+886) 2-8751-1368
+              <Phone
+                size={18}
+                className="text-primary shrink-0"
+              />
+
+              <span>
+                {CONTACT_DETAILS.phone}
+              </span>
             </a>
 
+            {/* Fax */}
             <a
-              href="fax:+886287511369"
-              className="flex items-center gap-3 ml-2 text-white/70 hover:text-primary transition"
+              href={CONTACT_DETAILS.faxHref}
+              className="
+                flex
+                items-center
+                gap-3
+                ml-2
+                text-white/70
+                hover:text-primary
+                transition
+              "
             >
-              <Printer size={18} className="text-primary" />
-              (+886) 2-8751-1369
+              <Printer
+                size={18}
+                className="text-primary shrink-0"
+              />
+
+              <span>
+                {CONTACT_DETAILS.fax}
+              </span>
             </a>
 
+            {/* Address */}
             <a
-              href="https://www.google.com/maps/place/114%E8%87%BA%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80%E8%A5%BF%E6%B9%96%E9%87%8C%E7%91%9E%E5%85%89%E8%B7%AF583%E5%B7%B721%E8%99%9F6%E8%99%9F/@25.0806552,121.5677563,17z/data=!3m1!4b1!4m6!3m5!1s0x3442ac6e503fe32f:0x7da3370519a2ea77!8m2!3d25.0806552!4d121.5677563!16s%2Fg%2F11j599g637?hl=zh-TW&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
-              // https://maps.google.com/?q=114台北市內湖區瑞光路583巷21號6樓
+              href={contactMap.openUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 ml-2 text-white/70 hover:text-primary transition"
+              className="
+                flex
+                items-start
+                gap-3
+                ml-2
+                text-white/70
+                hover:text-primary
+                transition
+              "
             >
               <MapPin
                 size={18}
-                className="text-primary mt-1 shrink-0"/>
+                className="
+                  text-primary
+                  mt-1
+                  shrink-0
+                "
+              />
 
-              <span>
-                Neihu Technology Park 6F.,
-                No.21, Ln.583, Ruiguang Rd.,
-                Neihu Dist.,
-                Taipei City 114694,
-                Taiwan
-              </span>
+              {language === "zh" ? (
+                <span className="leading-relaxed">
+                  {t(
+                    "contact.details.addressFull",
+                  )}
+                </span>
+              ) : (
+                <span className="leading-relaxed">
+                  {t(
+                    "contact.details.addressLine1",
+                  )}
+
+                  <br />
+
+                  {t(
+                    "contact.details.addressLine2",
+                  )}
+                </span>
+              )}
             </a>
-          </div> 
+          </div>
         </div>
 
+        {/* Company navigation */}
         <div>
-           {/* COMPANY */}
-          <p className="text-xs font-semibold tracking-widest uppercase text-white/40 mb-4">Our Company</p>
+          <p
+            className="
+              text-xs
+              font-semibold
+              tracking-widest
+              uppercase
+              text-white/40
+              mb-4
+            "
+          >
+            {t("footer.companyHeading")}
+          </p>
+
           <ul className="flex flex-col gap-2">
             {NAV_ITEMS.map((item) => (
               <li key={item.page}>
-                <button onClick={() => navigate(item.page)} className="text-sm text-white/70 hover:text-primary transition-colors cursor-pointer">
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigate(item.page)
+                  }
+                  className="
+                    text-[15px]
+                    text-white/70
+                    hover:text-primary
+                    transition-colors
+                    cursor-pointer
+                  "
+                >
                   {t(item.key)}
                 </button>
               </li>
@@ -105,81 +244,148 @@ export function Footer({
           </ul>
         </div>
 
+        {/* Get in touch */}
         <div>
-          {/* GET IN TOUCH */}
-        <p className="text-xs font-semibold tracking-widest uppercase text-white/40 mb-4">
-          Get in Touch
-        </p>
-
-        <div className="flex flex-col gap-3">
-
-          <a
-            href="https://www.104.com.tw/company/1a2x6bimnc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-left text-sm text-white/70 hover:text-primary transition"
+          <p
+            className="
+              text-xs
+              font-semibold
+              tracking-widest
+              uppercase
+              text-white/40
+              mb-4
+            "
           >
-            Careers
-          </a>
+            {t("footer.getInTouchHeading")}
+          </p>
 
-          <button
-            onClick={() => navigate("contact")}
-            className="text-left text-sm text-white/70 hover:text-primary transition"
-          >
-            Contact Us
-          </button>
+          <div className="flex flex-col gap-3">
+            <a
+              href={FOOTER_LINKS.careersUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                text-left
+                text-[15px]
+                text-white/70
+                hover:text-primary
+                transition
+              "
+            >
+              {t("footer.careers")}
+            </a>
 
+            <button
+              type="button"
+              onClick={() =>
+                navigate("contact")
+              }
+              className="
+                text-left
+                text-[15px]
+                text-white/70
+                hover:text-primary
+                transition
+              "
+            >
+              {t("footer.contactUs")}
+            </button>
+          </div>
 
+          {/* Social links */}
+          <div className="mt-8 flex items-center gap-3">
+            {FOOTER_LINKS.social.map(
+              (social) => (
+                <a
+                  key={social.id}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t(
+                    social.labelKey,
+                  )}
+                  title={t(
+                    social.labelKey,
+                  )}
+                  className="
+                    text-white
+                    hover:text-primary
+                    hover:scale-110
+                    transition-all
+                    duration-300
+                  "
+                >
+                  {social.id === "linkedin" && (
+                    <BiLogoLinkedinSquare
+                      size={30}
+                    />
+                  )}
+
+                  {social.id === "x" && (
+                    <FaXTwitter
+                      size={22}
+                    />
+                  )}
+
+                  {social.id === "youtube" && (
+                    <FaYoutube
+                      size={30}
+                    />
+                  )}
+                </a>
+              ),
+            )}
+          </div>
         </div>
-
-        <div className="mt-8 flex items-center gap-3">
-
-          <a
-            href="https://linkedin.com/company/repurgenesis/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:scale-110 transition-transform"
-          >
-            <BiLogoLinkedinSquare 
-              size={30}
-              className="text-white" />
-          </a>
-
-          <a
-            href="https://x.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:scale-110 transition-transform"
-          >
-            <FaXTwitter 
-            size={22}
-            className="text-white" />
-          </a>
-
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:scale-110 ml-1 transition-transform"
-          >
-            <FaYoutube
-            size={30}
-            className="text-white" />
-          </a>
-        </div>
-
       </div>
 
+      {/* Footer bottom */}
+      <div
+        className="
+          border-t
+          border-white/10
+          max-w-7xl
+          mx-auto
+          px-6
+          py-4
+          flex
+          flex-col
+          md:flex-row
+          items-center
+          justify-between
+          gap-2
+          text-xs
+          text-white/30
+        "
+      >
+        <span>
+          © {currentYear}{" "}
+          {t("footer.copyrightCompany")}{" "}
+          {t("footer.allRightsReserved")}
+        </span>
 
-      </div>
-      <div className="border-t border-white/10 max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-white/30">
-        <span>© 2025 Repurgenesis Co., LTD. All Rights Reserved.</span>
         <div className="flex gap-4">
-          <a href="#" className="hover:text-white/60 transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white/60 transition-colors">Terms of Use</a>
+          <a
+            href={FOOTER_LINKS.privacyUrl}
+            className="
+              hover:text-white/60
+              transition-colors
+            "
+          >
+            {t("footer.privacyPolicy")}
+          </a>
+
+          <a
+            href={FOOTER_LINKS.termsUrl}
+            className="
+              hover:text-white/60
+              transition-colors
+            "
+          >
+            {t("footer.termsOfUse")}
+          </a>
         </div>
       </div>
-
     </footer>
   );
 }

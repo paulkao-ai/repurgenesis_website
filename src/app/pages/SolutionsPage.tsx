@@ -1,45 +1,194 @@
 import { ArrowRight } from "lucide-react";
-import { SOLUTIONS } from "@app/data/content";
-import type { Page } from "@app/types";
-import { CTAButton } from "@app/components/CTAButton";
-import { FAQAccordion } from "@app/components/FAQAccordion";
-import { SectionHeading, SectionLabel } from "@app/components/Section";
 
-export function SolutionsPage({ navigate }: { navigate: (p: Page) => void }) {
+import {
+  SOLUTIONS,
+} from "@app/data/content";
+
+import type {
+  Page,
+  Translator,
+} from "@app/types";
+
+import {
+  CTAButton,
+} from "@app/components/CTAButton";
+
+import {
+  FAQAccordion,
+} from "@app/components/FAQAccordion";
+
+import {
+  SectionHeading,
+  SectionLabel,
+} from "@app/components/Section";
+
+export function SolutionsPage({
+  navigate,
+  t,
+}: {
+  navigate: (page: Page) => void;
+  t: Translator;
+}) {
   return (
-    <div className="pt-24">
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <SectionLabel>Therapeutic Focus</SectionLabel>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end mb-12">
-          <SectionHeading>Solutions across disease areas</SectionHeading>
-          <p className="text-muted-foreground leading-relaxed">
-            We partner with pharma, academic institutions, and patient advocacy organizations to address diseases where conventional drug development timelines leave patients without options.
+    <div className="min-h-screen bg-background pt-24">
+      {/* Therapeutic solutions */}
+      <section
+        className="
+          max-w-7xl
+          mx-auto
+          px-6
+          py-16
+          md:py-20
+        "
+      >
+        <SectionLabel>
+          {t("solutionsPage.header.label")}
+        </SectionLabel>
+
+        <div
+          className="
+            mb-12
+            grid
+            grid-cols-1
+            items-end
+            gap-8
+            lg:grid-cols-2
+          "
+        >
+          <SectionHeading>
+            {t("solutionsPage.header.title")}
+          </SectionHeading>
+
+          <p
+            className="
+              max-w-2xl
+              leading-relaxed
+              text-muted-foreground
+            "
+          >
+            {t(
+              "solutionsPage.header.description",
+            )}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {SOLUTIONS.map((sol, i) => (
-            <div key={i} className="relative rounded-2xl overflow-hidden group h-72 bg-muted">
-              <img src={sol.image} alt={sol.label} className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-white font-bold text-xl mb-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{sol.label}</p>
-                <p className="text-white/70 text-sm leading-relaxed">{sol.description}</p>
+
+        <div
+          className="
+            grid
+            grid-cols-1
+            gap-6
+            md:grid-cols-2
+          "
+        >
+          {SOLUTIONS.map((solution) => (
+            <article
+              key={solution.id}
+              className="
+                group
+                relative
+                h-72
+                overflow-hidden
+                rounded-2xl
+                bg-muted
+              "
+            >
+              <img
+                src={solution.image}
+                alt={t(solution.labelKey)}
+                className="
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-500
+                  group-hover:scale-105
+                "
+              />
+
+              <div
+                className="
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-black/80
+                  via-black/20
+                  to-transparent
+                "
+              />
+
+              <div
+                className="
+                  absolute
+                  bottom-0
+                  left-0
+                  right-0
+                  p-6
+                "
+              >
+                <h2
+                  className="
+                    mb-2
+                    text-xl
+                    font-bold
+                    text-white
+                  "
+                  style={{
+                    fontFamily:
+                      "'Plus Jakarta Sans', sans-serif",
+                  }}
+                >
+                  {t(solution.labelKey)}
+                </h2>
+
+                <p
+                  className="
+                    text-sm
+                    leading-relaxed
+                    text-white/70
+                  "
+                >
+                  {t(solution.descriptionKey)}
+                </p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="bg-white border-t border-border py-20">
+      {/* Frequently asked questions */}
+      <section
+        className="
+          border-t
+          border-border
+          bg-white
+          py-20
+        "
+      >
         <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <SectionLabel>FAQ</SectionLabel>
-            <SectionHeading>Common Questions</SectionHeading>
+          <div className="mb-10 text-center">
+            <SectionLabel>
+              {t("solutionsPage.faq.label")}
+            </SectionLabel>
+
+            <SectionHeading>
+              {t("solutionsPage.faq.title")}
+            </SectionHeading>
           </div>
-          <FAQAccordion />
-          <div className="text-center mt-10">
-            <CTAButton variant="primary" onClick={() => navigate("contact")}>
-              Ask us directly <ArrowRight size={14} />
+
+          <FAQAccordion t={t} />
+
+          <div className="mt-10 text-center">
+            <CTAButton
+              variant="primary"
+              onClick={() =>
+                navigate("contact")
+              }
+            >
+              {t(
+                "solutionsPage.faq.askDirectly",
+              )}
+
+              <ArrowRight size={14} />
             </CTAButton>
           </div>
         </div>

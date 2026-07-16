@@ -1,44 +1,101 @@
 import { useRef, useState, type ReactNode } from "react";
 import { TEXT } from "./data/content";
-import type { Language, Page } from "./types";
+import type { InvestorSection, Language, Page, Translator } from "./types";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import {
   AboutPage,
   ContactPage,
   HomePage,
+  InvestorsPage,
   NewsPage,
   PartnersPage,
   SolutionsPage,
   TechnologyPage,
 } from "./pages";
 
+
+function resolveTranslation(
+  language: Language,
+  key: string,
+): string {
+  const path = key.split(".");
+  let value: unknown = TEXT[language];
+
+  for (const part of path) {
+    if (
+      typeof value !== "object" ||
+      value === null ||
+      !(part in value)
+    ) {
+      console.warn(
+        `Missing translation: ${language}.${key}`,
+      );
+
+      return key;
+    }
+
+    value = (
+      value as Record<string, unknown>
+    )[part];
+  }
+
+  if (typeof value !== "string") {
+    console.warn(
+      `Translation is not a string: ${language}.${key}`,
+    );
+
+    return key;
+  }
+
+  return value;
+}
+
 export default function App() {
-  const [page, setPage] = useState<Page>("home");
+  const [page, setCurrent] = useState<Page>("home");
   const [language, setLanguage] = useState<Language>("en");
   const [openLanguage, setOpenLanguage] = useState(false);
   const topRef = useRef<HTMLDivElement>(null);
+  const [investorSection, setInvestorSection] = useState<InvestorSection | null>(null);
 
-  const t = (key: string): string => {
-    const keys = key.split(".");
-    const value = keys.reduce<any>((obj, k) => obj?.[k], TEXT[language]);
+  const t: Translator = (key: string) => resolveTranslation(language, key);
 
-    return typeof value === "string" ? value : key;
+  const openInvestorSection = (
+    section: InvestorSection,
+  ) => {
+    setCurrent("investors");
+    setInvestorSection(section);
+    setOpenLanguage(false);
   };
 
+  // const navigate = (nextPage: Page) => {
+  //   setPage(nextPage);
+  //   setTimeout(() => topRef.current?.scrollIntoView({ behavior: "smooth" }), 10);
+  // };
   const navigate = (nextPage: Page) => {
-    setPage(nextPage);
-    setTimeout(() => topRef.current?.scrollIntoView({ behavior: "smooth" }), 10);
+    setCurrent(nextPage);
+
+    if (nextPage === "investors") {
+      setInvestorSection(null);
+    }
+
+    setOpenLanguage(false);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const pageMap: Record<Page, ReactNode> = {
-    home: <HomePage navigate={navigate} t={t} />,
-    about: <AboutPage />,
-    technology: <TechnologyPage />,
-    solutions: <SolutionsPage navigate={navigate} />,
+    home: <HomePage navigate={navigate} language={language} t={t} />,
+    about: <AboutPage t={t} />,
+    technology: <TechnologyPage t={t} />,
+    solutions: <SolutionsPage navigate={navigate} t={t} />,
     news: <NewsPage t={t} />,
-    partners: <PartnersPage navigate={navigate} />,
-    contact: <ContactPage navigate={navigate} t={t} />,
+    investors:  <InvestorsPage navigate={navigate} activeSection={investorSection} setActiveSection={setInvestorSection} t={t}/>,
+    partners: <PartnersPage navigate={navigate} t={t} />,
+    contact: <ContactPage navigate={navigate} language={language} t={t} />,
   };
 
   return (
@@ -54,10 +111,12 @@ export default function App() {
         setLanguage={setLanguage}
         openLanguage={openLanguage}
         setOpenLanguage={setOpenLanguage}
+        activeInvestorSection={investorSection}
+        onInvestorSectionSelect={openInvestorSection}
         t={t}
       />
       <main>{pageMap[page]}</main>
-      <Footer navigate={navigate} t={t} />
+      <Footer navigate={navigate} language={language} t={t} />
     </div>
   );
 }

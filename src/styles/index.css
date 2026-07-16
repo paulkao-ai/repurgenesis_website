@@ -1,3 +1,45 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* running-logo section */
+@keyframes partner-logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-marquee-track {
+  animation:
+    partner-logo-marquee
+    60s
+    linear
+    infinite;
+
+  will-change: transform;
+}
+
+.partner-marquee:hover
+.partner-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-marquee {
+    overflow-x: auto;
+  }
+
+  .partner-marquee-track {
+    animation: none;
+    transform: none;
+  }
+
+  .partner-marquee-track
+  > div:nth-child(2) {
+    display: none;
+  }
+}

@@ -1,8 +1,8 @@
-import { ExternalLink } from "lucide-react";
-import { TAG_COLOR, type NewsArticle } from "@app/data/content";
+// import { ExternalLink } from "lucide-react";
+import { TAG_COLOR, type LocalizedNewsArticle } from "@app/data/content";
 
-export function NewsCard({ article }: { article: NewsArticle }) {
-  const color = TAG_COLOR[article.tag] ?? "#f09f74";
+export function NewsCard({ article }: { article: LocalizedNewsArticle }) {
+  const color = article.tagColor ?? "#f09f74";
   return (
     <div className="bg-white border border-[#e2e8f0] rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-shadow cursor-pointer group">
       <div className="p-5 flex flex-col flex-1">

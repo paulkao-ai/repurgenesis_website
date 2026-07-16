@@ -1,4 +1,8 @@
-import { useMemo, useState } from "react";
+import {
+  useMemo,
+  useState,
+} from "react";
+
 import {
   ComposableMap,
   Geographies,
@@ -6,16 +10,28 @@ import {
   Marker,
   ZoomableGroup,
 } from "react-simple-maps";
-import { Minus, Plus, RotateCcw } from "lucide-react";
-import {
-  PARTNER_CATEGORY_STYLE,
-  PARTNER_LOCATIONS,
-  partnerCategories,
-  type PartnerCategory,
-  type PartnerLocation,
-} from "@app/data/content";
 
-const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+import {
+  Minus,
+  Plus,
+  RotateCcw,
+} from "lucide-react";
+
+import type {
+  Translator,
+} from "@app/types";
+
+import {
+  PARTNER_CATEGORY_IDS,
+  PARTNER_FILTERS,
+  PARTNER_LOCATIONS,
+  PARTNER_MAP_CONFIG,
+  getPartnerCategory,
+  localizePartnerLocation,
+  type LocalizedPartnerLocation,
+  type PartnerCategory,
+  type PartnerFilter,
+} from "@app/data/content";
 
 type GeographyFeature = {
   rsmKey: string;
@@ -23,79 +39,67 @@ type GeographyFeature = {
 };
 
 type MapPosition = {
-  coordinates: [number, number];
+  coordinates: [
+    number,
+    number,
+  ];
+
   zoom: number;
 };
-
-const categories: Array<"All" | PartnerCategory> = [
-  "All",
-  ...partnerCategories,
-];
-
-function splitName(name: string) {
-  const words = name.split(" ");
-
-  if (words.length <= 1) {
-    return [name];
-  }
-
-  const mid = Math.ceil(words.length / 2);
-
-  return [
-    words.slice(0, mid).join(" "),
-    words.slice(mid).join(" "),
-  ];
-}
 
 function MarkerTooltip({
   partner,
 }: {
-  partner: PartnerLocation;
+  partner: LocalizedPartnerLocation;
 }) {
-  const style = PARTNER_CATEGORY_STYLE[partner.category];
-  const name = partner.displayName ?? partner.name;
-  const lines = splitName(name);
+  const category =
+    getPartnerCategory(
+      partner.category,
+    );
 
   return (
-    <g transform="translate(-70 -54)">
+    <g
+      transform="translate(-48 -64)"
+      pointerEvents="none"
+    >
       <rect
         x={0}
         y={0}
-        width={140}
-        height={42}
-        rx={15}
-        fill="#FFFFFF"
-        stroke={style.color}
-        strokeWidth={1.8}
-        filter="drop-shadow(0px 10px 18px rgba(20, 24, 39, 0.15))"
-      />
-
-      <circle
-        cx={23}
-        cy={21}
-        r={14}
-        fill={style.bg}
+        width={96}
+        height={52}
+        rx={16}
+        fill={category.bg}
+        stroke={category.color}
+        strokeWidth={2.4}
+        filter="
+          drop-shadow(
+            0px 8px 16px
+            rgba(20, 24, 39, 0.14)
+          )
+        "
       />
 
       {partner.logoUrl ? (
         <image
           href={partner.logoUrl}
-          x={11}
-          y={9}
-          width={24}
-          height={24}
+          x={13}
+          y={7}
+          width={70}
+          height={27}
           preserveAspectRatio="xMidYMid meet"
         />
       ) : (
         <text
-          x={23}
-          y={25}
+          x={48}
+          y={28}
           textAnchor="middle"
           style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: 8,
-            fontWeight: 800,
-            fill: style.color,
+            fontFamily:
+              "'Plus Jakarta Sans', sans-serif",
+
+            fontSize: 16,
+            fontWeight: 900,
+            fill: category.color,
           }}
         >
           {partner.logoText}
@@ -103,154 +107,233 @@ function MarkerTooltip({
       )}
 
       <text
-        x={44}
-        y={17}
+        x={48}
+        y={44}
+        textAnchor="middle"
         style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: 10.5,
-          fontWeight: 900,
+          fontFamily:
+            "'DM Sans', sans-serif",
+
+          fontSize: 7.5,
+          fontWeight: 800,
           fill: "#141827",
         }}
       >
-        <tspan x={44} dy={0}>
-          {lines[0]}
-        </tspan>
-
-        {lines[1] && (
-          <tspan x={44} dy={13}>
-            {lines[1]}
-          </tspan>
-        )}
+        {partner.city}, {partner.countryCode}
       </text>
     </g>
   );
 }
 
-function PartnerLogoButton({
+function PartnerLogoCard({
   partner,
   active,
   selected,
+  t,
   onClick,
   onHover,
   onLeave,
 }: {
-  partner: PartnerLocation;
+  partner: LocalizedPartnerLocation;
   active: boolean;
   selected: boolean;
+  t: Translator;
   onClick: () => void;
   onHover: () => void;
   onLeave: () => void;
 }) {
-  const style = PARTNER_CATEGORY_STYLE[partner.category];
-  const name = partner.displayName ?? partner.name;
+  const category =
+    getPartnerCategory(
+      partner.category,
+    );
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
+    <article
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className="
-        rounded-2xl
-        border
+        overflow-hidden
+        rounded-[30px]
+        border-2
         bg-white
-        px-4
-        pt-3
-        pb-4
         text-center
         transition-all
         duration-300
-        hover:shadow-md
         hover:-translate-y-0.5
+        hover:shadow-md
       "
       style={{
-        borderColor: active ? style.color : undefined,
-        boxShadow: active ? `0 12px 28px ${style.color}22` : undefined,
+        borderColor:
+          active
+            ? category.color
+            : "#E2E8F0",
+
+        boxShadow:
+          active
+            ? `0 14px 32px ${category.color}26`
+            : undefined,
       }}
     >
-      <div className="flex items-center gap-3 mb-2">
-        <span
-          className="h-px flex-1"
-          style={{ background: style.color }}
-        />
-
-        <span
-          className="
-            text-[12px]
-            font-extrabold
-            uppercase
-            tracking-[0.16em]
-            whitespace-nowrap
-          "
-          style={{ color: style.color }}
-        >
-          {partner.category}
-        </span>
-
-        <span
-          className="h-px flex-1"
-          style={{ background: style.color }}
-        />
-      </div>
-
-      <div
+      <button
+        type="button"
+        onClick={onClick}
+        aria-expanded={selected}
         className="
-          mx-auto
-          mb-1
-          h-24
+          block
           w-full
-          bg-transparent
-          flex
-          items-center
-          justify-center
-          overflow-visible
-          px-1
+          cursor-pointer
+          px-4
+          pb-4
+          pt-3
+          text-center
         "
       >
-        {partner.logoUrl ? (
-          <img
-            src={partner.logoUrl}
-            alt={`${partner.name} logo`}
-            className="max-h-24 max-w-full object-contain"
-          />
-        ) : (
+        <div className="mb-2 flex items-center gap-3">
           <span
-            className="font-bold text-xl"
-            style={{ color: style.color }}
-          >
-            {partner.logoText}
-          </span>
-        )}
-      </div>
+            className="h-[2px] flex-1 rounded-full"
+            style={{
+              background:
+                category.color,
+            }}
+          />
 
-      <p
-        className="
-          mt-0
-          font-bold
-          text-base
-          text-foreground
-          leading-tight
-        "
-        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-      >
-        {name}
-      </p>
+          <span
+            className="
+              whitespace-nowrap
+              text-[12px]
+              font-black
+              uppercase
+              tracking-[0.18em]
+            "
+            style={{
+              color:
+                category.color,
+            }}
+          >
+            {t(category.labelKey)}
+          </span>
+
+          <span
+            className="h-[2px] flex-1 rounded-full"
+            style={{
+              background:
+                category.color,
+            }}
+          />
+        </div>
+
+        <div
+          className="
+            mx-auto
+            mb-1
+            flex
+            h-20
+            w-full
+            items-center
+            justify-center
+            overflow-visible
+            bg-transparent
+            px-2
+          "
+        >
+          {partner.logoUrl ? (
+            <img
+              src={partner.logoUrl}
+              alt={`${partner.name} ${t(
+                "partners.map.logo",
+              )}`}
+              className="
+                max-h-20
+                max-w-full
+                object-contain
+              "
+            />
+          ) : (
+            <span
+              className="
+                text-2xl
+                font-black
+                leading-none
+              "
+              style={{
+                color:
+                  category.color,
+
+                fontFamily:
+                  "'Plus Jakarta Sans', sans-serif",
+              }}
+            >
+              {partner.logoText}
+            </span>
+          )}
+        </div>
+
+        <p
+          className="
+            text-base
+            font-black
+            leading-tight
+            text-foreground
+          "
+          style={{
+            fontFamily:
+              "'Plus Jakarta Sans', sans-serif",
+          }}
+        >
+          {partner.displayName}
+        </p>
+      </button>
 
       {selected && (
-        <div className="mt-4 border-t border-border pt-4 text-center">
+        <div
+          className="
+            border-t
+            border-border
+            px-4
+            pb-4
+            pt-4
+            text-center
+          "
+        >
           {partner.description && (
-            <p className="text-xs text-muted-foreground leading-relaxed">
+            <p
+              className="
+                text-xs
+                leading-relaxed
+                text-muted-foreground
+              "
+            >
               {partner.description}
             </p>
           )}
 
-          <div className="mt-4 flex justify-center flex-wrap gap-2">
+          {partner.address && (
+            <p
+              className="
+                mt-3
+                text-xs
+                leading-relaxed
+                text-muted-foreground
+              "
+            >
+              {partner.address}
+            </p>
+          )}
+
+          <div
+            className="
+              mt-4
+              flex
+              flex-wrap
+              justify-center
+              gap-2
+            "
+          >
             {partner.websiteUrl && (
               <a
                 href={partner.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(event) => event.stopPropagation()}
                 className="
                   inline-flex
                   items-center
@@ -262,377 +345,720 @@ function PartnerLogoButton({
                   text-xs
                   font-semibold
                   text-white
-                  hover:bg-[#24304a]
                   transition-colors
+                  hover:bg-[#24304a]
                 "
               >
-                Website
+                {t(
+                  "partners.map.website",
+                )}
               </a>
             )}
 
-            <a
-              href={partner.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(event) => event.stopPropagation()}
-              className="
-                inline-flex
-                items-center
-                justify-center
-                rounded-full
-                bg-primary
-                px-4
-                py-2
-                text-xs
-                font-semibold
-                text-white
-                hover:bg-[#e08860]
-                transition-colors
-              "
-            >
-              Google Maps
-            </a>
+            {partner.mapsUrl && (
+              <a
+                href={partner.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-primary
+                  px-4
+                  py-2
+                  text-xs
+                  font-semibold
+                  text-white
+                  transition-colors
+                  hover:bg-[#e08860]
+                "
+              >
+                {t(
+                  "partners.map.googleMaps",
+                )}
+              </a>
+            )}
           </div>
         </div>
       )}
-    </button>
+    </article>
   );
 }
 
-export function PartnerMap() {
-  const [activeCategories, setActiveCategories] = useState<PartnerCategory[]>([]);
+export function PartnerMap({
+  t,
+}: {
+  t: Translator;
+}) {
+  /*
+    Empty selection means no filter is active,
+    but every partner remains visible.
+  */
+  const [
+    activeCategories,
+    setActiveCategories,
+  ] = useState<PartnerCategory[]>([]);
 
-  const firstPartnerId = PARTNER_LOCATIONS[0]?.id ?? "";
-
-  const [hoveredPartnerId, setHoveredPartnerId] = useState<string | null>(null);
-
-  const [selectedPartnerId, setSelectedPartnerId] = useState<string | null>(null);
-
-  const [pinnedPartnerId, setPinnedPartnerId] = useState<string | null>(
-    firstPartnerId,
+  const localizedPartners =
+    useMemo(
+      () =>
+        PARTNER_LOCATIONS.map(
+          (partner) =>
+            localizePartnerLocation(
+              partner,
+              t,
+            ),
+        ),
+      [t],
     );
 
-  const highlightedPartnerId = hoveredPartnerId ?? selectedPartnerId ?? pinnedPartnerId;
+  const firstPartnerId =
+    localizedPartners[0]?.id ?? "";
 
-  const [mapPosition, setMapPosition] = useState<MapPosition>({
-    coordinates: [20, 18],
-    zoom: 1.08,
+  const [
+    hoveredPartnerId,
+    setHoveredPartnerId,
+  ] = useState<string | null>(null);
+
+  const [
+    selectedPartnerId,
+    setSelectedPartnerId,
+  ] = useState<string | null>(null);
+
+  const [
+    pinnedPartnerId,
+    setPinnedPartnerId,
+  ] = useState<string | null>(
+    firstPartnerId,
+  );
+
+  const highlightedPartnerId =
+    hoveredPartnerId ??
+    selectedPartnerId ??
+    pinnedPartnerId;
+
+  const [
+    mapPosition,
+    setMapPosition,
+  ] = useState<MapPosition>({
+    coordinates:
+      PARTNER_MAP_CONFIG.initialCoordinates,
+
+    zoom:
+      PARTNER_MAP_CONFIG.initialZoom,
   });
 
-  const visiblePartners = useMemo(() => {
-    if (activeCategories.length === 0) {
-        return PARTNER_LOCATIONS;
-    }
+  const visiblePartners =
+    useMemo(() => {
+      if (
+        activeCategories.length === 0
+      ) {
+        return localizedPartners;
+      }
 
-    return PARTNER_LOCATIONS.filter((partner) =>
-        activeCategories.includes(partner.category),
+      return localizedPartners.filter(
+        (partner) =>
+          activeCategories.includes(
+            partner.category,
+          ),
+      );
+    }, [
+      activeCategories,
+      localizedPartners,
+    ]);
+
+  const allCategoriesSelected =
+    activeCategories.length ===
+    PARTNER_CATEGORY_IDS.length;
+
+  const resetPartnerSelection = (
+    nextCategories: PartnerCategory[],
+  ) => {
+    const nextVisiblePartners =
+      nextCategories.length === 0
+        ? localizedPartners
+        : localizedPartners.filter(
+            (partner) =>
+              nextCategories.includes(
+                partner.category,
+              ),
+          );
+
+    setSelectedPartnerId(null);
+    setHoveredPartnerId(null);
+
+    setPinnedPartnerId(
+      nextVisiblePartners[0]?.id ??
+        null,
     );
-  }, [activeCategories]);
+  };
 
-  const handleCategoryChange = (category: "All" | PartnerCategory) => {
-    if (category === "All") {
-        const allAlreadySelected =
-        activeCategories.length === partnerCategories.length;
+  const handleCategoryChange = (
+    filter: PartnerFilter,
+  ) => {
+    let nextCategories:
+      PartnerCategory[];
 
-        const nextCategories = allAlreadySelected ? [] : partnerCategories;
-
-        setActiveCategories(nextCategories);
-
-        const nextPartner = PARTNER_LOCATIONS[0];
-
-        setSelectedPartnerId(null);
-        setHoveredPartnerId(null);
-        setPinnedPartnerId(nextPartner?.id ?? null);
-
-        return;
+    if (filter === "all") {
+      nextCategories =
+        allCategoriesSelected
+          ? []
+          : [...PARTNER_CATEGORY_IDS];
+    } else {
+      nextCategories =
+        activeCategories.includes(filter)
+          ? activeCategories.filter(
+              (category) =>
+                category !== filter,
+            )
+          : [
+              ...activeCategories,
+              filter,
+            ];
     }
 
-    setActiveCategories((current) => {
-        const alreadySelected = current.includes(category);
+    setActiveCategories(
+      nextCategories,
+    );
 
-        const nextCategories = alreadySelected
-        ? current.filter((item) => item !== category)
-        : [...current, category];
+    resetPartnerSelection(
+      nextCategories,
+    );
+  };
 
-        const visibleAfterChange =
-        nextCategories.length === 0
-            ? PARTNER_LOCATIONS
-            : PARTNER_LOCATIONS.filter((partner) =>
-                nextCategories.includes(partner.category),
-            );
+  const handlePartnerClick = (
+    partnerId: string,
+  ) => {
+    setSelectedPartnerId(
+      (current) =>
+        current === partnerId
+          ? null
+          : partnerId,
+    );
 
-        const nextPartner = visibleAfterChange[0];
+    setPinnedPartnerId(
+      partnerId,
+    );
 
-        setSelectedPartnerId(null);
-        setHoveredPartnerId(null);
-        setPinnedPartnerId(nextPartner?.id ?? null);
+    setHoveredPartnerId(null);
+  };
 
-        return nextCategories;
+  const zoomIn = () => {
+    setMapPosition((current) => ({
+      ...current,
+
+      zoom: Math.min(
+        current.zoom +
+          PARTNER_MAP_CONFIG.zoomStep,
+
+        PARTNER_MAP_CONFIG.maxZoom,
+      ),
+    }));
+  };
+
+  const zoomOut = () => {
+    setMapPosition((current) => ({
+      ...current,
+
+      zoom: Math.max(
+        current.zoom -
+          PARTNER_MAP_CONFIG.zoomStep,
+
+        PARTNER_MAP_CONFIG.minZoom,
+      ),
+    }));
+  };
+
+  const resetZoom = () => {
+    setMapPosition({
+      coordinates:
+        PARTNER_MAP_CONFIG.initialCoordinates,
+
+      zoom:
+        PARTNER_MAP_CONFIG.initialZoom,
     });
-    };
+  };
 
-    const zoomIn = () => {
-        setMapPosition((current) => ({
-        ...current,
-        zoom: Math.min(current.zoom + 0.35, 4),
-        }));
-    };
+  return (
+    <div className="mt-12">
+      {/* Category filters */}
+      <div
+        className="
+          mb-8
+          flex
+          flex-wrap
+          justify-center
+          gap-2
+        "
+      >
+        {PARTNER_FILTERS.map(
+          (filter) => {
+            const isActive =
+              filter.id === "all"
+                ? allCategoriesSelected
+                : activeCategories.includes(
+                    filter.id,
+                  );
 
-    const zoomOut = () => {
-        setMapPosition((current) => ({
-        ...current,
-        zoom: Math.max(current.zoom - 0.35, 1),
-        }));
-    };
-
-    const resetZoom = () => {
-        setMapPosition({
-        coordinates: [20, 18],
-        zoom: 1.08,
-        });
-    };
-
-    return (
-        <div className="mt-12">
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {categories.map((category) => {
-                const isActive =
-                 category === "All"
-                    ? activeCategories.length === partnerCategories.length
-                    : activeCategories.includes(category);
-
-                const categoryStyle =
-                category === "All" ? null : PARTNER_CATEGORY_STYLE[category];
-
-                return (
-                <button
-                    key={category}
-                    type="button"
-                    onClick={() => handleCategoryChange(category)}
-                    className={`
-                    rounded-full
-                    px-4
-                    py-2
-                    text-xs
-                    font-semibold
-                    transition-all
-                    duration-300
-                    border
-                    ${
-                        isActive
-                        ? "bg-[#141827] text-white border-[#141827]"
-                        : "bg-white text-muted-foreground border-border hover:border-primary hover:text-primary"
-                    }
-                    `}
-                >
-                    <span
-                    className="inline-block w-2 h-2 rounded-full mr-2"
-                    style={{
-                        background: categoryStyle?.color ?? "#CBD5E1",
-                    }}
-                    />
-                    {category}
-                </button>
-                );
-            })}
-            </div>
-
-        <div className="relative max-w-7xl mx-auto">
-            <div className="absolute right-0 top-0 z-20 flex items-center gap-2">
-            <button
+            return (
+              <button
+                key={filter.id}
                 type="button"
-                aria-label="Zoom in"
-                onClick={zoomIn}
-                className="w-9 h-9 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-[#141827] hover:text-primary hover:border-primary transition"
-            >
-                <Plus size={16} />
-            </button>
-
-            <button
-                type="button"
-                aria-label="Zoom out"
-                onClick={zoomOut}
-                className="w-9 h-9 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-[#141827] hover:text-primary hover:border-primary transition"
-            >
-                <Minus size={16} />
-            </button>
-
-            <button
-                type="button"
-                aria-label="Reset map zoom"
-                onClick={resetZoom}
-                className="w-9 h-9 rounded-full bg-white border border-border shadow-sm flex items-center justify-center text-[#141827] hover:text-primary hover:border-primary transition"
-            >
-                <RotateCcw size={15} />
-            </button>
-            </div>
-
-            <ComposableMap
-            projection="geoEqualEarth"
-            width={980}
-            height={380}
-            projectionConfig={{
-                scale: 150,
-            }}
-            className="w-full h-auto"
-            >
-            <ZoomableGroup
-                center={mapPosition.coordinates}
-                zoom={mapPosition.zoom}
-                minZoom={1}
-                maxZoom={4}
-                onMoveEnd={({ coordinates, zoom }) => {
-                setMapPosition({
-                    coordinates: coordinates as [number, number],
-                    zoom,
-                });
-                }}
-            >
-                <Geographies geography={geoUrl}>
-                {({ geographies }: { geographies: GeographyFeature[] }) =>
-                    geographies.map((geo) => (
-                    <Geography
-                        key={geo.rsmKey}
-                        geography={geo}
-                        fill="#AAB7C6"
-                        stroke="#F8FAFC"
-                        strokeWidth={0.7}
-                        style={{
-                        default: { outline: "none" },
-                        hover: {
-                            fill: "#94A3B8",
-                            outline: "none",
-                        },
-                        pressed: { outline: "none" },
-                        }}
-                    />
-                    ))
+                onClick={() =>
+                  handleCategoryChange(
+                    filter.id,
+                  )
                 }
-                </Geographies>
+                className={`
+                  rounded-full
+                  border
+                  px-4
+                  py-2
+                  text-xs
+                  font-semibold
+                  transition-all
+                  duration-300
 
-                {visiblePartners.map((partner) => {
-                const style = PARTNER_CATEGORY_STYLE[partner.category];
-                const isActive = partner.id === highlightedPartnerId;
+                  ${
+                    isActive
+                      ? `
+                        border-[#141827]
+                        bg-[#141827]
+                        text-white
+                      `
+                      : `
+                        border-border
+                        bg-white
+                        text-muted-foreground
+                        hover:border-primary
+                        hover:text-primary
+                      `
+                  }
+                `}
+              >
+                <span
+                  className="
+                    mr-2
+                    inline-block
+                    h-2
+                    w-2
+                    rounded-full
+                  "
+                  style={{
+                    background:
+                      filter.color,
+                  }}
+                />
+
+                {t(filter.labelKey)}
+              </button>
+            );
+          },
+        )}
+      </div>
+
+      {/* World map */}
+      <div
+        className="
+          relative
+          mx-auto
+          max-w-7xl
+        "
+      >
+        <div
+          className="
+            absolute
+            right-0
+            top-0
+            z-20
+            flex
+            items-center
+            gap-2
+          "
+        >
+          <button
+            type="button"
+            aria-label={t(
+              "partners.map.zoomIn",
+            )}
+            onClick={zoomIn}
+            className="
+              flex
+              h-9
+              w-9
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-border
+              bg-white
+              text-[#141827]
+              shadow-sm
+              transition
+              hover:border-primary
+              hover:text-primary
+            "
+          >
+            <Plus size={16} />
+          </button>
+
+          <button
+            type="button"
+            aria-label={t(
+              "partners.map.zoomOut",
+            )}
+            onClick={zoomOut}
+            className="
+              flex
+              h-9
+              w-9
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-border
+              bg-white
+              text-[#141827]
+              shadow-sm
+              transition
+              hover:border-primary
+              hover:text-primary
+            "
+          >
+            <Minus size={16} />
+          </button>
+
+          <button
+            type="button"
+            aria-label={t(
+              "partners.map.resetZoom",
+            )}
+            onClick={resetZoom}
+            className="
+              flex
+              h-9
+              w-9
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-border
+              bg-white
+              text-[#141827]
+              shadow-sm
+              transition
+              hover:border-primary
+              hover:text-primary
+            "
+          >
+            <RotateCcw size={15} />
+          </button>
+        </div>
+
+        <ComposableMap
+          projection="geoEqualEarth"
+          width={
+            PARTNER_MAP_CONFIG.width
+          }
+          height={
+            PARTNER_MAP_CONFIG.height
+          }
+          projectionConfig={{
+            scale:
+              PARTNER_MAP_CONFIG.projectionScale,
+          }}
+          className="h-auto w-full"
+        >
+          <ZoomableGroup
+            center={
+              mapPosition.coordinates
+            }
+            zoom={
+              mapPosition.zoom
+            }
+            minZoom={
+              PARTNER_MAP_CONFIG.minZoom
+            }
+            maxZoom={
+              PARTNER_MAP_CONFIG.maxZoom
+            }
+            onMoveEnd={({
+              coordinates,
+              zoom,
+            }) => {
+              setMapPosition({
+                coordinates:
+                  coordinates as [
+                    number,
+                    number,
+                  ],
+
+                zoom,
+              });
+            }}
+          >
+            <Geographies
+              geography={
+                PARTNER_MAP_CONFIG.geoUrl
+              }
+            >
+              {({
+                geographies,
+              }: {
+                geographies:
+                  GeographyFeature[];
+              }) =>
+                geographies.map(
+                  (geography) => (
+                    <Geography
+                      key={
+                        geography.rsmKey
+                      }
+                      geography={
+                        geography
+                      }
+                      fill="#AAB7C6"
+                      stroke="#F8FAFC"
+                      strokeWidth={0.7}
+                      style={{
+                        default: {
+                          outline:
+                            "none",
+                        },
+
+                        hover: {
+                          fill:
+                            "#94A3B8",
+
+                          outline:
+                            "none",
+                        },
+
+                        pressed: {
+                          outline:
+                            "none",
+                        },
+                      }}
+                    />
+                  ),
+                )
+              }
+            </Geographies>
+
+            {visiblePartners.map(
+              (partner) => {
+                const category =
+                  getPartnerCategory(
+                    partner.category,
+                  );
+
+                const isActive =
+                  partner.id ===
+                  highlightedPartnerId;
 
                 return (
-                    <Marker key={partner.id} coordinates={partner.coordinates}>
+                  <Marker
+                    key={partner.id}
+                    coordinates={
+                      partner.coordinates
+                    }
+                  >
                     <g
-                        role="button"
-                        tabIndex={0}
-                        aria-label={`Show ${partner.name}`}
-                        onClick={() => {
-                        setSelectedPartnerId((current) =>
-                            current === partner.id ? null : partner.id,
-                        );
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${t(
+                        "partners.map.showPartner",
+                      )}: ${
+                        partner.displayName
+                      }`}
+                      onClick={() =>
+                        handlePartnerClick(
+                          partner.id,
+                        )
+                      }
+                      onMouseEnter={() =>
+                        setHoveredPartnerId(
+                          partner.id,
+                        )
+                      }
+                      onMouseLeave={() =>
+                        setHoveredPartnerId(
+                          null,
+                        )
+                      }
+                      onKeyDown={(
+                        event,
+                      ) => {
+                        if (
+                          event.key ===
+                            "Enter" ||
+                          event.key ===
+                            " "
+                        ) {
+                          event.preventDefault();
 
-                        setPinnedPartnerId(partner.id);
-                        setHoveredPartnerId(null);
-                        }}
-                        onMouseEnter={() => setHoveredPartnerId(partner.id)}
-                        onMouseLeave={() => setHoveredPartnerId(null)}
-                        onKeyDown={(event) => {
-                        if (event.key === "Enter" || event.key === " ") {
-                            setSelectedPartnerId((current) =>
-                            current === partner.id ? null : partner.id,
-                            );
-
-                            setPinnedPartnerId(partner.id);
-                            setHoveredPartnerId(null);
+                          handlePartnerClick(
+                            partner.id,
+                          );
                         }
-                        }}
-                        className="cursor-pointer"
+                      }}
+                      className="cursor-pointer"
                     >
-                        <circle
+                      <circle
                         r={22}
                         fill="transparent"
-                        />
+                      />
 
-                        {isActive && (
+                      {isActive && (
                         <circle
-                            r={10}
-                            fill={style.color}
-                            opacity={0.22}
+                          r={10}
+                          fill={
+                            category.color
+                          }
+                          opacity={0.22}
                         >
-                            <animate
+                          <animate
                             attributeName="r"
                             values="10;18;10"
                             dur="1.8s"
                             repeatCount="indefinite"
-                            />
-                            <animate
+                          />
+
+                          <animate
                             attributeName="opacity"
                             values="0.28;0.04;0.28"
                             dur="1.8s"
                             repeatCount="indefinite"
-                            />
+                          />
                         </circle>
-                        )}
+                      )}
 
-                        <circle
-                        r={isActive ? 10 : 8.5}
+                      <circle
+                        r={
+                          isActive
+                            ? 10
+                            : 8.5
+                        }
                         fill="#FFFFFF"
-                        stroke={style.color}
+                        stroke={
+                          category.color
+                        }
                         strokeWidth={2}
-                        />
+                      />
 
-                        {partner.logoUrl ? (
+                      {partner.logoUrl ? (
                         <image
-                            href={partner.logoUrl}
-                            x={isActive ? -6.5 : -5.5}
-                            y={isActive ? -6.5 : -5.5}
-                            width={isActive ? 13 : 11}
-                            height={isActive ? 13 : 11}
-                            preserveAspectRatio="xMidYMid meet"
-                            pointerEvents="none"
+                          href={
+                            partner.logoUrl
+                          }
+                          x={
+                            isActive
+                              ? -6.5
+                              : -5.5
+                          }
+                          y={
+                            isActive
+                              ? -6.5
+                              : -5.5
+                          }
+                          width={
+                            isActive
+                              ? 13
+                              : 11
+                          }
+                          height={
+                            isActive
+                              ? 13
+                              : 11
+                          }
+                          preserveAspectRatio="xMidYMid meet"
+                          pointerEvents="none"
                         />
-                        ) : (
+                      ) : (
                         <text
-                            textAnchor="middle"
-                            y={3}
-                            pointerEvents="none"
-                            style={{
-                            fontFamily: "'DM Sans', sans-serif",
+                          textAnchor="middle"
+                          y={3}
+                          pointerEvents="none"
+                          style={{
+                            fontFamily:
+                              "'DM Sans', sans-serif",
+
                             fontSize: 6,
                             fontWeight: 800,
-                            fill: style.color,
-                            }}
+
+                            fill:
+                              category.color,
+                          }}
                         >
-                            {partner.logoText}
+                          {
+                            partner.logoText
+                          }
                         </text>
-                        )}
+                      )}
 
-                        {hoveredPartnerId === partner.id && (
-                        <MarkerTooltip partner={partner} />
-                        )}
+                      {hoveredPartnerId ===
+                        partner.id && (
+                        <MarkerTooltip
+                          partner={
+                            partner
+                          }
+                        />
+                      )}
                     </g>
-                    </Marker>
+                  </Marker>
                 );
-                })}
-            </ZoomableGroup>
-            </ComposableMap>
-        </div>
+              },
+            )}
+          </ZoomableGroup>
+        </ComposableMap>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-                {visiblePartners.map((partner) => (
-                <PartnerLogoButton
-                    key={partner.id}
-                    partner={partner}
-                    active={partner.id === highlightedPartnerId}
-                    selected={partner.id === selectedPartnerId}
-                    onClick={() => {
-                        setSelectedPartnerId((current) =>
-                        current === partner.id ? null : partner.id,
-                        );
-
-                        setPinnedPartnerId(partner.id);
-                        setHoveredPartnerId(null);
-                    }}
-                    onHover={() => setHoveredPartnerId(partner.id)}
-                    onLeave={() => setHoveredPartnerId(null)}
-                />
-                ))}
-            </div>
-
-        </div>
-    );
+      {/* Partner cards */}
+      <div
+        className="
+          mt-6
+          grid
+          grid-cols-1
+          gap-2
+          sm:grid-cols-2
+          lg:grid-cols-4
+        "
+      >
+        {visiblePartners.map(
+          (partner) => (
+            <PartnerLogoCard
+              key={partner.id}
+              partner={partner}
+              t={t}
+              active={
+                partner.id ===
+                highlightedPartnerId
+              }
+              selected={
+                partner.id ===
+                selectedPartnerId
+              }
+              onClick={() =>
+                handlePartnerClick(
+                  partner.id,
+                )
+              }
+              onHover={() =>
+                setHoveredPartnerId(
+                  partner.id,
+                )
+              }
+              onLeave={() =>
+                setHoveredPartnerId(
+                  null,
+                )
+              }
+            />
+          ),
+        )}
+      </div>
+    </div>
+  );
 }
