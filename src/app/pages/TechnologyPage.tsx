@@ -2,165 +2,110 @@ import { Fragment } from "react";
 import { ArrowRight } from "lucide-react";
 import { TECHNOLOGY_CARDS, steps } from "@app/data/content";
 import { SectionHeading, SectionLabel } from "@app/components/Section";
-import type { Translator } from "@app/types";
+import type { Translator, Language } from "@app/types";
 
 export function TechnologyPage({
   t,
+  language,
 }: {
   t: Translator;
+  language: Language;
 }) {
   return (
     <div className="pt-24">
       <section className="max-w-7xl mx-auto px-6 py-16 text-center">
-        <SectionLabel>
-          {t("technology.hero.label")}
-        </SectionLabel>
-        <SectionHeading>
-          {t("technology.hero.title")}
-        </SectionHeading>
-        <p
-          className="
-            mx-auto
-            mt-4
-            max-w-2xl
-            leading-relaxed
-            text-muted-foreground
-          "
-        >
+        <SectionLabel>{t("technology.hero.label")}</SectionLabel>
+        <SectionHeading>{t("technology.hero.title")}</SectionHeading>
+        <p className="mx-auto mt-4 max-w-4xl leading-relaxed text-muted-foreground">
           {t("technology.hero.description")}
         </p>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 pb-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {TECHNOLOGY_CARDS.map((card) => (
-          <article
-            key={card.id}
-            className="
-              rounded-2xl
-              border
-              border-border
-              bg-card
-              p-7
-              transition-shadow
-              hover:shadow-md
-            "
-          >
-            <span
-              className="text-4xl"
-              aria-hidden="true"
-            >
-              {card.icon}
-            </span>
-
-            <div
+      <section className="max-w-7xl mx-auto px-6 pb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+          {TECHNOLOGY_CARDS.map((card) => (
+            <article
+              key={card.id}
               className="
-                mt-4
-                mb-3
-                flex
-                flex-wrap
-                items-center
-                gap-3
+                flex flex-col items-center text-center
+                rounded-2xl border border-border bg-card p-7
+                transition-shadow hover:shadow-md
               "
             >
-              <h3
-                className="
-                  text-lg
-                  font-bold
-                  text-foreground
-                "
-                style={{
-                  fontFamily:
-                    "'Plus Jakarta Sans', sans-serif",
-                }}
-              >
-                {t(card.titleKey)}
-              </h3>
+              <div className="mb-3 flex flex-col items-center gap-2">
+                <span className="text-3xl leading-none" aria-hidden="true">
+                  {card.icon}
+                </span>
 
-              <span
-                className="
-                  shrink-0
-                  rounded-full
-                  bg-accent
-                  px-2.5
-                  py-1
-                  text-xs
-                  font-semibold
-                  text-primary
-                "
-              >
-                {t(card.tagKey)}
-              </span>
-            </div>
+                <h3
+                  className="text-lg font-bold text-foreground text-balance"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  {t(card.titleKey)}
+                </h3>
+              </div>
 
-            <p
-              className="
-                text-sm
-                leading-relaxed
-                text-muted-foreground
-              "
-            >
-              {t(card.descriptionKey)}
-            </p>
-          </article>
-        ))}
+              <p className="text-sm leading-relaxed text-muted-foreground text-balance">
+                {t(card.descriptionKey)}
+              </p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="bg-[#141827] py-20">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <SectionLabel light>
-              {t("technology.pipeline.label")}
-            </SectionLabel>
+            <SectionLabel light>{t("technology.pipeline.label")}</SectionLabel>
 
-            <SectionHeading light>
-              {t("technology.pipeline.title")}
-            </SectionHeading>
+            <div className="mx-auto w-full max-w-none px-6">
+             <SectionHeading light>
+                {t("technology.pipeline.titleLine1")}
+                {language === "en" && <br className="lg:hidden" />}
+                <span className={language === "en" ? "lg:ml-[0.25em]" : "ml-[0.25em]"}>
+                  {t("technology.pipeline.titleLine2")}
+                </span>
+              </SectionHeading>
+            </div>
           </div>
-          
-          <div className="hidden md:flex items-center">
+
+          {/* Stacks vertically (down arrows) below lg, flows horizontally (right arrows) at lg */}
+          <div className="flex flex-col lg:flex-row items-stretch justify-center gap-2">
             {steps.map((s, i) => (
               <Fragment key={s.step}>
+                <div
+                  className="
+                    flex flex-1 flex-col items-center justify-start
+                    rounded-2xl border border-white/10 bg-white/5 p-6
+                    text-center transition-colors duration-200
+                    hover:border-[#f09f74]/60 hover:bg-white/[0.08]
+                  "
+                >
+                  <span className="text-sm font-semibold tracking-widest text-primary">
+                    {s.step}
+                  </span>
 
-                {/* Card */}
-                <div className="flex-1">
-                  <div
+                  {/* reserves 2 lines of title height; content centered within it */}
+                  <h3
                     className="
-                      flex
-                      flex-col
-                      justify-between
-                      items-center
-                      min-h-[160px]
-                      bg-white/5
-                      border
-                      border-white/10
-                      rounded-2xl
-                      p-6
+                      mt-3 flex min-h-[2.75rem] items-center justify-center
+                      text-center text-base font-bold text-white text-balance
+                    "
+                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  >
+                    {t(s.labelKey)}
+                  </h3>
+
+                  {/* reserves 2 lines of description height; content centered within it */}
+                  <p
+                    className="
+                      mt-2 flex min-h-[2.5rem] items-center justify-center
+                      text-center text-xs leading-relaxed text-white/40 text-balance
                     "
                   >
-                    <p
-                      className="font-bold text-white text-sm text-center"
-                      style={{
-                        fontFamily:
-                          "'Plus Jakarta Sans', sans-serif",
-                      }}
-                    >
-                      {t(s.labelKey)}
-                    </p>
-
-                    <p className="mt-2 text-center text-xs text-white/40">
-                      {t(s.descriptionKey)}
-                    </p>
-                  </div>
+                    {t(s.descriptionKey)}
+                  </p>
                 </div>
-
-                {/* Arrow */}
-                {i < steps.length - 1 && (
-                  <ArrowRight
-                    size={20}
-                    className="mx-4 shrink-0 text-primary/60"
-                  />
-                )}
-
               </Fragment>
             ))}
           </div>

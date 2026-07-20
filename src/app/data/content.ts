@@ -399,7 +399,7 @@ export const TEXT = {
               "President",
 
             bio:
-              "Dr. Yin-Hsong Hsu is the Founder and President of Repurgenesis. He leads the development of the company's Bio + AI platform for drug repurposing that combines basic biomedical practice together with computer-based methods, trials, experimental validation and strategic collaboration.",
+              "Dr. Yin-Hsong Hsu is the President of Repurgenesis. He leads the development of the company's Bio + AI platform for drug repurposing that combines basic biomedical practice together with computer-based methods, trials, experimental validation and strategic collaboration.",
           },
 
           memberTwo: {
@@ -410,7 +410,7 @@ export const TEXT = {
               "President",
 
             bio:
-              "Dr. Yin-Hsong Hsu is the Founder and President of Repurgenesis. He leads the development of the company's Bio + AI platform for drug repurposing that combines basic biomedical practice together with computer-based methods, trials, experimental validation and strategic collaboration.",
+              "Dr. Yin-Hsong Hsu is the President of Repurgenesis. He leads the development of the company's Bio + AI platform for drug repurposing that combines basic biomedical practice together with computer-based methods, trials, experimental validation and strategic collaboration.",
           },
         },
       },
@@ -418,99 +418,54 @@ export const TEXT = {
     // technology page
     technology: {
       hero: {
-        label:
-          "Intelligent Orchestrator",
-
-        title:
-          "Orchestrated AI for evidence-driven drug repurposing",
-
+        label: "Intelligent Orchestrator",
+        title: "Orchestrated AI for evidence-driven drug repurposing",
         description:
-          "The Intelligent Orchestrator is Repurgenesis's internally developed drug repurposing platform. It coordinates specialized AI agents, multimodal biomedical data, analytical models, and domain expertise to identify and evaluate new therapeutic opportunities for existing medicines.",
+          "Coordinating AI agents, multimodal data, and domain experts to uncover new uses for existing medicines.",
       },
-
       cards: {
         orchestration: {
-          title:
-            "Multi-Agent Orchestration",
-
-          description:
-            "Specialized AI agents coordinate evidence retrieval, biological analysis, model execution, evidence assessment, and candidate evaluation.",
-
-          tag:
-            "Core Platform",
+          title: "Multi-Agent Orchestration",
+          description: "AI agents coordinate retrieval, analysis, and evaluation.",
         },
-
         evidence: {
-          title:
-            "Multimodal Evidence Integration",
-
-          description:
-            "Drug structure, molecular targets, pathways, gene expression, knowledge graphs, literature, and clinical evidence are interpreted within one research context.",
-
-          tag:
-            "Bio + AI",
+          title: "Multimodal Evidence Integration",
+          description: "Structure, gene expression, graphs, and literature as one.",
         },
-
         prioritization: {
-          title:
-            "Candidate Prioritization",
-
-          description:
-            "Therapeutic opportunities are evaluated using biological rationale, evidence consistency, unmet medical need, validation feasibility, intellectual property potential, and commercial relevance.",
-
-          tag:
-            "Decision Support",
+          title: "Candidate Prioritization",
+          description: "Ranked by rationale, feasibility, and commercial value.",
         },
-
         validation: {
-          title:
-            "Validation and IP Readiness",
-
-          description:
-            "Selected opportunities progress through expert review, experimental validation, mechanism assessment, and intellectual property evaluation.",
-
-          tag:
-            "Translation",
+          title: "Validation & IP Readiness",
+          description: "Expert review, wet-lab testing, and IP assessment.",
         },
       },
-
       pipeline: {
-        label:
-          "Discovery Workflow",
-
-        title:
-          "From research question to validated opportunity",
+        label: "Discovery Workflow",
+        titleLine1: "From research question to",
+        titleLine2: "validated opportunity",
       },
       pipelineSteps: {
         definition: {
-          label:
-            "Research Definition",
-          description:
-            "Define the medicine, disease, biological mechanism, development need, and commercial objective.",
+          label: "Research Definition",
+          description: "Define the drug, disease, and goal.",
         },
         orchestration: {
-          label:
-            "Evidence Orchestration",
-          description:
-            "Coordinate relevant data sources, analytical models, and specialized AI agents.",
+          label: "Evidence Orchestration",
+          description: "Coordinate data, models, and AI agents.",
         },
         prioritization: {
-          label:
-            "Candidate Prioritization",
-          description:
-            "Rank opportunities using evidence strength, biological rationale, feasibility, and development potential.",
+          label: "Candidate Prioritization",
+          description: "Rank by evidence and feasibility.",
         },
         validation: {
-          label:
-            "Experimental Validation",
-          description:
-            "Evaluate prioritized opportunities through appropriate laboratory studies.",
+          label: "Experimental Validation",
+          description: "Validate through lab studies.",
         },
         partnering: {
-          label:
-            "IP and Partnering",
-          description:
-            "Develop intellectual property strategy and assess licensing or joint development opportunities.",
+          label: "IP & Partnering",
+          description: "Build IP and assess collaboration.",
         },
       },
     },
@@ -557,6 +512,28 @@ export const TEXT = {
         title: "Solutions across disease areas",
         description:
           "We partner with pharmaceutical companies, academic institutions, and patient advocacy organizations to address diseases where conventional drug development timelines leave patients without treatment options.",
+      },
+      solutionCards: {
+        rareDiseases: {
+          label: "Rare Diseases",
+          description:
+            "Accelerating treatment timelines for orphan conditions where new drug development is too slow.",
+        },
+        oncology: {
+          label: "Oncology",
+          description:
+            "Repositioning established compounds for combination regimens with better tolerability.",
+        },
+        neurodegeneration: {
+          label: "Neurodegeneration",
+          description:
+            "Targeting CNS pathways with repurposed molecules to slow disease progression.",
+        },
+        metabolicDisorders: {
+          label: "Metabolic Disorders",
+          description:
+            "Applying existing metabolic modulators against emerging targets in metabolic disease.",
+        },
       },
       faq: {
         label: "FAQ",
@@ -1132,50 +1109,28 @@ export const TEXT = {
     },
     home: {
       hero: {
-        label:
-          "AI 智慧協奏藥物再利用",
-        title:
-          "從生醫證據，走向可驗證的治療機會",
+        label: "智慧協奏平台",
+        title: "協奏式 AI，推動證據導向的藥物再利用",
         description:
-          "源華智醫將 AI Agent、多模態生醫資料與領域專家整合在同一套研發流程中，協助團隊更有系統地探索既有藥物的新用途，並建立通往實驗驗證的清晰路徑。",
-        primaryButton:
-          "探索技術平台",
-        secondaryButton:
-          "與我們合作",
-        scroll:
-          "向下探索",
+          "整合 AI Agent、多模態資料與領域專家，探索既有藥物的新治療用途。",
       },
-      heroHighlights: {
-        bioAi: {
-          value:
-            "Bio + AI",
 
-          label:
-            "整合生醫，藥物開發與人工智慧",
-        },
-
+      cards: {
         orchestration: {
-          value:
-            "AI 智慧協奏",
-
-          label:
-            "協調資料 分析模型與專家審議",
+          title: "多重 AI Agent 協奏",
+          description: "AI Agent 於同一流程協調檢索、分析與候選評估。",
         },
-
         evidence: {
-          value:
-            "證據整合",
-
-          label:
-            "整合基因體及結構 文獻與臨床證據",
+          title: "多模態證據整合",
+          description: "結構、路徑、基因表現、知識圖譜與文獻，統整判讀。",
         },
-
+        prioritization: {
+          title: "候選機會排序",
+          description: "依生物合理性、驗證可行性與商業價值排序。",
+        },
         validation: {
-          value:
-            "轉譯",
-
-          label:
-            "候選排序進行實驗與智財評估",
+          title: "驗證與智財準備",
+          description: "優先候選進入專家審議、濕實驗驗證與智財評估。",
         },
       },
       workflows: {
@@ -1360,10 +1315,10 @@ export const TEXT = {
               "許銀雄 博士",
 
             role:
-              "創辦人暨總經理",
+              "總經理",
 
             bio:
-              "許銀雄博士 為 源華智醫之創辦人暨總經理，帶領公司發展 Bio + AI 老藥新用平台，結合生醫研究、人工智慧、實驗驗證以及策略合作，推動極具潛力的治療機會 進入後續轉譯與商業評估。",
+              "許銀雄博士 為 源華智醫之總經理，帶領公司發展 Bio + AI 老藥新用平台，結合生醫研究、人工智慧、實驗驗證以及策略合作，推動極具潛力的治療機會 進入後續轉譯與商業評估。",
           },
 
           memberTwo: {
@@ -1371,10 +1326,10 @@ export const TEXT = {
               "許銀雄 博士",
 
             role:
-              "創辦人暨總經理",
+              "總經理",
 
             bio:
-              "請在此加入經公司核准的專業介紹，說明其研究專長、藥物開發經驗、學術背景與領導職責。",
+              "許銀雄博士 為 源華智醫之總經理，帶領公司發展 Bio + AI 老藥新用平台，結合生醫研究、人工智慧、實驗驗證以及策略合作，推動極具潛力的治療機會 進入後續轉譯與商業評估。",
           },
         },
       },
@@ -1394,87 +1349,47 @@ export const TEXT = {
 
       cards: {
         orchestration: {
-          title:
-            "多重 AI Agent 協奏",
-
-          description:
-            "協調證據檢索、生物分析、模型執行、證據評估與候選機會判讀等專業任務。",
-
-          tag:
-            "核心平台",
+          title: "多重 AI Agent 協奏",
+          description: "AI Agent 協調檢索、分析與評估。",
         },
-
         evidence: {
-          title:
-            "多模態證據整合",
-
-          description:
-            "將藥物結構、分子標的、疾病路徑、基因表現、知識圖譜、文獻與臨床證據納入一致的研究脈絡。",
-
-          tag:
-            "Bio + AI",
+          title: "多模態證據整合",
+          description: "整合結構、基因表現、圖譜與文獻。",
         },
-
         prioritization: {
-          title:
-            "候選機會排序",
-
-          description:
-            "依據生物合理性、證據一致性、未滿足醫療需求、驗證可行性、智財潛力及商業價值進行綜合評估。",
-
-          tag:
-            "決策支援",
+          title: "候選機會排序",
+          description: "依合理性、可行性與商業價值排序。",
         },
-
         validation: {
-          title:
-            "驗證與智財準備",
-
-          description:
-            "通過篩選的候選機會將進入專家審議、實驗驗證、作用機制評估及智慧財產權分析。",
-
-          tag:
-            "轉譯應用",
+          title: "驗證與智財準備",
+          description: "專家審議、濕實驗驗證與智財評估。",
         },
       },
-
       pipeline: {
-        label:
-          "研發流程",
-
-        title:
-          "從研發問題到可驗證的治療機會",
+        label: "研發流程",
+        titleLine1: "從研發問題",
+        titleLine2: "到可驗證的治療機會",
       },
       pipelineSteps: {
         definition: {
-          label:
-            "研發問題定義",
-          description:
-            "定義藥物、疾病、生物機制、開發需求及商業目標。",
+          label: "研發問題定義",
+          description: "定義藥物、疾病與目標。",
         },
         orchestration: {
-          label:
-            "證據智慧協奏",
-          description:
-            "協調相關資料來源、分析模型及專業 AI Agent。",
+          label: "證據智慧協奏",
+          description: "協調資料、模型與 AI Agent。",
         },
         prioritization: {
-          label:
-            "候選機會排序",
-          description:
-            "依證據強度、生物合理性、可行性及開發潛力進行排序。",
+          label: "候選機會排序",
+          description: "依證據強度與可行性排序。",
         },
         validation: {
-          label:
-            "實驗驗證",
-          description:
-            "運用適當的實驗方法驗證優先候選機會。",
+          label: "實驗驗證",
+          description: "以適當實驗方法驗證。",
         },
         partnering: {
-          label:
-            "智財與商業合作",
-          description:
-            "建立智慧財產權策略，並評估授權或共同開發機會。",
+          label: "智財與商業合作",
+          description: "建立智財並評估合作。",
         },
       },
     },
@@ -1522,7 +1437,24 @@ export const TEXT = {
         description:
           "我們與製藥公司、學術研究機構及病友倡議組織合作，致力於改善傳統藥物開發時程過長，導致病患缺乏治療選項的疾病領域。",
       },
-
+      solutionCards: {
+        rareDiseases: {
+          label: "罕見疾病",
+          description: "為新藥開發過於緩慢的孤兒疾病加速治療時程。",
+        },
+        oncology: {
+          label: "腫瘤疾病",
+          description: "將既有藥物重新定位於耐受性更佳的組合療法。",
+        },
+        neurodegeneration: {
+          label: "神經退化性疾病",
+          description: "以再利用分子作用於中樞神經路徑，延緩疾病進程。",
+        },
+        metabolicDisorders: {
+          label: "代謝疾病",
+          description: "運用既有代謝調節藥物，針對代謝疾病的新標的。",
+        },
+      },
       faq: {
         label: "常見問題",
         title: "常見問題與解答",
@@ -2182,9 +2114,9 @@ export const SOLUTIONS = [
     description:
       "Accelerating treatment timelines for orphan conditions where de novo drug development is prohibitively slow and expensive.",
     labelKey:
-      "solutionCards.rareDiseases.label",
+      "solutionsPage.solutionCards.rareDiseases.label",
     descriptionKey:
-      "solutionCards.rareDiseases.description",
+      "solutionsPage.solutionCards.rareDiseases.description",
     image:
       "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=400&fit=crop&auto=format",
   },
@@ -2196,9 +2128,9 @@ export const SOLUTIONS = [
     description:
       "Re-engineering established compounds for combination oncology regimens with improved tolerability profiles.",
     labelKey:
-      "solutionCards.oncology.label",
+      "solutionsPage.solutionCards.oncology.label",
     descriptionKey:
-      "solutionCards.oncology.description",
+      "solutionsPage.solutionCards.oncology.description",
     image:
       "https://www.sciencedaily.com/images/1920/targeting-cancer-cells-ultrasound.webp",
   },
@@ -2210,9 +2142,9 @@ export const SOLUTIONS = [
     description:
       "Targeting CNS pathways with repurposed molecules to slow progression in Alzheimer's, Parkinson's, and ALS.",
     labelKey:
-      "solutionCards.neurodegeneration.label",
+      "solutionsPage.solutionCards.neurodegeneration.label",
     descriptionKey:
-      "solutionCards.neurodegeneration.description",
+      "solutionsPage.solutionCards.neurodegeneration.description",
     image:
       "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&h=400&fit=crop&auto=format",
   },
@@ -2224,9 +2156,9 @@ export const SOLUTIONS = [
     description:
       "Leveraging existing metabolic modulators against emerging targets in NASH, type 2 diabetes, and obesity.",
     labelKey:
-      "solutionCards.metabolicDisorders.label",
+      "solutionsPage.solutionCards.metabolicDisorders.label",
     descriptionKey:
-      "solutionCards.metabolicDisorders.description",
+      "solutionsPage.solutionCards.metabolicDisorders.description",
     image:
       "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=600&h=400&fit=crop&auto=format",
   },
@@ -2334,38 +2266,28 @@ export type TechnologyStepDefinition = {
 export const steps = [
   {
     step: "01",
-    labelKey:
-      "technology.pipelineSteps.ingestion.label",
-    descriptionKey:
-      "technology.pipelineSteps.ingestion.description",
+    labelKey: "technology.pipelineSteps.definition.label",
+    descriptionKey: "technology.pipelineSteps.definition.description",
   },
   {
     step: "02",
-    labelKey:
-      "technology.pipelineSteps.scoring.label",
-    descriptionKey:
-      "technology.pipelineSteps.scoring.description",
+    labelKey: "technology.pipelineSteps.orchestration.label",
+    descriptionKey: "technology.pipelineSteps.orchestration.description",
   },
   {
     step: "03",
-    labelKey:
-      "technology.pipelineSteps.shortlist.label",
-    descriptionKey:
-      "technology.pipelineSteps.shortlist.description",
+    labelKey: "technology.pipelineSteps.prioritization.label",
+    descriptionKey: "technology.pipelineSteps.prioritization.description",
   },
   {
     step: "04",
-    labelKey:
-      "technology.pipelineSteps.validation.label",
-    descriptionKey:
-      "technology.pipelineSteps.validation.description",
+    labelKey: "technology.pipelineSteps.validation.label",
+    descriptionKey: "technology.pipelineSteps.validation.description",
   },
   {
     step: "05",
-    labelKey:
-      "technology.pipelineSteps.filing.label",
-    descriptionKey:
-      "technology.pipelineSteps.filing.description",
+    labelKey: "technology.pipelineSteps.partnering.label",
+    descriptionKey: "technology.pipelineSteps.partnering.description",
   },
 ] as const satisfies ReadonlyArray<TechnologyStepDefinition>;
 
