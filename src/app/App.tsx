@@ -27,7 +27,7 @@ import {
   AboutPage,
   ContactPage,
   HomePage,
-  InvestorsPage,
+  // InvestorsPage,
   NewsArticlePage,
   NewsPage,
   PartnersPage,
@@ -41,7 +41,7 @@ const PAGE_IDS: readonly Page[] = [
   "technology",
   "solutions",
   "news",
-  "investors",
+  // "investors",
   "partners",
   "contact",
 ];
@@ -134,7 +134,7 @@ export default function App() {
     if (articleSlug) {
       return "news";
     }
-
+    
     return isPage(
       requestedPage,
     )
@@ -199,10 +199,16 @@ export default function App() {
       );
     }
 
-    setCurrent("investors");
-    setInvestorSection(section);
-    setOpenLanguage(false);
+    // setCurrent("investors");
+    // setInvestorSection(section);
 
+    setCurrent(page);
+
+    if (page === "investors") {
+      setInvestorSection(null);
+    }
+    setOpenLanguage(false);
+    
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -286,19 +292,19 @@ export default function App() {
         language={language}
       />
     ),
-
-    investors: (
-      <InvestorsPage
-        navigate={navigate}
-        activeSection={
-          investorSection
-        }
-        setActiveSection={
-          setInvestorSection
-        }
-        t={t}
-      />
-    ),
+    investors: null,
+    // investors: (
+    //   <InvestorsPage
+    //     navigate={navigate}
+    //     activeSection={
+    //       investorSection
+    //     }
+    //     setActiveSection={
+    //       setInvestorSection
+    //     }
+    //     t={t}
+    //   />
+    // ),
 
     partners: (
       <PartnersPage

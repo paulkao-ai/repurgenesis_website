@@ -11,6 +11,9 @@ import repurgenesisColorLogo from "./company_logo/processed/bg_remove/repurgenes
 import repurgenesisColorText from "./company_logo/processed/bg_remove/repurgenesis_bg2.png";
 import memberOneImage from "./people/hsu.jpg?url";
 import intlConferencesImage from "./news/intlConferences.jpg";
+import gtcTaipei2026Image from "./news/gtcTaipei2026.jpg";
+import bioAsiaTaiwan2026Image from "./news/bioAsia2026.jpg";
+import AICompanionImage from "./news/AICompanion.jpg";
 
 // ─── Company Assets (Logo + Text) ────────────────────────────────────────────────────────────
 export const BRAND_ASSETS = {
@@ -654,123 +657,188 @@ export const TEXT = {
       },
 
       articles: {
+        bioAsiaTaiwan2026: {
+          date:
+            "July 16, 2026",
+
+          title:
+            "Repurgenesis Showcases Intelligent Orchestrator at BIO Asia–Taiwan 2026",
+
+          excerpt:
+            "Visit Booth M632 to explore how our AI-powered platform brings multimodal evidence and intelligent workflows into drug-repurposing research.",
+
+          lead:
+            "We are excited to welcome biotechnology, pharmaceutical, research, healthcare, and AI teams to meet Repurgenesis at BIO Asia–Taiwan 2026 and experience the Intelligent Orchestrator in action.",
+          
+          imageAlt:
+            "Repurgenesis attends BIO Asia–Taiwan 2026",
+          body: {
+            paragraph1:
+              "Repurgenesis is exhibiting at BIO Asia–Taiwan 2026 from July 16 to 19 at Taipei Nangang Exhibition Center. Visitors can meet the team at Booth M632 and learn how the independently developed Intelligent Orchestrator supports AI-driven drug discovery and drug repurposing.",
+
+            paragraph2:
+              "The platform brings together multimodal biomedical data, multiple AI technologies, specialized analytical tools, and intelligent workflows. By coordinating these capabilities within one research process, Repurgenesis aims to accelerate candidate discovery, evidence integration, prioritization, and experimental validation planning.",
+
+            paragraph3:
+              "During the exhibition, General Manager Dr. Yin-Hsong Hsu also shared the platform's development direction at the Taipei Biotech Pavilion. Repurgenesis is actively engaging with biotechnology and pharmaceutical companies, research institutions, healthcare organizations, and AI technology teams to explore technical exchange, joint research, candidate validation, and future commercialization opportunities.",
+          },
+
+          references: {
+            linkedin:
+              "Visit Repurgenesis at Booth M632 during BIO Asia–Taiwan 2026",
+
+            cnyes:
+              "Repurgenesis Connects Its AI Drug-Development Platform with the Global Biotechnology Industry",
+
+            officialEvent:
+              "BIO Asia–Taiwan 2026 Exhibition Information",
+          },
+        },
+        gtcTaipei2026: {
+          date: "June 1, 2026",
+          title:
+            "Repurgenesis Takes the Stage at NVIDIA GTC Taipei 2026",
+          excerpt:
+            "Repurgenesis will present its agent-orchestrated drug-repurposing workflow in NVIDIA GTC Taipei's AI for Science program.",
+          lead:
+            "Following a standout presentation at NVIDIA GTC in San Jose, Repurgenesis is returning to the global NVIDIA community—this time in Taipei—to show how coordinated AI agents can make drug repurposing more systematic, scalable, and actionable.",
+          imageAlt:
+            "Repurgenesis attends NVIDIA GTC Taipei 2026",
+          body: {
+            paragraph1:
+              "Dr. Yin-Hsong Hsu, General Manager of Repurgenesis, will deliver the session \"Toward Intelligent Drug Repurposing: Orchestrating AI-Driven Drug Development With Agents.\" The talk will share how the Intelligent Orchestrator connects specialized AI agents, biomedical data, analytical models, and drug-development tools within one coordinated workflow.",
+            paragraph2:
+              "The platform uses NVIDIA NeMo Agent Toolkit to coordinate NVIDIA BioNeMo models and other research tools, bringing large language models, multi-agent collaboration, multimodal evidence, and expert review into a unified process. The goal is not simply to generate more predictions, but to help research teams move faster toward better-supported development decisions.",
+            paragraph3:
+              "As a member of NVIDIA Inception, Repurgenesis continues to strengthen its Bio + AI capabilities and build relationships across the global life-sciences ecosystem. GTC Taipei marks another exciting step toward turning advanced AI into practical therapeutic opportunities for existing medicines.",
+          },
+          references: {
+            ltn:
+              "Repurgenesis to Join NVIDIA GTC Taipei and Showcase Its AI Drug-Repurposing Platform",
+            nvidiaSession:
+              "Toward Intelligent Drug Repurposing: Orchestrating AI-Driven Drug Development With Agents",
+            nvidiaEvent:
+              "NVIDIA GTC Taipei 2026",
+          },
+        },
+
+        internationalRecognition2026: {
+          date: "May 29, 2026",
+          title:
+            "Repurgenesis Earns International Recognition at iDR26 and Bio-IT World",
+          excerpt:
+            "Global experts responded positively to the Intelligent Orchestrator platform, opening new conversations around collaboration and licensing.",
+          lead:
+            "After presenting at two major international forums, Repurgenesis returned with more than visibility: the team gained valuable expert feedback, new industry connections, and stronger confidence in the global potential of its AI-driven drug-repurposing strategy.",
+          body: {
+            paragraph1:
+              "At iDR26 and Bio-IT World 2026, Repurgenesis shared the latest progress of the Intelligent Orchestrator with pharmaceutical companies, biotechnology teams, researchers, and AI specialists from around the world. The conversations focused on how AI can support drug repurposing, multimodal evidence integration, and more automated research workflows.",
+            paragraph2:
+              "The platform's coordinated approach—combining structure-based modeling, knowledge-graph reasoning, gene-expression analysis, and expert interpretation—received encouraging feedback from cross-disciplinary participants. These exchanges also helped the team better understand what global partners expect from an AI drug-development platform in real research settings.",
+            paragraph3:
+              "Repurgenesis has begun early discussions with biotechnology companies, research institutions, and related organizations in Europe and the United States. The company will continue expanding international collaborations and exploring licensing, joint research, and co-development opportunities that can bring promising drug-repurposing programs closer to patients.",
+          },
+          references: {
+            ctee:
+              "Repurgenesis AI Platform Gains International Recognition and Targets Global Licensing Opportunities",
+            idr26:
+              "iDR26 International Drug Repurposing Conference",
+            bioIt:
+              "Bio-IT World Conference & Expo 2026",
+          },
+        },
+
+        idrBioitSelected2026: {
+          date: "April 29, 2026",
+          title:
+            "Repurgenesis Selected to Present at iDR26 and Bio-IT World 2026",
+          excerpt:
+            "The Intelligent Orchestrator will be featured at two leading international meetings in drug repurposing and biomedical informatics.",
+          lead:
+            "Fresh from its NVIDIA GTC debut, Repurgenesis has been selected to share its research at iDR26 in Brussels and Bio-IT World in Boston—two major stages for drug repurposing, life-science data, and AI-enabled discovery.",
+          imageAlt:
+            "Repurgenesis representatives attending an international biomedical and artificial-intelligence conference",
+          body: {
+            paragraph1:
+              "iDR26 brings together the international drug-repurposing community on May 12–13, while Bio-IT World convenes leaders in life sciences, informatics, data, and AI on May 19–21. Presenting at both meetings gives Repurgenesis a valuable opportunity to exchange ideas with researchers, pharmaceutical teams, technology partners, and patient-focused organizations.",
+            paragraph2:
+              "The company's Intelligent Orchestrator integrates structure-based evidence, gene-expression analysis, biomedical knowledge graphs, and coordinated AI workflows to identify and evaluate new therapeutic opportunities for existing medicines. The platform is designed to make candidate selection more traceable, interpretable, and ready for experimental follow-up.",
+            paragraph3:
+              "The two presentations represent another meaningful milestone for the team. Repurgenesis will use the opportunity to gather international feedback, strengthen its research methodology, and build new relationships for validation, intellectual-property development, and future partnering.",
+          },
+          references: {
+            udn:
+              "Energenesis Announces Repurgenesis Presentations at Two Major International Biomedical Conferences",
+            gbi:
+              "Repurgenesis to Present AI Drug-Development Research at Two International Conferences",
+            scienceOpen:
+              "AI-Orchestrated Integration of Knowledge Graph, Structure, and Gene-Expression Evidence for Drug Repurposing",
+          },
+        },
+
+        gtcFinalist2026: {
+          date: "March 17, 2026",
+          title:
+            "Repurgenesis Named a Top-8 Finalist at NVIDIA GTC 2026",
+          excerpt:
+            "The Intelligent Orchestrator was the only BioPharma project among the event's eight selected poster finalists.",
+          lead:
+            "Repurgenesis made a memorable NVIDIA GTC debut: its AI-orchestrated drug-repurposing research advanced from a global field of submissions to the event's top eight poster finalists.",
+          body: {
+            paragraph1:
+              "The project was selected from 158 poster entries and stood out as the only finalist representing the BioPharma field. For the team, the recognition was an exciting validation of its effort to connect advanced AI with practical biomedical research and drug-repurposing challenges.",
+            paragraph2:
+              "The Intelligent Orchestrator incorporates NVIDIA BioNeMo and integrates structural data, gene expression, biomedical knowledge graphs, and clinical evidence through coordinated analytical models. This multimodal approach helps the platform cross-check candidate opportunities and create a clearer path from computational hypothesis to experimental evaluation.",
+            paragraph3:
+              "Beyond the finalist recognition, GTC created opportunities to exchange ideas with global AI, pharmaceutical, and research organizations. Repurgenesis will continue improving platform accuracy, validating high-potential candidates, strengthening its intellectual-property portfolio, and exploring international partnerships.",
+          },
+          references: {
+            gbi:
+              "Energenesis and Repurgenesis Present AI Drug-Repurposing Platform, Named a Top-8 GTC Finalist",
+          },
+        },
+
+        gtcPreview2026: {
+          date: "January 22, 2026",
+          title:
+            "Repurgenesis to Debut Its AI Drug-Repurposing Platform at NVIDIA GTC 2026",
+          excerpt:
+            "The company will make its first major international AI-conference presentation in San Jose this March.",
+          lead:
+            "Repurgenesis is preparing for its first appearance at NVIDIA GTC, where it will introduce the Intelligent Orchestrator and share how AI can uncover new therapeutic possibilities for existing medicines.",
+          body: {
+            paragraph1:
+              "The Intelligent Orchestrator brings multiple data types, analytical methods, and AI technologies into one coordinated drug-repurposing workflow. By incorporating NVIDIA BioNeMo and specialized biomedical models, the platform is designed to improve the speed and consistency of early candidate evaluation.",
+            paragraph2:
+              "Repurgenesis is developing the platform around two complementary business directions: creating intellectual property for new therapeutic uses of existing medicines, and working with pharmaceutical partners through platform, algorithm, and project-based collaborations.",
+            paragraph3:
+              "The upcoming GTC presentation is an important first step onto the international stage. It gives the team an opportunity to test its ideas with the global AI community, strengthen its technology roadmap, and build momentum for future validation and commercialization.",
+          },
+          references: {
+            gbi:
+              "Repurgenesis to Present AI Drug-Development Research at NVIDIA GTC",
+          },
+        },
+
         altosPartnership: {
-          date: "October 2025",
+          date: "October 30, 2025",
           title:
-            "Repurgenesis Partners with Altos Computing to Build a High-Performance AI Drug-Development Platform",
+            "Repurgenesis and Altos Computing Join Forces on High-Performance AI Drug Development",
           excerpt:
-            "Repurgenesis and Acer group's Altos Computing signed an agreement to jointly develop a next-generation AI platform for drug discovery.",
+            "The partnership combines biomedical AI, high-performance computing, and scalable infrastructure to accelerate drug-repurposing research.",
           lead:
-            "Repurgenesis, a wholly owned subsidiary of Energenesis Biomedical, has signed a partnership agreement with Altos Computing, an Acer group company, to jointly build a next-generation, high-performance AI drug-development platform.",
+            "Repurgenesis has signed a strategic agreement with Altos Computing, an Acer Group company, to co-develop a next-generation AI drug-development platform built for speed, scale, and practical research.",
           body: {
             paragraph1:
-              "The collaboration combines Repurgenesis's core AI drug-discovery technology with Altos Computing's strengths in high-performance computing and AI infrastructure, aiming to accelerate the practical application of precision and intelligent medicine.",
+              "The collaboration brings together Repurgenesis's biomedical AI and drug-repurposing capabilities with Altos Computing's expertise in high-performance computing and AI infrastructure. Together, the teams aim to improve model performance, platform scalability, and the efficiency of early drug-development research.",
             paragraph2:
-              "Repurgenesis operates the Intelligent Orchestrator platform, a multimodal, multi-method drug-repurposing system designed to shorten early-stage development timelines, improve candidate success rates, and reduce the cost of bringing new indications forward.",
+              "Repurgenesis will connect its Intelligent Orchestrator with the Altos aiWorks platform to support large-scale model training, flexible resource allocation, and more efficient execution of complex biomedical workflows. This infrastructure will help the team evaluate more evidence while keeping the research process coordinated and traceable.",
             paragraph3:
-              "Under the agreement, Repurgenesis will leverage the Altos aiWorks platform to support large-scale AI model training and optimize resource allocation, advancing candidate discovery and expanding related intelligent-medicine initiatives.",
+              "The agreement is an important milestone in Repurgenesis's technology and partnership strategy. By combining complementary strengths across AI, computing, and biomedical science, both companies hope to turn promising drug-repurposing ideas into faster, more scalable development programs.",
           },
           references: {
-            gbi: "源華智醫、安圖斯科技攜手 高效AI攻藥物開發",
-          },
-        },
-
-        intlConferences: {
-          date: "April 2026",
-          title:
-            "Repurgenesis Selected to Present at Two Major International Biomedical Conferences",
-          excerpt:
-            "Following its NVIDIA GTC presentation, Repurgenesis will present its AI drug-repurposing research at two leading international conferences.",
-          lead:
-            "Following its research presentation at NVIDIA GTC earlier this year, Repurgenesis has been notified that it will present at two major international biomedical conferences, further demonstrating the strength of its AI drug-development platform.",
-          imageAlt: "Repurgenesis presenting its AI drug-repurposing platform at an international biomedical conference",
-          body: {
-            paragraph1:
-              "The company will present at the International Conference of Drug Repurposing (iDR26) and at Bio-IT World, two representative international forums in life sciences and biomedical informatics.",
-            paragraph2:
-              "These presentation opportunities reflect growing recognition of the Repurgenesis platform methodology within the international AI drug-development and drug-repurposing communities.",
-            paragraph3:
-              "The company views these engagements as a foundation for future international collaboration, technology validation, and deeper integration into the global drug-repurposing ecosystem.",
-          },
-          references: {
-            ltn: "華安醫學子公司源華智醫再登兩大國際舞台 展現AI藥物研發實力",
-          },
-        },
-
-        Partnership2: {
-          date: "October 2025",
-          title:
-            "Repurgenesis Partners with Altos Computing to Build a High-Performance AI Drug-Development Platform",
-          excerpt:
-            "Repurgenesis and Acer group's Altos Computing signed an agreement to jointly develop a next-generation AI platform for drug discovery.",
-          lead:
-            "Repurgenesis, a wholly owned subsidiary of Energenesis Biomedical, has signed a partnership agreement with Altos Computing, an Acer group company, to jointly build a next-generation, high-performance AI drug-development platform.",
-          body: {
-            paragraph1:
-              "The collaboration combines Repurgenesis's core AI drug-discovery technology with Altos Computing's strengths in high-performance computing and AI infrastructure, aiming to accelerate the practical application of precision and intelligent medicine.",
-            paragraph2:
-              "Repurgenesis operates the Intelligent Orchestrator platform, a multimodal, multi-method drug-repurposing system designed to shorten early-stage development timelines, improve candidate success rates, and reduce the cost of bringing new indications forward.",
-            paragraph3:
-              "Under the agreement, Repurgenesis will leverage the Altos aiWorks platform to support large-scale AI model training and optimize resource allocation, advancing candidate discovery and expanding related intelligent-medicine initiatives.",
-          },
-          references: {
-            gbi: "源華智醫、安圖斯科技攜手 高效AI攻藥物開發",
-          },
-        },
-
-        jpmorgan2025: {
-          date: "2025",
-          title: "Replace with the approved event title",
-          excerpt: "Add a short overview of the company's participation.",
-          lead:
-            "Add an introductory paragraph explaining the event and Repurgenesis's participation.",
-          imageAlt: "Repurgenesis at an industry event",
-          body: {
-            paragraph1: "Add the first approved article paragraph here.",
-            paragraph2: "Add the second approved article paragraph here.",
-            paragraph3: "Add the final approved article paragraph here.",
-          },
-        },
-
-        bioEurope2024: {
-          date: "2024",
-          title: "Replace with the approved BIO-Europe title",
-          excerpt: "Add a short summary of the event update.",
-          lead:
-            "Add an introductory paragraph describing Repurgenesis's participation.",
-          imageAlt: "Repurgenesis BIO-Europe update",
-          body: {
-            paragraph1: "Add the first approved article paragraph here.",
-            paragraph2: "Add the second approved article paragraph here.",
-            paragraph3: "Add the final approved article paragraph here.",
-          },
-        },
-
-        orphanDesignation: {
-          date: "2024",
-          title: "Replace with the approved company announcement",
-          excerpt: "Add a concise summary of the regulatory milestone.",
-          lead:
-            "Add an introductory paragraph describing the milestone and its relevance.",
-          imageAlt: "Repurgenesis regulatory announcement",
-          body: {
-            paragraph1: "Add the first approved article paragraph here.",
-            paragraph2: "Add the second approved article paragraph here.",
-            paragraph3: "Add the final approved article paragraph here.",
-          },
-        },
-
-        karolinskaAgreement: {
-          date: "2024",
-          title: "Replace with the approved collaboration title",
-          excerpt: "Add a short summary of the research collaboration.",
-          lead:
-            "Add an introductory paragraph explaining the agreement and shared objectives.",
-          imageAlt: "Repurgenesis research collaboration",
-          body: {
-            paragraph1: "Add the first approved article paragraph here.",
-            paragraph2: "Add the second approved article paragraph here.",
-            paragraph3: "Add the final approved article paragraph here.",
+            gbi:
+              "Repurgenesis and Altos Computing Partner on High-Performance AI Drug Development",
           },
         },
       },
@@ -1675,116 +1743,188 @@ export const TEXT = {
       },
 
       articles: {
+        bioAsiaTaiwan2026: {
+          date:
+            "2026 年 7 月 16 日",
+
+          title:
+            "源華智醫亮相 BIO Asia–Taiwan 2026，展示智慧協奏 AI 藥物研發平台",
+
+          excerpt:
+            "歡迎蒞臨 M632 攤位，了解智慧協奏如何整合多模態證據與 AI 工作流程，加速藥物再利用研究。",
+
+          lead:
+            "源華智醫誠摯邀請生技製藥公司、研究機構、醫療單位與 AI 技術團隊，在 BIO Asia–Taiwan 2026 與我們相見，一起探索智慧協奏平台帶來的藥物研發新可能。",
+          
+          imageAlt:
+            "源華智醫團隊亮相 BIO Asia–Taiwan 2026",
+          body: {
+            paragraph1:
+              "源華智醫於 7 月 16 至 19 日參與在台北南港展覽館舉行的 BIO Asia–Taiwan 2026。展會期間，團隊將於 M632 攤位展示自主研發的智慧協奏（Intelligent Orchestrator）AI 藥物研發平台，分享平台如何支援 AI 驅動的藥物探索與藥物再利用。",
+
+            paragraph2:
+              "智慧協奏平台整合多模態生醫資料、多元 AI 技術、專業分析工具與智慧化工作流程，將不同研發能力協調於同一套研究架構中，協助加速候選藥物探索、證據整合、優先排序及後續實驗驗證規劃。",
+
+            paragraph3:
+              "展會期間，源華智醫總經理許銀雄博士亦於台北生技館分享平台的發展方向。公司目前積極與生技製藥公司、研究機構、醫療單位及 AI 技術團隊交流，並探索技術合作、共同研發、候選藥物驗證與未來商業合作的更多可能。",
+          },
+
+          references: {
+            linkedin:
+              "歡迎蒞臨 BIO Asia–Taiwan 2026 M632 攤位與源華智醫交流",
+
+            cnyes:
+              "源華智醫 AI 藥物研發接軌國際，開啟 AI 藥物開發新藍海",
+
+            officialEvent:
+              "BIO Asia–Taiwan 2026 亞洲生技大展資訊",
+          },
+        },
+        gtcTaipei2026: {
+          date: "2026 年 6 月 1 日",
+          title:
+            "源華智醫登上 NVIDIA GTC Taipei 2026，分享智慧協奏 AI 藥物研發",
+          excerpt:
+            "源華智醫將於 AI for Science 議程，分享以 AI Agent 協奏藥物再利用研發流程的實務成果。",
+          lead:
+            "繼今年 3 月於 NVIDIA GTC San Jose 亮相並獲得正面迴響後，源華智醫再度站上 NVIDIA 國際舞台，這次將在台北分享如何透過 AI Agent，讓藥物再利用研究更系統化、更具擴展性，也更接近實際研發決策。",
+          imageAlt:
+            "源華智醫團隊參與 NVIDIA GTC Taipei 2026",
+          body: {
+            paragraph1:
+              "源華智醫總經理許銀雄博士將以「邁向智慧化的藥物再利用：Agents 智慧協奏 AI 驅動的藥物開發流程」為題進行演講，介紹智慧協奏（Intelligent Orchestrator）如何串聯專業 AI Agent、生醫資料、分析模型與藥物研發工具，形成一套協同運作的研究流程。",
+            paragraph2:
+              "平台運用 NVIDIA NeMo Agent Toolkit 協調 NVIDIA BioNeMo 模型及其他研究工具，將大型語言模型、多代理人協作、多模態證據與專家審議整合於同一架構中。目標不只是產生更多預測，而是協助團隊更快聚焦於具充分證據支持、值得進一步驗證的候選機會。",
+            paragraph3:
+              "作為 NVIDIA Inception 新創計畫成員，源華智醫將持續深化 Bio + AI 技術能力，並拓展與全球生醫及科技產業的合作連結。此次 GTC Taipei 分享，是公司將前沿 AI 轉化為實際治療機會的又一個重要里程碑。",
+          },
+          references: {
+            ltn:
+              "華安旗下源華智醫將參加輝達台北電腦展大會，展示 AI 老藥新用平台",
+            nvidiaSession:
+              "邁向智慧化的藥物再利用：以 Agents 智慧協奏 AI 驅動藥物開發",
+            nvidiaEvent:
+              "NVIDIA GTC Taipei 2026",
+          },
+        },
+
+        internationalRecognition2026: {
+          date: "2026 年 5 月 29 日",
+          title:
+            "源華智醫 AI 平台獲國際好評，啟動更多合作與授權對話",
+          excerpt:
+            "智慧協奏平台於 iDR26 與 Bio-IT World 獲得跨領域專家正面回饋，並開啟更多國際合作機會。",
+          lead:
+            "完成兩場重要國際會議發表後，源華智醫帶回的不只是曝光度，更包括來自專家與產業夥伴的具體回饋、新的國際連結，以及對 AI 藥物再利用全球發展潛力更清晰的信心。",
+          body: {
+            paragraph1:
+              "在 iDR26 與 Bio-IT World 2026 期間，源華智醫向來自全球的藥廠、生技公司、研究機構與 AI 團隊，分享智慧協奏（Intelligent Orchestrator）平台的最新進展。交流重點涵蓋 AI 藥物再利用、多模態證據整合，以及如何建立更自動化、更可追溯的研發流程。",
+            paragraph2:
+              "平台整合結構式建模、知識圖譜推理、基因表現分析與專家判讀的協奏方法，獲得多位跨領域與會者正面回應。這些討論也讓團隊更深入理解，國際合作夥伴在實際研發場景中，對 AI 藥物開發平台的可信度、可解釋性與落地能力有何期待。",
+            paragraph3:
+              "源華智醫已與部分歐美生技公司、研究機構及相關組織展開初步交流。未來將持續拓展國際合作，並評估授權、共同研究與共同開發等模式，讓具潛力的藥物再利用專案更快走向實驗驗證與病患需求。",
+          },
+          references: {
+            ctee:
+              "源華智醫 AI 平台進軍國際獲好評，瞄準全球授權商機",
+            idr26:
+              "iDR26 國際藥物再利用大會",
+            bioIt:
+              "Bio-IT World Conference & Expo 2026",
+          },
+        },
+
+        idrBioitSelected2026: {
+          date: "2026 年 4 月 29 日",
+          title:
+            "源華智醫獲選於 iDR26 與 Bio-IT World 2026 發表研究成果",
+          excerpt:
+            "智慧協奏平台將接連登上藥物再利用與生醫資訊領域兩項重要國際會議。",
+          lead:
+            "繼 NVIDIA GTC 首次國際亮相後，源華智醫再傳好消息：團隊獲選於布魯塞爾 iDR26 與波士頓 Bio-IT World 發表研究成果，持續把台灣 Bio + AI 研發能量帶上全球舞台。",
+          imageAlt:
+            "源華智醫團隊參與國際生醫與人工智慧會議",
+          body: {
+            paragraph1:
+              "iDR26 將於 5 月 12 至 13 日匯聚全球藥物再利用社群；Bio-IT World 則於 5 月 19 至 21 日集結生命科學、生物資訊、資料科學與 AI 領域的重要團隊。接連參與兩項會議，讓源華智醫能與研究者、藥廠、科技夥伴及病患導向組織深入交流。",
+            paragraph2:
+              "源華智醫自主研發的智慧協奏平台，整合結構式證據、基因表現分析、生醫知識圖譜與 AI 協同工作流程，用於發掘並評估既有藥物的新治療機會。平台強調候選排序的可追溯性、可解釋性，以及後續實驗驗證的可行性。",
+            paragraph3:
+              "此次獲選是團隊另一項重要里程碑。公司將藉由國際發表蒐集專業回饋、持續優化研究方法，並拓展實驗驗證、智慧財產布局與未來商業合作的國際連結。",
+          },
+          references: {
+            udn:
+              "華安 AI 研發傳捷報，子公司源華智醫五月於兩大國際指標會議發表成果",
+            gbi:
+              "源華智醫五月登兩項國際會議，發表 AI 藥物開發成果",
+            scienceOpen:
+              "以 AI 協奏整合知識圖譜、結構式模型與基因表現證據，提升藥物再利用準確度",
+          },
+        },
+
+        gtcFinalist2026: {
+          date: "2026 年 3 月 17 日",
+          title:
+            "源華智醫入選 NVIDIA GTC 前八名，智慧協奏成唯一 BioPharma 優選",
+          excerpt:
+            "智慧協奏研究自 158 件作品中脫穎而出，成為前八名中唯一的生物製藥領域專案。",
+          lead:
+            "源華智醫首次登上 NVIDIA GTC 就傳回令人振奮的好消息：AI 藥物再利用研究從全球投稿中獲選展示，並進一步入選大會前八名優選海報。",
+          body: {
+            paragraph1:
+              "本次研究自 158 件海報作品中脫穎而出，也是前八名優選中唯一來自 BioPharma 領域的專案。這項肯定不只提升團隊的國際能見度，也證明將先進 AI 與實際生醫研發需求深度結合，正在形成具有差異化的研究價值。",
+            paragraph2:
+              "智慧協奏平台導入 NVIDIA BioNeMo，並整合結構資料、基因表現、生醫知識圖譜與臨床證據，透過多模型協作進行交叉分析。這種多模態架構有助於提高候選機會的證據一致性，並建立從運算假說走向實驗評估的清晰路徑。",
+            paragraph3:
+              "除了入選肯定，GTC 也讓團隊與全球 AI、生技製藥與研究機構展開交流。源華智醫將持續提升平台準確度、推進高潛力候選案驗證、強化智慧財產布局，並積極尋找國際合作夥伴。",
+          },
+          references: {
+            gbi:
+              "華安攜源華智醫發表 AI 老藥新用平台，入選 GTC 前八名優選展示",
+          },
+        },
+
+        gtcPreview2026: {
+          date: "2026 年 1 月 22 日",
+          title:
+            "源華智醫將首登 NVIDIA GTC，展示 AI 藥物再利用平台",
+          excerpt:
+            "公司將於三月在聖荷西首次登上大型國際 AI 技術會議，公開智慧協奏平台研發成果。",
+          lead:
+            "源華智醫即將首次參與 NVIDIA GTC，正式向全球 AI 社群介紹智慧協奏（Intelligent Orchestrator），並分享如何運用 AI 為既有藥物探索新的治療可能。",
+          body: {
+            paragraph1:
+              "智慧協奏平台將多元資料、分析方法與 AI 技術整合於同一套藥物再利用流程中，並導入 NVIDIA BioNeMo 與專業生醫模型，以提升早期候選評估的速度、一致性與可擴展性。",
+            paragraph2:
+              "源華智醫的發展策略包含兩個互補方向：一是發掘既有藥物的新治療用途並建立相關智慧財產；二是透過平台、演算法與專案合作，協助藥廠與生技夥伴導入 AI 研發能力。",
+            paragraph3:
+              "此次 GTC 發表是公司走向國際舞台的重要起點。團隊期待藉由全球 AI 社群的交流，驗證研究方向、強化技術藍圖，並為後續實驗驗證與商業化累積更多動能。",
+          },
+          references: {
+            gbi:
+              "華安子公司源華智醫將登 NVIDIA GTC，發表 AI 藥物開發研究成果",
+          },
+        },
+
         altosPartnership: {
-          date: "2025 年 10 月",
-          title: "源華智醫攜手安圖斯科技 共建高效能 AI 藥物開發平台",
+          date: "2025 年 10 月 30 日",
+          title:
+            "源華智醫攜手安圖斯科技，共建高效能 AI 藥物開發平台",
           excerpt:
-            "源華智醫與宏碁旗下安圖斯科技簽署合作協議，共同打造新世代 AI 藥物開發平台。",
+            "雙方結合生醫 AI、高效能運算與可擴展基礎架構，加速藥物再利用研究。",
           lead:
-            "華安醫學全資子公司源華智醫，與宏碁旗下安圖斯科技正式簽署合作協議，將共同打造新世代高效能 AI 藥物開發平台。",
+            "源華智醫與宏碁集團旗下安圖斯科技正式簽署策略合作協議，將共同打造兼具速度、規模與實務研發能力的新世代 AI 藥物開發平台。",
           body: {
             paragraph1:
-              "雙方將結合源華智醫在 AI 藥物研發的核心技術，與安圖斯科技於高效能運算及 AI 基礎架構的實力，加速精準醫療與智慧醫療的落地與產業化應用。",
+              "本次合作結合源華智醫在生醫 AI 與藥物再利用的研發能力，以及安圖斯科技在高效能運算與 AI 基礎架構的專業。雙方希望進一步提升模型效能、平台擴展性，以及早期藥物研發流程的執行效率。",
             paragraph2:
-              "源華智醫以「智慧協奏（Intelligent Orchestrator）」平台為核心，整合多類別、多模態、多方法的藥物再利用流程，協助縮短新藥開發前期時程、提高候選藥物成功率並降低開發成本。",
+              "源華智醫將智慧協奏平台與 Altos aiWorks 串接，支援大規模模型訓練、彈性資源配置與複雜生醫工作流程的高效運行。更穩定的運算基礎，將協助團隊在維持研究流程可追溯性的同時，評估更多元的生醫證據。",
             paragraph3:
-              "透過本次合作，源華智醫將運用安圖斯科技的 Altos aiWorks 平台，支援大規模 AI 模型訓練並優化資源配置，加速候選藥物發掘並拓展智慧醫療相關業務。",
+              "這項合作是源華智醫技術與生態系布局的重要里程碑。透過 AI、運算與生醫科學的跨域整合，雙方期待讓具潛力的藥物再利用構想，更快成為可擴展、可驗證的研發計畫。",
           },
           references: {
-            gbi: "源華智醫、安圖斯科技攜手 高效 AI 攻藥物開發",
-          },
-        },
-
-        intlConferences: {
-          date: "2026 年 4 月",
-          title: "源華智醫再登兩大國際舞台 展現 AI 藥物研發實力",
-          excerpt:
-            "繼 NVIDIA GTC 發表後，源華智醫獲選於兩大國際生醫大會發表 AI 藥物再利用研究成果。",
-          lead:
-            "繼今年於 NVIDIA GTC 大會發表研發成果後，源華智醫再獲兩大指標性國際生醫年度大會通知，將發表研究成果，展現其 AI 藥物研發平台實力。",
-          imageAlt: "源華智醫於國際生醫會議展示 AI 藥物再利用平台",
-          body: {
-            paragraph1:
-              "公司將於國際藥物再利用大會（iDR26）及 Bio-IT World 發表，兩者皆為生命科學與生醫資訊領域具代表性的國際場合。",
-            paragraph2:
-              "此次發表機會顯示，源華智醫的平台方法論持續受到國際 AI 藥物研發與藥物再利用社群的關注與肯定。",
-            paragraph3:
-              "公司將以此為基礎，持續拓展國際合作、技術驗證，並深化與全球藥物再利用生態鏈的連結。",
-          },
-          references: {
-            ltn: "華安醫學子公司源華智醫再登兩大國際舞台 展現 AI 藥物研發實力",
-          },
-        },
-        
-        Partnership2: {
-          date: "2025 年 10 月",
-          title: "源華智醫攜手安圖斯科技 共建高效能 AI 藥物開發平台",
-          excerpt:
-            "源華智醫與宏碁旗下安圖斯科技簽署合作協議，共同打造新世代 AI 藥物開發平台。",
-          lead:
-            "華安醫學全資子公司源華智醫，與宏碁旗下安圖斯科技正式簽署合作協議，將共同打造新世代高效能 AI 藥物開發平台。",
-          body: {
-            paragraph1:
-              "雙方將結合源華智醫在 AI 藥物研發的核心技術，與安圖斯科技於高效能運算及 AI 基礎架構的實力，加速精準醫療與智慧醫療的落地與產業化應用。",
-            paragraph2:
-              "源華智醫以「智慧協奏（Intelligent Orchestrator）」平台為核心，整合多類別、多模態、多方法的藥物再利用流程，協助縮短新藥開發前期時程、提高候選藥物成功率並降低開發成本。",
-            paragraph3:
-              "透過本次合作，源華智醫將運用安圖斯科技的 Altos aiWorks 平台，支援大規模 AI 模型訓練並優化資源配置，加速候選藥物發掘並拓展智慧醫療相關業務。",
-          },
-          references: {
-            gbi: "源華智醫、安圖斯科技攜手 高效 AI 攻藥物開發",
-          },
-        },
-
-        jpmorgan2025: {
-          date: "2025 年",
-          title: "請替換為經公司核准的活動標題",
-          excerpt: "請加入公司參與活動的簡短摘要。",
-          lead: "請加入開場段落，說明活動內容與源華智醫的參與方式。",
-          imageAlt: "源華智醫參與產業活動",
-          body: {
-            paragraph1: "請在此加入第一段經公司核准的文章內容。",
-            paragraph2: "請在此加入第二段經公司核准的文章內容。",
-            paragraph3: "請在此加入最後一段經公司核准的文章內容。",
-          },
-        },
-
-        bioEurope2024: {
-          date: "2024 年",
-          title: "請替換為經公司核准的 BIO-Europe 標題",
-          excerpt: "請加入活動消息的簡短摘要。",
-          lead: "請加入開場段落，說明源華智醫參與本次活動的情形。",
-          imageAlt: "源華智醫 BIO-Europe 活動消息",
-          body: {
-            paragraph1: "請在此加入第一段經公司核准的文章內容。",
-            paragraph2: "請在此加入第二段經公司核准的文章內容。",
-            paragraph3: "請在此加入最後一段經公司核准的文章內容。",
-          },
-        },
-
-        orphanDesignation: {
-          date: "2024 年",
-          title: "請替換為經公司核准的公告標題",
-          excerpt: "請加入法規里程碑的簡短摘要。",
-          lead: "請加入開場段落，說明本次里程碑及其重要性。",
-          imageAlt: "源華智醫法規進展公告",
-          body: {
-            paragraph1: "請在此加入第一段經公司核准的文章內容。",
-            paragraph2: "請在此加入第二段經公司核准的文章內容。",
-            paragraph3: "請在此加入最後一段經公司核准的文章內容。",
-          },
-        },
-
-        karolinskaAgreement: {
-          date: "2024 年",
-          title: "請替換為經公司核准的合作標題",
-          excerpt: "請加入研究合作的簡短摘要。",
-          lead: "請加入開場段落，說明合作協議與共同目標。",
-          imageAlt: "源華智醫研究合作消息",
-          body: {
-            paragraph1: "請在此加入第一段經公司核准的文章內容。",
-            paragraph2: "請在此加入第二段經公司核准的文章內容。",
-            paragraph3: "請在此加入最後一段經公司核准的文章內容。",
+            gbi:
+              "源華智醫、安圖斯科技攜手，高效 AI 攻藥物開發",
           },
         },
       },
@@ -2711,6 +2851,210 @@ export function localizeNewsArticle(
 }
 
 export const ALL_NEWS = [
+    {
+    id:
+      "bio-asia-taiwan-2026",
+
+    slug:
+      "bio-asia-taiwan-2026",
+
+    tagId:
+      "event",
+
+    dateKey:
+      "news.articles.bioAsiaTaiwan2026.date",
+
+    titleKey:
+      "news.articles.bioAsiaTaiwan2026.title",
+
+    excerptKey:
+      "news.articles.bioAsiaTaiwan2026.excerpt",
+
+    leadKey:
+      "news.articles.bioAsiaTaiwan2026.lead",
+    
+    image: bioAsiaTaiwan2026Image,
+    imageAltKey: "news.articles.bioAsiaTaiwan2026.imageAlt",
+    bodyKeys: [
+      "news.articles.bioAsiaTaiwan2026.body.paragraph1",
+      "news.articles.bioAsiaTaiwan2026.body.paragraph2",
+      "news.articles.bioAsiaTaiwan2026.body.paragraph3",
+    ],
+
+    references: [
+      {
+        outlet:
+          "Repurgenesis LinkedIn",
+
+        titleKey:
+          "news.articles.bioAsiaTaiwan2026.references.linkedin",
+
+        url:
+          "https://lnkd.in/gfBWmkwn",
+      },
+
+      {
+        outlet:
+          "鉅亨網 Anue",
+
+        titleKey:
+          "news.articles.bioAsiaTaiwan2026.references.cnyes",
+
+        url:
+          "https://news.cnyes.com/news/id/6535542",
+      },
+
+      {
+        outlet:
+          "BIO Asia–Taiwan",
+
+        titleKey:
+          "news.articles.bioAsiaTaiwan2026.references.officialEvent",
+
+        url:
+          "https://expo.bioasiataiwan.com/en/",
+      },
+    ],
+  },
+  {
+    id: "gtc-taipei-2026",
+    slug: "gtc-taipei-2026",
+    tagId: "event",
+    dateKey: "news.articles.gtcTaipei2026.date",
+    titleKey: "news.articles.gtcTaipei2026.title",
+    excerptKey: "news.articles.gtcTaipei2026.excerpt",
+    leadKey: "news.articles.gtcTaipei2026.lead",
+    bodyKeys: [
+      "news.articles.gtcTaipei2026.body.paragraph1",
+      "news.articles.gtcTaipei2026.body.paragraph2",
+      "news.articles.gtcTaipei2026.body.paragraph3",
+    ],
+    image: gtcTaipei2026Image,
+    imageAltKey: "news.articles.gtcTaipei2026.imageAlt",
+    references: [
+      {
+        outlet: "自由時報 Liberty Times",
+        titleKey: "news.articles.gtcTaipei2026.references.ltn",
+        url: "https://stock.ltn.com.tw/article/dce8ntjymv7a",
+      },
+      {
+        outlet: "NVIDIA On-Demand",
+        titleKey: "news.articles.gtcTaipei2026.references.nvidiaSession",
+        url: "https://www.nvidia.com/en-us/on-demand/playlist/playList-60b0b94a-7ace-4948-8e0a-e87058bc3e5a/?gtcnavinherit=true",
+      },
+      {
+        outlet: "NVIDIA",
+        titleKey: "news.articles.gtcTaipei2026.references.nvidiaEvent",
+        url: "https://www.nvidia.com/en-tw/gtc/taipei/",
+      },
+    ],
+  },
+  {
+    id: "international-recognition-2026",
+    slug: "international-recognition-2026",
+    tagId: "press",
+    dateKey: "news.articles.internationalRecognition2026.date",
+    titleKey: "news.articles.internationalRecognition2026.title",
+    excerptKey: "news.articles.internationalRecognition2026.excerpt",
+    leadKey: "news.articles.internationalRecognition2026.lead",
+    bodyKeys: [
+      "news.articles.internationalRecognition2026.body.paragraph1",
+      "news.articles.internationalRecognition2026.body.paragraph2",
+      "news.articles.internationalRecognition2026.body.paragraph3",
+    ],
+    references: [
+      {
+        outlet: "工商時報 Commercial Times",
+        titleKey: "news.articles.internationalRecognition2026.references.ctee",
+        url: "https://www.ctee.com.tw/news/20260521701577-430503",
+      },
+      {
+        outlet: "REMEDi4ALL",
+        titleKey: "news.articles.internationalRecognition2026.references.idr26",
+        url: "https://remedi4all.org/2026-international-drug-repurposing-conference/",
+      },
+      {
+        outlet: "Bio-IT World",
+        titleKey: "news.articles.internationalRecognition2026.references.bioIt",
+        url: "https://www.bio-itworldexpo.com/",
+      },
+    ],
+  },
+  {
+    id: "idr-bioit-selected-2026",
+    slug: "idr-bioit-selected-2026",
+    tagId: "event",
+    dateKey: "news.articles.idrBioitSelected2026.date",
+    titleKey: "news.articles.idrBioitSelected2026.title",
+    excerptKey: "news.articles.idrBioitSelected2026.excerpt",
+    leadKey: "news.articles.idrBioitSelected2026.lead",
+    bodyKeys: [
+      "news.articles.idrBioitSelected2026.body.paragraph1",
+      "news.articles.idrBioitSelected2026.body.paragraph2",
+      "news.articles.idrBioitSelected2026.body.paragraph3",
+    ],
+    image: intlConferencesImage,
+    imageAltKey: "news.articles.idrBioitSelected2026.imageAlt",
+    references: [
+      {
+        outlet: "經濟日報 Economic Daily News",
+        titleKey: "news.articles.idrBioitSelected2026.references.udn",
+        url: "https://money.udn.com/money/story/5612/9472011",
+      },
+      {
+        outlet: "環球生技月刊 GBI Monthly",
+        titleKey: "news.articles.idrBioitSelected2026.references.gbi",
+        url: "https://news.gbimonthly.com/tw/invest/show.php?num=85843",
+      },
+      {
+        outlet: "ScienceOpen / Drug Repurposing Central",
+        titleKey: "news.articles.idrBioitSelected2026.references.scienceOpen",
+        url: "https://www.scienceopen.com/hosted-document?doi=10.14293%2FiDR.26.019YH",
+      },
+    ],
+  },
+  {
+    id: "gtc-finalist-2026",
+    slug: "gtc-finalist-2026",
+    tagId: "press",
+    dateKey: "news.articles.gtcFinalist2026.date",
+    titleKey: "news.articles.gtcFinalist2026.title",
+    excerptKey: "news.articles.gtcFinalist2026.excerpt",
+    leadKey: "news.articles.gtcFinalist2026.lead",
+    bodyKeys: [
+      "news.articles.gtcFinalist2026.body.paragraph1",
+      "news.articles.gtcFinalist2026.body.paragraph2",
+      "news.articles.gtcFinalist2026.body.paragraph3",
+    ],
+    references: [
+      {
+        outlet: "環球生技月刊 GBI Monthly",
+        titleKey: "news.articles.gtcFinalist2026.references.gbi",
+        url: "https://news.gbimonthly.com/tw/invest/show.php?num=84630",
+      },
+    ],
+  },
+  {
+    id: "gtc-preview-2026",
+    slug: "gtc-preview-2026",
+    tagId: "event",
+    dateKey: "news.articles.gtcPreview2026.date",
+    titleKey: "news.articles.gtcPreview2026.title",
+    excerptKey: "news.articles.gtcPreview2026.excerpt",
+    leadKey: "news.articles.gtcPreview2026.lead",
+    bodyKeys: [
+      "news.articles.gtcPreview2026.body.paragraph1",
+      "news.articles.gtcPreview2026.body.paragraph2",
+      "news.articles.gtcPreview2026.body.paragraph3",
+    ],
+    references: [
+      {
+        outlet: "環球生技月刊 GBI Monthly",
+        titleKey: "news.articles.gtcPreview2026.references.gbi",
+        url: "https://news.gbimonthly.com/tw/invest/show.php?num=83210&range=news",
+      },
+    ],
+  },
   {
     id: "altos-partnership-2025",
     slug: "altos-partnership-2025",
@@ -2724,7 +3068,6 @@ export const ALL_NEWS = [
       "news.articles.altosPartnership.body.paragraph2",
       "news.articles.altosPartnership.body.paragraph3",
     ],
-    // no image → branded placeholder thumbnail
     references: [
       {
         outlet: "環球生技月刊 GBI Monthly",
@@ -2732,196 +3075,6 @@ export const ALL_NEWS = [
         url: "https://news.gbimonthly.com/tw/invest/show.php?num=81158",
       },
     ],
-  },
-  {
-    id: "intl-conferences-2026",
-    slug: "intl-conferences-2026",
-    tagId: "event",
-    dateKey: "news.articles.intlConferences.date",
-    titleKey: "news.articles.intlConferences.title",
-    excerptKey: "news.articles.intlConferences.excerpt",
-    leadKey: "news.articles.intlConferences.lead",
-    bodyKeys: [
-      "news.articles.intlConferences.body.paragraph1",
-      "news.articles.intlConferences.body.paragraph2",
-      "news.articles.intlConferences.body.paragraph3",
-    ],
-    image:
-      intlConferencesImage,
-    imageAltKey:
-      "news.articles.intlConferences.imageAlt",
-    references: [
-      {
-        outlet: "自由時報 Liberty Times",
-        titleKey: "news.articles.intlConferences.references.ltn",
-        url: "https://stock.ltn.com.tw/article/z0jnewsudvhk",
-      },
-    ],
-  },
-  {
-    id: "partnership2",
-    slug: "partnership2",
-    tagId: "partnership",
-    dateKey: "news.articles.altosPartnership.date",
-    titleKey: "news.articles.altosPartnership.title",
-    excerptKey: "news.articles.altosPartnership.excerpt",
-    leadKey: "news.articles.altosPartnership.lead",
-    bodyKeys: [
-      "news.articles.altosPartnership.body.paragraph1",
-      "news.articles.altosPartnership.body.paragraph2",
-      "news.articles.altosPartnership.body.paragraph3",
-    ],
-    // no image → branded placeholder thumbnail
-    references: [
-      {
-        outlet: "環球生技月刊 GBI Monthly",
-        titleKey: "news.articles.altosPartnership.references.gbi",
-        url: "https://news.gbimonthly.com/tw/invest/show.php?num=81158",
-      },
-    ],
-  },
-  {
-    id:
-      "jpmorgan-healthcare-2025",
-
-    slug:
-      "jpmorgan-healthcare-2025",
-
-    tagId:
-      "event",
-
-    dateKey:
-      "news.articles.jpmorgan2025.date",
-
-    titleKey:
-      "news.articles.jpmorgan2025.title",
-
-    excerptKey:
-      "news.articles.jpmorgan2025.excerpt",
-
-    leadKey:
-      "news.articles.jpmorgan2025.lead",
-
-    bodyKeys: [
-      "news.articles.jpmorgan2025.body.paragraph1",
-      "news.articles.jpmorgan2025.body.paragraph2",
-      "news.articles.jpmorgan2025.body.paragraph3",
-    ],
-
-    image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=675&fit=crop&auto=format",
-
-    imageAltKey:
-      "news.articles.jpmorgan2025.imageAlt",
-
-    references: [],
-  },
-
-  {
-    id:
-      "bio-europe-2024",
-
-    slug:
-      "bio-europe-2024",
-
-    tagId:
-      "event",
-
-    dateKey:
-      "news.articles.bioEurope2024.date",
-
-    titleKey:
-      "news.articles.bioEurope2024.title",
-
-    excerptKey:
-      "news.articles.bioEurope2024.excerpt",
-
-    leadKey:
-      "news.articles.bioEurope2024.lead",
-
-    bodyKeys: [
-      "news.articles.bioEurope2024.body.paragraph1",
-      "news.articles.bioEurope2024.body.paragraph2",
-      "news.articles.bioEurope2024.body.paragraph3",
-    ],
-
-    // Intentionally omitted to test the branded fallback thumbnail.
-    imageAltKey:
-      "news.articles.bioEurope2024.imageAlt",
-
-    references: [],
-  },
-
-  {
-    id:
-      "ema-orphan-designation-2024",
-
-    slug:
-      "ema-orphan-designation-2024",
-
-    tagId:
-      "press",
-
-    dateKey:
-      "news.articles.orphanDesignation.date",
-
-    titleKey:
-      "news.articles.orphanDesignation.title",
-
-    excerptKey:
-      "news.articles.orphanDesignation.excerpt",
-
-    leadKey:
-      "news.articles.orphanDesignation.lead",
-
-    bodyKeys: [
-      "news.articles.orphanDesignation.body.paragraph1",
-      "news.articles.orphanDesignation.body.paragraph2",
-      "news.articles.orphanDesignation.body.paragraph3",
-    ],
-
-    image:
-      "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&h=675&fit=crop&auto=format",
-
-    imageAltKey:
-      "news.articles.orphanDesignation.imageAlt",
-
-    references: [],
-  },
-
-  {
-    id:
-      "karolinska-agreement-2024",
-
-    slug:
-      "karolinska-agreement-2024",
-
-    tagId:
-      "partnership",
-
-    dateKey:
-      "news.articles.karolinskaAgreement.date",
-
-    titleKey:
-      "news.articles.karolinskaAgreement.title",
-
-    excerptKey:
-      "news.articles.karolinskaAgreement.excerpt",
-
-    leadKey:
-      "news.articles.karolinskaAgreement.lead",
-
-    bodyKeys: [
-      "news.articles.karolinskaAgreement.body.paragraph1",
-      "news.articles.karolinskaAgreement.body.paragraph2",
-      "news.articles.karolinskaAgreement.body.paragraph3",
-    ],
-
-    // No approved image yet.
-    imageAltKey:
-      "news.articles.karolinskaAgreement.imageAlt",
-
-    references: [],
   },
 ] as const satisfies
   ReadonlyArray<NewsArticle>;
@@ -3242,7 +3395,8 @@ export const ABOUT_TIMELINE = [
 
 export const ABOUT_PAGE_DATA = {
   introImage:
-    "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&h=500&fit=crop&auto=format",
+    // "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&h=500&fit=crop&auto=format",
+    AICompanionImage,
   introImageAltKey:
     "about.intro.imageAlt",
 };

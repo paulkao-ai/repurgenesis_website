@@ -22,9 +22,9 @@ export {
   NewsArticlePage,
 } from "./NewsArticlePage";
 
-export {
-  InvestorsPage,
-} from "./InvestorsPage";
+// export {
+//   InvestorsPage,
+// } from "./InvestorsPage";
 
 export {
   PartnersPage,
