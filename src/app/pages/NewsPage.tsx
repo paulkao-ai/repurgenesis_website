@@ -1,137 +1,72 @@
-import {
-  useState,
-} from "react";
+import { useState } from "react";
+import { ArrowDown } from "lucide-react";
+import { ALL_NEWS, NEWS_FILTERS, localizeNewsArticle, type NewsFilterId } from "@app/data/content";
+import { NewsCard } from "@app/components/NewsCard";
+import { SectionHeading, SectionLabel } from "@app/components/Section";
+import type { Translator, Language } from "@app/types";
 
-import {
-  ALL_NEWS,
-  NEWS_FILTERS,
-  TAG_COLOR,
-  localizeNewsArticle,
-  type NewsFilterId,
-} from "@app/data/content";
-
-import type {
-  Translator,
-} from "@app/types";
-
-import {
-  Carousel,
-} from "@app/components/Carousel";
-
-import {
-  NewsCard,
-} from "@app/components/NewsCard";
-
-import {
-  SectionHeading,
-  SectionLabel,
-} from "@app/components/Section";
+const PAGE = 3;
 
 export function NewsPage({
   t,
+  language,
 }: {
   t: Translator;
+  language: Language;
 }) {
-  const [filter, setFilter] =
-    useState<NewsFilterId>("all");
+  const [filter, setFilter] = useState<NewsFilterId>("all");
+  const [visible, setVisible] = useState(6);
 
-  const filteredArticles =
-    filter === "all"
-      ? [...ALL_NEWS]
-      : ALL_NEWS.filter(
-          (article) =>
-            article.tagId === filter,
-        );
+  const matched = (filter === "all" ? ALL_NEWS : ALL_NEWS.filter((a) => a.tagId === filter))
+    .map((a) => localizeNewsArticle(a, t));
+  const shown = matched.slice(0, visible);
 
-  const localizedArticles =
-    filteredArticles.map((article) =>
-      localizeNewsArticle(article, t),
-    );
+  const changeFilter = (id: NewsFilterId) => { setFilter(id); setVisible(6); };
 
   return (
-    <div className="pt-24 min-h-screen bg-background">
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <SectionLabel>
-            {t("news.label")}
-          </SectionLabel>
-
-          <SectionHeading>
-            {t("news.title")}
-          </SectionHeading>
+    <div className="min-h-screen bg-background pt-24">
+      <section className="mx-auto max-w-[1180px] px-6 py-16">
+        <div className="mb-12 text-center">
+          <SectionLabel>{t("news.label")}</SectionLabel>
+          <SectionHeading>{t("news.title")}</SectionHeading>
         </div>
 
-        <div className="mb-10">
-          <div
-            className="
-              flex
-              flex-wrap
-              gap-0
-              border-b
-              border-[#d1d9e6]
-            "
-          >
-            {NEWS_FILTERS.map((item) => {
-              const isActive =
-                filter === item.id;
+        {/* filters */}
+        <div className="mb-9 flex flex-wrap gap-1 border-b border-[#e3ddd3]">
+          {NEWS_FILTERS.map((item) => {
+            const active = filter === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => changeFilter(item.id)}
+                className={`-mb-px border-b-2 px-[18px] py-2.5 text-sm font-semibold transition-colors ${
+                  active ? "border-[#ef8a62] text-foreground" : "border-transparent text-[#8a8898] hover:text-foreground"
+                }`}
+              >
+                {t(item.labelKey)}
+              </button>
+            );
+          })}
+        </div>
 
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() =>
-                    setFilter(item.id)
-                  }
-                  className="
-                    relative
-                    px-5
-                    py-2.5
-                    text-sm
-                    font-medium
-                    cursor-pointer
-                    transition-colors
-                  "
-                  style={{
-                    color: isActive
-                      ? "#141827"
-                      : "#6b6a72",
-                  }}
-                >
-                  {t(item.labelKey)}
+        {/* grid */}
+        <div className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((a) => <NewsCard key={a.id} article={a} />)}
+        </div>
 
-                  {isActive && (
-                    <span
-                      className="
-                        absolute
-                        bottom-0
-                        left-0
-                        right-0
-                        h-0.5
-                        rounded-t
-                      "
-                      style={{
-                        background:
-                          TAG_COLOR[item.id],
-                      }}
-                    />
-                  )}
-                </button>
-              );
-            })}
+        {visible < matched.length && (
+          <div className="mt-11 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setVisible((v) => v + PAGE)}
+              className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-br from-[#f09f74] to-[#e8845a] px-[30px] py-3.5 text-[15px] font-bold text-white shadow-[0_12px_26px_rgba(232,132,90,0.32)] transition-all hover:-translate-y-0.5"
+            >
+              {t("news.loadMore")}
+              <ArrowDown size={18} />
+            </button>
           </div>
-        </div>
-
-        <Carousel
-          key={filter}
-          items={localizedArticles}
-          perPage={3}
-          renderItem={(article) => (
-            <NewsCard
-              key={article.id}
-              article={article}
-            />
-          )}
-        />
+        )}
       </section>
     </div>
   );

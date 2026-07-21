@@ -151,45 +151,42 @@ export function AboutPage({
           {/* Copy (left) + image with coral effects (right) */}
           <div className="mt-12 grid grid-cols-1 items-center gap-x-14 gap-y-10 lg:grid-cols-[0.82fr_1.18fr]">
             <div className="min-w-0 max-w-[38ch]">
-              <p className="text-base leading-[1.75] text-muted-foreground">
+              <p className="text-lg leading-[1.85] text-muted-foreground">
                 {t("about.intro.paragraph1")}
               </p>
-              <p className="mt-4 text-base leading-[1.75] text-muted-foreground">
+              <p className="mt-4 text-lg leading-[1.85] text-muted-foreground">
                 {t("about.intro.paragraph2")}
               </p>
 
               {/* coral gradient stat cards */}
-              <div className="mt-8 flex gap-4">
+              <div className="mt-8 flex gap-3">
                 <div
-                  className="flex-1 rounded-2xl border border-[#f09f74]/35 p-[16px_18px]"
+                  className="flex flex-1 items-center gap-3 rounded-xl border border-[#f09f74]/35 px-4 py-3"
                   style={{
                     background:
                       "linear-gradient(135deg, rgba(240,159,116,0.10), rgba(255,255,255,0))",
                   }}
                 >
-                  <div className="bg-gradient-to-br from-[#f09f74] to-[#c96a3e] bg-clip-text text-[32px] font-extrabold tracking-[-0.03em] text-transparent">
-                    40+
+                  <div className="bg-gradient-to-br from-[#f09f74] to-[#c96a3e] bg-clip-text text-[30px] font-extrabold leading-none tracking-[-0.03em] text-transparent">
+                    {t("about.intro.stats.programs.value")}
                   </div>
-                  <div className="mt-0.5 font-mono text-[11.5px] uppercase leading-tight tracking-wide text-muted-foreground">
-                    Programs
-                    <br />
-                    screened
+                  <div className="text-[13px] font-semibold leading-tight tracking-wide text-muted-foreground">
+                    {t("about.intro.stats.programs.label")}
                   </div>
                 </div>
+
                 <div
-                  className="flex-1 rounded-2xl border border-[#f09f74]/35 p-[16px_18px]"
+                  className="flex flex-1 items-center gap-3 rounded-xl border border-[#f09f74]/35 px-4 py-3"
                   style={{
                     background:
                       "linear-gradient(135deg, rgba(240,159,116,0.10), rgba(255,255,255,0))",
                   }}
                 >
-                  <div className="bg-gradient-to-br from-[#f09f74] to-[#c96a3e] bg-clip-text text-[32px] font-extrabold tracking-[-0.03em] text-transparent">
-                    6
+                  <div className="bg-gradient-to-br from-[#f09f74] to-[#c96a3e] bg-clip-text text-[26px] font-extrabold leading-none tracking-[-0.03em] text-transparent">
+                    {t("about.intro.stats.assets.value")}
                   </div>
-                  <div className="mt-0.5 font-mono text-[11.5px] uppercase leading-tight tracking-wide text-muted-foreground">
-                    Assets in
-                    <br />
-                    validation
+                  <div className="font-mono text-[11px] uppercase leading-tight tracking-wide text-muted-foreground">
+                    {t("about.intro.stats.assets.label")}
                   </div>
                 </div>
               </div>
@@ -242,15 +239,15 @@ export function AboutPage({
                 />
                 <div className="relative mb-2 flex items-center gap-[7px]">
                   <span className="h-[7px] w-[7px] rounded-full bg-white animate-[pulse-dot_2.4s_ease-out_infinite]" />
-                  <span className="font-mono text-[9.5px] tracking-[0.14em] text-white/85">
-                    AI-ORCHESTRATED
+                  <span className="font-mono text-[9.5px] uppercase tracking-[0.14em] text-white/85">
+                    {t("about.intro.stats.signals.eyebrow")}
                   </span>
                 </div>
                 <div className="relative text-[30px] font-extrabold leading-none tracking-[-0.03em]">
-                  1.2M
+                  {t("about.intro.stats.signals.value")}
                 </div>
                 <div className="relative mt-[5px] text-[11.5px] leading-snug text-white/85">
-                  evidence signals analyzed per candidate
+                  {t("about.intro.stats.signals.label")}
                 </div>
               </div>
             </div>

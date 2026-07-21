@@ -1,5 +1,12 @@
-import { Fragment } from "react";
-import { ArrowRight, Atom, ChevronDown, Dna, Pill, Network } from "lucide-react";
+import {
+  Fragment,
+} from "react";
+
+import {
+  ArrowLeftRight,
+  ArrowRight,
+  ChevronDown,
+} from "lucide-react";
 
 import {
   HOME_EVIDENCE_LAYERS,
@@ -23,15 +30,152 @@ import type {
   Translator,
 } from "@app/types";
 
+type SectionIconProps = {
+  className?: string;
+};
+
+/* Drug → Disease */
+function DrugDirectionIcon({
+  className = "",
+}: SectionIconProps) {
+  return (
+    <svg
+      className={className}
+      width="27"
+      height="27"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M10.5 3.5 3.5 10.5a5 5 0 0 0 7 7l7-7a5 5 0 0 0-7-7Z" />
+      <path d="m7 7 7 7" />
+    </svg>
+  );
+}
+
+/* Disease → Drug */
+function DiseaseDirectionIcon({
+  className = "",
+}: SectionIconProps) {
+  return (
+    <svg
+      className={className}
+      width="27"
+      height="27"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 2a5 5 0 0 0-5 5c0 2 1 3 1 5h8c0-2 1-3 1-5a5 5 0 0 0-5-5Z" />
+      <path d="M9 17h6" />
+      <path d="M9.5 20h5" />
+    </svg>
+  );
+}
+
+/* Gene Expression */
+function GeneExpressionIcon({
+  className = "",
+}: SectionIconProps) {
+  return (
+    <svg
+      className={className}
+      width="36"
+      height="36"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M4 4c4 0 4 16 8 16" />
+      <path d="M12 4c4 0 4 16 8 16" />
+      <path d="M6 8h4" />
+      <path d="M14 8h4" />
+      <path d="M6 16h4" />
+      <path d="M14 16h4" />
+    </svg>
+  );
+}
+
+/* Structure Modeling */
+function StructureModelingIcon({ size = 40, strokeWidth = 1.6 }: { size?: number; strokeWidth?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {/* cube edges: front face, back face, 4 connectors */}
+      <path d="M4.5 9 14.5 9M14.5 9 14.5 19M14.5 19 4.5 19M4.5 19 4.5 9M9.5 4.5 19.5 4.5M19.5 4.5 19.5 14.5M19.5 14.5 9.5 14.5M9.5 14.5 9.5 4.5M4.5 9 9.5 4.5M14.5 9 19.5 4.5M14.5 19 19.5 14.5M4.5 19 9.5 14.5" />
+      {/* 8 corner atoms */}
+      <circle cx="4.5" cy="9" r="1.4" fill="#fff" />
+      <circle cx="14.5" cy="9" r="1.4" fill="#fff" />
+      <circle cx="14.5" cy="19" r="1.4" fill="#fff" />
+      <circle cx="4.5" cy="19" r="1.4" fill="#fff" />
+      <circle cx="9.5" cy="4.5" r="1.4" fill="#fff" />
+      <circle cx="19.5" cy="4.5" r="1.4" fill="#fff" />
+      <circle cx="19.5" cy="14.5" r="1.4" fill="#fff" />
+      <circle cx="9.5" cy="14.5" r="1.4" fill="#fff" />
+    </svg>
+  );
+}
+
+/* Knowledge Graph */
+function KnowledgeGraphIcon({
+  className = "",
+}: SectionIconProps) {
+  return (
+    <svg
+      className={className}
+      width="36"
+      height="36"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="6" cy="6" r="2.2" />
+      <circle cx="18" cy="7" r="2.2" />
+      <circle cx="7" cy="18" r="2.2" />
+      <circle cx="17" cy="17" r="2.2" />
+
+      <path d="M8 7h8" />
+      <path d="M7.5 8 7 15.8" />
+      <path d="m8.6 17.2 6.8-.4" />
+      <path d="M17.7 9.1 8.4 16.6" />
+    </svg>
+  );
+}
+
 const WORKFLOW_ICONS = {
-  pill: Pill,
-  dna: Dna,
+  pill: DrugDirectionIcon,
+  dna: DiseaseDirectionIcon,
 } as const;
 
 const EVIDENCE_ICONS = {
-  expression: Dna,
-  structure: Atom,
-  knowledge: Network,
+  expression: GeneExpressionIcon,
+  structure: StructureModelingIcon,
+  knowledge: KnowledgeGraphIcon,
 } as const;
 
 function CompanyLogoGroup() {
@@ -462,316 +606,547 @@ export function HomePage({
       <section
         id="home-evidence"
         className="
+          relative
           scroll-mt-20
+          overflow-hidden
           border-b
           border-border
-          bg-background
-          py-14
-          md:py-16
+          bg-[#faf7f2]
+          py-16
+          md:py-20
         "
       >
-        <div className="mx-auto max-w-7xl px-6">
-          {/* Bidirectional Discovery heading */}
-           <div className="mb-8">
-              {/* Label and title centered together,
-                  but aligned to the same left edge */}
-              <div
+        {/* Decorative glow */}
+        <div
+          aria-hidden="true"
+          className="
+            absolute
+            -right-24
+            -top-36
+            h-[480px]
+            w-[480px]
+            rounded-full
+            blur-[6px]
+            motion-safe:animate-[driftA_16s_ease-in-out_infinite]
+          "
+          style={{
+            background:
+              "radial-gradient(closest-side, rgba(240,159,116,0.22), transparent 70%)",
+          }}
+        />
+
+        <div
+          aria-hidden="true"
+          className="
+            absolute
+            -bottom-40
+            -left-28
+            h-[440px]
+            w-[440px]
+            rounded-full
+            blur-[6px]
+            motion-safe:animate-[driftB_20s_ease-in-out_infinite]
+          "
+          style={{
+            background:
+              "radial-gradient(closest-side, rgba(201,106,62,0.14), transparent 70%)",
+          }}
+        />
+
+        <div
+          className="
+            relative
+            z-10
+            mx-auto
+            max-w-[1120px]
+            px-6
+          "
+        >
+          {/* Discovery label */}
+          <div className="mb-4 text-center">
+            <span
+              className="
+                inline-flex
+                items-center
+                gap-2.5
+                rounded-full
+                border
+                border-[#f09f74]/40
+                py-1.5
+                pl-2.5
+                pr-4
+                font-mono
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.14em]
+                text-[#c96a3e]
+              "
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(240,159,116,0.16), rgba(201,106,62,0.10))",
+              }}
+            >
+              <span
                 className="
-                  mx-auto
-                  w-fit
-                  max-w-full
+                  h-[7px]
+                  w-[7px]
+                  rounded-full
+                  bg-[#ef8a62]
+                  shadow-[0_0_0_4px_rgba(240,159,116,0.2)]
                 "
-              >
-                <div
-                  className="
-                    mb-3
-                    flex
-                    items-center
-                    justify-center
-                    gap-3
-                    font-mono
-                    text-xs
-                    font-semibold
-                    uppercase
-                    tracking-[0.14em]
-                    text-[#ef8a62]
-                  "
-                >
-                  <span
-                    className="
-                      h-px
-                      w-6
-                      shrink-0
-                      bg-[#ef8a62]
-                    "
-                  />
+              />
 
-                  <span>
-                    {t("home.workflows.label")}
-                  </span>
-                </div>
+              {t("home.workflows.label")}
+            </span>
+          </div>
 
-                <h2
-                  className="
-                    text-3xl
-                    font-bold
-                    leading-tight
-                    tracking-tight
-                    text-foreground
-                    md:text-4xl
-                    md:whitespace-nowrap
-                  "
-                  style={{
-                    fontFamily:
-                      "'Plus Jakarta Sans', sans-serif",
-                  }}
-                >
-                  {t("home.workflows.title")}
-                </h2>
-              </div>
+          {/* Discovery heading */}
+          <h2
+            className="
+              mx-auto
+              mb-11
+              text-center
+              text-[clamp(1.75rem,3.4vw,2.625rem)]
+              font-extrabold
+              tracking-[-0.03em]
+              text-foreground
+            "
+            style={{
+              fontFamily:
+                "'Plus Jakarta Sans', sans-serif",
+            }}
+          >
+            {t("home.workflows.titleStart")}{" "}
 
-              {/* Description centered independently */}
-              {/* <p
-                className="
-                  mx-auto
-                  mt-4
-                  max-w-2xl
-                  text-center
-                  text-sm
-                  leading-relaxed
-                  text-muted-foreground
-                  md:text-base
-                "
-              >
-                {t("home.workflows.description")}
-              </p> */}
-            </div>
+            <span className="text-[#c96a3e]">
+              {t("home.workflows.titleAccent")}
+            </span>{" "}
 
-          {/* Compact workflow options */}
+            {t("home.workflows.titleEnd")}
+          </h2>
+
+          {/* Direction cards */}
           <div
             className="
-              mt-8
-              flex
-              flex-wrap
+              mx-auto
+              grid
+              max-w-[660px]
+              grid-cols-1
               items-center
-              justify-center
+              justify-items-center
               gap-4
+              md:grid-cols-[285px_54px_285px]
+              md:gap-4
             "
           >
-            {HOME_WORKFLOWS.map((workflow) => {
-              const Icon =
-                WORKFLOW_ICONS[workflow.icon];
+            {HOME_WORKFLOWS.map(
+              (workflow, index) => {
+                const Icon =
+                  WORKFLOW_ICONS[workflow.icon];
 
-              return (
-                <article
-                  key={workflow.id}
-                  className="
-                    inline-flex
-                    min-h-[72px]
-                    w-fit
-                    min-w-[230px]
-                    items-center
-                    justify-center
-                    gap-4
-                    rounded-2xl
-                    border
-                    border-border
-                    bg-card
-                    px-6
-                    py-4
-                    transition-all
-                    duration-300
-                    hover:-translate-y-0.5
-                    hover:border-[#ef8a62]/50
-                    hover:shadow-md
-                  "
-                >
-                  <span
-                    className="
-                      shrink-0
-                      font-mono
-                      text-sm
-                      font-semibold
-                      text-[#ef8a62]
-                    "
-                  >
-                    {workflow.direction}
-                  </span>
+                return (
+                  <Fragment key={workflow.id}>
+                    {/* Compact workflow card */}
+                    <article
+                      className="
+                        relative
+                        w-full
+                        max-w-[340px]
+                        overflow-hidden
+                        rounded-[18px]
+                        border
+                        border-border
+                        bg-white
+                        px-5
+                        py-4
+                        shadow-[0_10px_26px_rgba(20,24,39,0.05)]
+                        transition-all
+                        duration-300
+                        hover:-translate-y-0.5
+                        hover:border-[#ef8a62]/50
+                        hover:shadow-[0_14px_32px_rgba(201,106,62,0.12)]
+                        md:w-fit
+                        md:min-w-[285px]
+                      "
+                    >
+                      {/* Coral left edge */}
+                      <div
+                        aria-hidden="true"
+                        className="
+                          absolute
+                          inset-y-0
+                          left-0
+                          w-1
+                          bg-gradient-to-b
+                          from-[#f09f74]
+                          to-[#c96a3e]
+                        "
+                      />
 
-                  <div
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-[#ef8a62]/10
-                      text-[#ef8a62]
-                    "
-                  >
-                    <Icon
-                      size={21}
-                      strokeWidth={1.8}
-                      aria-hidden="true"
-                    />
-                  </div>
+                      <div className="flex items-center gap-3.5">
+                        {/* Smaller icon */}
+                        <span
+                          className="
+                            flex
+                            h-10
+                            w-10
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-xl
+                            border
+                            border-[#f09f74]/45
+                            bg-gradient-to-br
+                            from-[#fdf0e8]
+                            to-[#f9dccc]
+                            text-[#c96a3e]
+                          "
+                        >
+                          <Icon />
+                        </span>
 
-                  <h3
-                    className="
-                      whitespace-nowrap
-                      text-lg
-                      font-bold
-                      text-foreground
-                    "
-                    style={{
-                      fontFamily:
-                        "'Plus Jakarta Sans', sans-serif",
-                    }}
-                  >
-                    {t(workflow.labelKey)}
-                  </h3>
-                </article>
-              );
-            })}
+                        <div className="min-w-0">
+                          {/* 01 and title on the same line */}
+                          <div
+                            className="
+                              flex
+                              items-center
+                              gap-2.5
+                            "
+                          >
+                            <span
+                              className="
+                                shrink-0
+                                font-mono
+                                text-xs
+                                font-semibold
+                                text-[#ef8a62]
+                              "
+                            >
+                              {workflow.direction}
+                            </span>
+
+                            <h3
+                              className="
+                                whitespace-nowrap
+                                text-[17px]
+                                font-bold
+                                leading-tight
+                                text-foreground
+                              "
+                              style={{
+                                fontFamily:
+                                  "'Plus Jakarta Sans', sans-serif",
+                              }}
+                            >
+                              {t(workflow.titleKey)}
+                            </h3>
+                          </div>
+
+                          <p
+                            className="
+                              mt-1.5
+                              max-w-[225px]
+                              text-[12.5px]
+                              leading-[1.45]
+                              text-muted-foreground
+                            "
+                          >
+                            {t(workflow.descriptionKey)}
+                          </p>
+                        </div>
+                      </div>
+                    </article>
+
+                    {/* Connector between the two cards */}
+                    {index === 0 && (
+                      <div
+                        aria-hidden="true"
+                        className="
+                          flex
+                          h-[54px]
+                          w-[54px]
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-full
+                          bg-[#141827]
+                          text-[#f09f74]
+                          shadow-[0_8px_22px_rgba(20,24,39,0.25)]
+                        "
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M8 7H4" />
+                          <path d="M4 7 7 4" />
+                          <path d="M4 7 7 10" />
+
+                          <path d="M16 17h4" />
+                          <path d="m20 17-3 3" />
+                          <path d="m20 17-3-3" />
+                        </svg>
+                      </div>
+                    )}
+                  </Fragment>
+                );
+              },
+            )}
           </div>
-          
-          {/* Integrated Evidence heading */}
-          <div className="mt-10 mb-8 text-center">
-            <h2
+
+          {/* ===================== Evidence ===================== */}
+          <div className="mt-16 text-center">
+            <h3
               className="
-                text-2xl
-                font-bold
-                leading-tight
-                tracking-tight
+                mb-9
+                text-[clamp(1.3rem,2.4vw,1.8rem)]
+                font-extrabold
+                tracking-[-0.025em]
                 text-foreground
-                md:text-10xl
-                md:whitespace-nowrap
               "
               style={{
                 fontFamily:
                   "'Plus Jakarta Sans', sans-serif",
               }}
             >
-              {t("home.evidence.title")}
-            </h2>
+              {t("home.evidence.titleStart")}{" "}
 
-            {/* <p
+              <span
+                className="
+                  bg-gradient-to-br
+                  from-[#f09f74]
+                  to-[#c96a3e]
+                  bg-clip-text
+                  text-transparent
+                "
+              >
+                {t(
+                  "home.evidence.titleAccent",
+                )}
+              </span>
+            </h3>
+
+            <div
               className="
+                relative
                 mx-auto
-                mt-4
-                max-w-3xl
-                text-sm
-                leading-relaxed
-                text-muted-foreground
-                md:text-base
+                max-w-[900px]
               "
             >
-              {t("home.evidence.description")}
-            </p> */}
-          </div>
+              {/*
+                The desktop grid has three columns with two 24px gaps.
 
-          {/* Compact evidence options */}
-          <div
-            className="
-              mt-8
-              flex
-              flex-wrap
-              items-center
-              justify-center
-              gap-4
-            "
-          >
-            {HOME_EVIDENCE_LAYERS.map((layer) => {
-              const Icon =
-                EVIDENCE_ICONS[layer.id];
-
-              return (
-                <article
-                  key={layer.id}
+                This calculation places the line endpoints
+                at the exact center of the first and third columns.
+              */}
+              <div
+                aria-hidden="true"
+                className="
+                  absolute
+                  left-[calc((100%_-_48px)/6)]
+                  right-[calc((100%_-_48px)/6)]
+                  top-[43px]
+                  z-0
+                  hidden
+                  h-[2px]
+                  md:block
+                "
+                style={{
+                  background:
+                    "linear-gradient(90deg, #f6ddcd, #ef8a62, #f6ddcd)",
+                }}
+              >
+                <span
                   className="
-                    inline-flex
-                    min-h-[72px]
-                    w-fit
-                    min-w-[220px]
-                    items-center
-                    justify-center
-                    gap-4
-                    rounded-2xl
-                    border
-                    border-border
-                    bg-card
-                    px-6
-                    py-4
-                    transition-all
-                    duration-300
-                    hover:-translate-y-0.5
-                    hover:border-[#ef8a62]/50
-                    hover:shadow-md
+                    absolute
+                    -top-[3px]
+                    h-2
+                    w-2
+                    rounded-full
+                    bg-[#c96a3e]
+                    shadow-[0_0_12px_rgba(201,106,62,0.8)]
+                    motion-safe:animate-[flowDot_3.4s_ease-in-out_infinite]
                   "
-                >
-                  <div
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-[#ef8a62]/10
-                      text-[#ef8a62]
-                    "
-                  >
-                    <Icon
-                      size={21}
-                      strokeWidth={1.8}
-                      aria-hidden="true"
-                    />
-                  </div>
+                />
+              </div>
 
-                  <h3
-                    className="
-                      whitespace-nowrap
-                      text-lg
-                      font-bold
-                      text-foreground
-                    "
-                    style={{
-                      fontFamily:
-                        "'Plus Jakarta Sans', sans-serif",
-                    }}
-                  >
-                    {t(layer.titleKey)}
-                  </h3>
-                </article>
-              );
-            })}
-          </div>
+              <div
+                className="
+                  relative
+                  z-10
+                  grid
+                  grid-cols-1
+                  justify-items-center
+                  gap-8
+                  md:grid-cols-3
+                  md:gap-6
+                "
+              >
+                {HOME_EVIDENCE_LAYERS.map(
+                  (layer) => {
+                    const Icon =
+                      EVIDENCE_ICONS[layer.id];
 
-          {/* Workflow CTA moved below both groups */}
-          <div
-            className="
-              mt-10
-              flex
-              justify-center
-            "
-          >
-            <CTAButton
-              variant="outline"
+                    return (
+                      <article
+                        key={layer.id}
+                        className="
+                          flex
+                          w-full
+                          max-w-[260px]
+                          flex-col
+                          items-center
+                        "
+                      >
+                        {/* Icon centered on the connector line */}
+                        <div
+                          className="
+                            relative
+                            z-10
+                            flex
+                            h-[86px]
+                            w-[86px]
+                            items-center
+                            justify-center
+                            rounded-3xl
+                            border
+                            border-border
+                            bg-white
+                            text-[#c96a3e]
+                            shadow-[0_12px_26px_rgba(201,106,62,0.12)]
+                          "
+                        >
+                          <span
+                            className="
+                              absolute
+                              -right-2.5
+                              -top-2.5
+                              flex
+                              h-[27px]
+                              w-[27px]
+                              items-center
+                              justify-center
+                              rounded-full
+                              bg-gradient-to-br
+                              from-[#f09f74]
+                              to-[#c96a3e]
+                              font-mono
+                              text-xs
+                              font-semibold
+                              text-white
+                            "
+                          >
+                            {layer.number}
+                          </span>
+
+                          <Icon className="h-10 w-10" />
+                        </div>
+
+                        {/* Compact evidence text card */}
+                        <div
+                          className="
+                            mt-5
+                            flex
+                            min-h-[122px]
+                            w-full
+                            flex-col
+                            items-center
+                            justify-center
+                            rounded-[18px]
+                            border
+                            border-border
+                            bg-white
+                            px-5
+                            py-4
+                            text-center
+                            shadow-[0_8px_22px_rgba(20,24,39,0.035)]
+                          "
+                        >
+                          <h4
+                            className="
+                              whitespace-nowrap
+                              text-base
+                              font-bold
+                              text-foreground
+                            "
+                            style={{
+                              fontFamily:
+                                "'Plus Jakarta Sans', sans-serif",
+                            }}
+                          >
+                            {t(layer.titleKey)}
+                          </h4>
+
+                          <p
+                            className="
+                              mx-auto
+                              mt-2
+                              max-w-[225px]
+                              text-[12.5px]
+                              leading-[1.55]
+                              text-muted-foreground
+                            "
+                          >
+                            {t(
+                              layer.descriptionKey,
+                            )}
+                          </p>
+                        </div>
+                      </article>
+                    );
+                  },
+                )}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <button
+              type="button"
               onClick={() =>
                 navigate("technology")
               }
+              className="
+                mt-11
+                inline-flex
+                items-center
+                gap-2.5
+                rounded-full
+                bg-gradient-to-br
+                from-[#f09f74]
+                to-[#e8845a]
+                px-7
+                py-3.5
+                text-[15px]
+                font-bold
+                text-white
+                shadow-[0_12px_26px_rgba(232,132,90,0.35)]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:shadow-[0_16px_30px_rgba(232,132,90,0.42)]
+              "
             >
-              {t("home.workflows.button")}
+              {t(
+                "home.workflows.button",
+              )}
 
-              <ArrowRight size={14} />
-            </CTAButton>
+              <ArrowRight
+                size={18}
+                aria-hidden="true"
+              />
+            </button>
           </div>
         </div>
       </section>
-      
+            
       {/* Latest News Section */}
       <LatestNewsStrip
         navigate={navigate}
@@ -887,65 +1262,46 @@ export function HomePage({
       {/* Repurgenesis logo marquee */}
       <section
         aria-label="Repurgenesis"
-        className="
-          partner-marquee
-          relative
-          overflow-hidden
-          border-y
-          border-[#fada5e]
-          bg-[#fada5e]
-          py-6
-          md:py-7
-        "
+        className="partner-marquee relative overflow-hidden bg-[#1b2130] py-6 md:py-5"
       >
-        {/* Left edge fade using the same yellow */}
+        {/* subtle dot texture */}
         <div
           aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            inset-y-0
-            left-0
-            z-10
-            w-16
-            bg-gradient-to-r
-            from-[#fada5e]
-            via-[#fada5e]/90
-            to-transparent
-            md:w-24
-          "
+          className="absolute inset-0 opacity-50"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.5px)",
+            backgroundSize: "20px 20px",
+          }}
         />
 
-        {/* Right edge fade using the same yellow */}
+        {/* left edge fade */}
         <div
           aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            inset-y-0
-            right-0
-            z-10
-            w-16
-            bg-gradient-to-l
-            from-[#fada5e]
-            via-[#fada5e]/90
-            to-transparent
-            md:w-24
-          "
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[#1b2130] to-transparent md:w-32"
         />
 
+        {/* right edge fade */}
         <div
-          className="
-            partner-marquee-track
-            flex
-            w-max
-            items-center
-          "
-        >
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[#1b2130] to-transparent md:w-32"
+        />
+
+        <div className="partner-marquee-track relative flex w-max items-center">
           <CompanyLogoGroup />
           {/* Duplicate enables a seamless loop */}
           <CompanyLogoGroup />
         </div>
+
+        {/* coral hairline seam into the footer */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-0.5"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, #c96a3e, transparent)",
+          }}
+        />
       </section>
     
     </div>

@@ -217,20 +217,29 @@ export const TEXT = {
         label:
           "Bidirectional Discovery",
 
-        title:
-          "Start with a Drug or Disease",
+        titleStart:
+          "Start with a Drug",
 
-        description:
-          "Explore drug-repurposing opportunities from either direction.",
+        titleAccent:
+          "or",
+
+        titleEnd:
+          "Disease",
 
         drugToDisease: {
-          label:
+          title:
             "Drug to Disease",
+
+          description:
+            "Find new indications for known compounds.",
         },
 
         diseaseToDrug: {
-          label:
+          title:
             "Disease to Drug",
+
+          description:
+            "Match disease biology with viable candidates.",
         },
 
         button:
@@ -238,14 +247,11 @@ export const TEXT = {
       },
 
       evidence: {
-        label:
-          "Integrated Evidence",
+        titleStart:
+          "Three Evidence Layers &",
 
-        title:
-          "3 Evidence Layers. 1 Decision.",
-
-        description:
-          "Strong candidates: Structure, Knowledge graphs and Gene expression.",
+        titleAccent:
+          "One Decision.",
 
         layers: {
           expression: {
@@ -253,7 +259,7 @@ export const TEXT = {
               "Gene Expression",
 
             description:
-              "Match drug and disease signatures.",
+              "Compare transcriptomic signatures across tissues and disease states.",
           },
 
           structure: {
@@ -261,7 +267,7 @@ export const TEXT = {
               "Structure Modeling",
 
             description:
-              "Predict drug-target interactions.",
+              "Evaluate 3D binding geometry and predicted target affinity.",
           },
 
           knowledge: {
@@ -269,12 +275,10 @@ export const TEXT = {
               "Knowledge Graphs",
 
             description:
-              "Connect drugs, targets, pathways, and diseases.",
+              "Connect biomedical relationships across scientific literature.",
           },
         },
       },
-
-     
 
       translation: {
         label:
@@ -349,6 +353,24 @@ export const TEXT = {
 
         imageAlt:
           "Repurgenesis biomedical research team",
+        
+        cta: "See our approach",
+
+        stats: {
+          programs: {
+            value: "40+",
+            label: "Programs screened",
+          },
+          assets: {
+            value: "6",
+            label: "Assets in validation",
+          },
+          signals: {
+            eyebrow: "AI-Orchestrated",
+            value: "1.2M",
+            label: "Evidence signals analyzed per candidate",
+          },
+        },
       },
       journey: {
         label: "Our Journey",
@@ -580,76 +602,220 @@ export const TEXT = {
       allNews: "All News",
 
       filters: {
-        all: "All",
-        pressRelease: "Press Release",
-        publication: "Publication",
-        partnership: "Partnership",
-        event: "Event",
+        all:
+          "All",
+
+        press:
+          "Press Releases",
+
+        partnership:
+          "Partnerships",
+
+        event:
+          "Events",
       },
+
+      categories: {
+        press:
+          "Press Release",
+
+        partnership:
+          "Partnership",
+
+        event:
+          "Event",
+      },
+
       articles: {
         seriesB: {
-          date: "June 2025",
+          date:
+            "2025",
+
           title:
-            "Repurgenesis Completes Series B Funding Round of €42M",
+            "Replace with the approved announcement title",
+
           excerpt:
-            "The funding will accelerate our lead rare disease program into Phase II clinical trials and expand our computational infrastructure across three new sites.",
+            "Add a concise summary for the news-card listing.",
+
+          lead:
+            "Add a concise introductory paragraph presenting the main announcement and its significance.",
+
+          imageAlt:
+            "Repurgenesis company announcement",
+
+          body: {
+            paragraph1:
+              "Add the first approved article paragraph here.",
+
+            paragraph2:
+              "Add the second approved article paragraph here.",
+
+            paragraph3:
+              "Add the final approved article paragraph here.",
+          },
         },
-        fibrosisStudy: {
-          date: "April 2025",
-          title:
-            "New Study Validates Repurgenesis AI Model in Fibrosis Targets",
-          excerpt:
-            "Published in Nature Medicine, our research demonstrates 87% concordance between model predictions and in-vitro fibrosis assay outcomes.",
-        },
+
         hospitalAlliance: {
-          date: "February 2025",
+          date:
+            "2025",
+
           title:
-            "Strategic Alliance with University Hospital Network Announced",
+            "Replace with the approved partnership title",
+
           excerpt:
-            "Access to biobank data from 28,000 patients will power next-generation disease stratification models across five therapeutic areas.",
+            "Add a concise summary of the collaboration.",
+
+          lead:
+            "Add an introductory paragraph explaining the partnership and its intended value.",
+
+          imageAlt:
+            "Repurgenesis healthcare partnership",
+
+          body: {
+            paragraph1:
+              "Add the first approved article paragraph here.",
+
+            paragraph2:
+              "Add the second approved article paragraph here.",
+
+            paragraph3:
+              "Add the final approved article paragraph here.",
+          },
         },
+
         jpmorgan2025: {
-          date: "January 2025",
+          date:
+            "2025",
+
           title:
-            "Repurgenesis Presents at JPMorgan Healthcare Conference 2025",
+            "Replace with the approved event title",
+
           excerpt:
-            "CEO Dr. Wei-Lin Chen presented the company's pipeline progress and long-term vision to a global audience of healthcare investors in San Francisco.",
-        },
-        benchmarkResults: {
-          date: "November 2024",
-          title:
-            "Repurgenesis Publishes Benchmark Results in Cell Chemical Biology",
-          excerpt:
-            "Our multi-omics pipeline outperforms existing state-of-the-art methods for compound-target interaction prediction across 14 disease categories.",
+            "Add a short overview of the company's participation.",
+
+          lead:
+            "Add an introductory paragraph explaining the event and Repurgenesis's participation.",
+
+          imageAlt:
+            "Repurgenesis at an industry event",
+
+          body: {
+            paragraph1:
+              "Add the first approved article paragraph here.",
+
+            paragraph2:
+              "Add the second approved article paragraph here.",
+
+            paragraph3:
+              "Add the final approved article paragraph here.",
+          },
         },
 
         bioEurope2024: {
-          date: "October 2024",
+          date:
+            "2024",
+
           title:
-            "Repurgenesis Joins BIO-Europe 2024 as Featured Speaker",
+            "Replace with the approved BIO-Europe title",
+
           excerpt:
-            "Our Chief Scientific Officer presented the molecular repurposing platform to more than 4,000 delegates, leading to three new partnership discussions.",
+            "Add a short summary of the event update.",
+
+          lead:
+            "Add an introductory paragraph describing Repurgenesis's participation.",
+
+          imageAlt:
+            "Repurgenesis BIO-Europe update",
+
+          body: {
+            paragraph1:
+              "Add the first approved article paragraph here.",
+
+            paragraph2:
+              "Add the second approved article paragraph here.",
+
+            paragraph3:
+              "Add the final approved article paragraph here.",
+          },
         },
+
         orphanDesignation: {
-          date: "August 2024",
+          date:
+            "2024",
+
           title:
-            "Repurgenesis Receives EMA Orphan Drug Designation for Lead Program",
+            "Replace with the approved company announcement",
+
           excerpt:
-            "The European Medicines Agency has granted Orphan Drug Designation to RG-201 for the treatment of a rare pulmonary fibrosis subtype.",
+            "Add a concise summary of the regulatory milestone.",
+
+          lead:
+            "Add an introductory paragraph describing the milestone and its relevance.",
+
+          imageAlt:
+            "Repurgenesis regulatory announcement",
+
+          body: {
+            paragraph1:
+              "Add the first approved article paragraph here.",
+
+            paragraph2:
+              "Add the second approved article paragraph here.",
+
+            paragraph3:
+              "Add the final approved article paragraph here.",
+          },
         },
+
         karolinskaAgreement: {
-          date: "July 2024",
+          date:
+            "2024",
+
           title:
-            "Joint Research Agreement Signed with Karolinska Institutet",
+            "Replace with the approved collaboration title",
+
           excerpt:
-            "The collaboration will focus on identifying neurodegeneration targets using Repurgenesis's proprietary AI and Karolinska's patient cohort datasets.",
+            "Add a short summary of the research collaboration.",
+
+          lead:
+            "Add an introductory paragraph explaining the agreement and shared objectives.",
+
+          imageAlt:
+            "Repurgenesis research collaboration",
+
+          body: {
+            paragraph1:
+              "Add the first approved article paragraph here.",
+
+            paragraph2:
+              "Add the second approved article paragraph here.",
+
+            paragraph3:
+              "Add the final approved article paragraph here.",
+          },
         },
-        rg101Publication: {
-          date: "May 2024",
+
+        references:
+          "News Coverage & References",
+
+        share:
+          "Share",
+
+        shareLinkedIn:
+          "Share on LinkedIn",
+
+        shareX:
+          "Share on X",
+
+        related: {
+          label:
+            "Related News",
+
           title:
-            "Preclinical Data on RG-101 Published in Journal of Medicinal Chemistry",
-          excerpt:
-            "RG-101, a repurposed kinase inhibitor, demonstrates potent activity in ALS motor neuron models with a favorable CNS penetration profile.",
+            "You may also like",
+
+          readArticle:
+            "Read article",
         },
       },
     },
@@ -1109,48 +1275,59 @@ export const TEXT = {
     },
     home: {
       hero: {
-        label: "智慧協奏平台",
-        title: "協奏式 AI，推動證據導向的藥物再利用",
+        label: "AI 智慧協奏藥物再利用",
+        title: "從生醫證據，走向可驗證的治療機會",
         description:
-          "整合 AI Agent、多模態資料與領域專家，探索既有藥物的新治療用途。",
+          "源華智醫將 AI Agent、多模態生醫資料與領域專家整合於同一套研發流程，協助探索既有藥物的新用途，並建立通往實驗驗證的清晰路徑。",
+        primaryButton: "探索技術平台",
+        secondaryButton: "與我們合作",
+        scroll: "向下探索",
       },
-
-      cards: {
+      heroHighlights: {
+        bioAi: {
+          value: "Bio + AI",
+          label: "整合生醫、藥物開發與人工智慧",
+        },
         orchestration: {
-          title: "多重 AI Agent 協奏",
-          description: "AI Agent 於同一流程協調檢索、分析與候選評估。",
+          value: "AI 智慧協奏",
+          label: "協調資料、分析模型與專家審議",
         },
         evidence: {
-          title: "多模態證據整合",
-          description: "結構、路徑、基因表現、知識圖譜與文獻，統整判讀。",
-        },
-        prioritization: {
-          title: "候選機會排序",
-          description: "依生物合理性、驗證可行性與商業價值排序。",
+          value: "證據整合",
+          label: "整合基因體、結構、文獻與臨床證據",
         },
         validation: {
-          title: "驗證與智財準備",
-          description: "優先候選進入專家審議、濕實驗驗證與智財評估。",
+          value: "轉譯銜接",
+          label: "候選排序進行實驗與智財評估",
         },
       },
       workflows: {
         label:
           "雙向探索",
 
-        title:
-          "從藥物或疾病出發",
+        titleStart:
+          "從藥物",
 
-        description:
-          "從兩種方向探索藥物再利用機會。",
+        titleAccent:
+          "或",
+
+        titleEnd:
+          "疾病出發",
 
         drugToDisease: {
-          label:
+          title:
             "藥物到疾病",
+
+          description:
+            "探索既有藥物新的潛在適應症。",
         },
 
         diseaseToDrug: {
-          label:
+          title:
             "疾病到藥物",
+
+          description:
+            "依疾病機制匹配候選藥物。",
         },
 
         button:
@@ -1158,14 +1335,11 @@ export const TEXT = {
       },
 
       evidence: {
-        label:
-          "整合證據",
+        titleStart:
+          "三層證據，",
 
-        title:
-          "三層證據，一套決策",
-
-        description:
-          "整合結構、知識圖譜與基因表現，優先篩選候選項目。",
+        titleAccent:
+          "一套決策。",
 
         layers: {
           expression: {
@@ -1173,7 +1347,7 @@ export const TEXT = {
               "基因表現",
 
             description:
-              "比對藥物與疾病表現特徵。",
+              "比對不同組織與疾病的體學特徵。",
           },
 
           structure: {
@@ -1181,7 +1355,7 @@ export const TEXT = {
               "結構建模",
 
             description:
-              "預測藥物與標的交互作用。",
+              "評估 3D 結構及預測標的親和力。",
           },
 
           knowledge: {
@@ -1189,7 +1363,7 @@ export const TEXT = {
               "知識圖譜",
 
             description:
-              "串聯藥物、標的、路徑與疾病。",
+              "串聯科學文獻中的生醫意義與關聯。",
           },
         },
       },
@@ -1267,6 +1441,24 @@ export const TEXT = {
           
         imageAlt:
           "源華智醫生醫研發團隊",
+        
+        cta: "了解我們的方法",
+
+        stats: {
+          programs: {
+            value: "40+",
+            label: "評估項目",
+          },
+          assets: {
+            value: "6",
+            label: "驗證中資產",
+          },
+          signals: {
+            eyebrow: "AI 智慧協奏",
+            value: "1.2M",
+            label: "每項候選分析之證據訊號",
+          },
+        },
       },
 
       journey: {
@@ -1500,85 +1692,88 @@ export const TEXT = {
       allNews: "所有消息",
 
       filters: {
-        all: "全部",
-        pressRelease: "新聞稿",
-        publication: "研究發表",
-        partnership: "合作消息",
-        event: "活動",
+        all:
+          "全部",
+
+        press:
+          "新聞發布",
+
+        partnership:
+          "合作消息",
+
+        event:
+          "活動資訊",
+      },
+
+      categories: {
+        press:
+          "新聞發布",
+
+        partnership:
+          "合作消息",
+
+        event:
+          "活動資訊",
       },
 
       articles: {
         seriesB: {
-          date: "2025 年 6 月",
+          date:
+            "2025 年",
+
           title:
-            "Repurgenesis 完成 4,200 萬歐元 B 輪募資",
+            "請替換為經公司核准的公告標題",
+
           excerpt:
-            "本輪資金將協助主要罕見疾病開發項目進入第二期臨床試驗，並擴充三個據點的運算基礎設施。",
+            "請加入適合顯示於消息列表中的簡短摘要。",
+
+          lead:
+            "請加入簡潔的開場段落，說明本次公告及其重要性。",
+
+          imageAlt:
+            "源華智醫公司公告",
+
+          body: {
+            paragraph1:
+              "請在此加入第一段經公司核准的文章內容。",
+
+            paragraph2:
+              "請在此加入第二段經公司核准的文章內容。",
+
+            paragraph3:
+              "請在此加入最後一段經公司核准的文章內容。",
+          },
         },
 
-        fibrosisStudy: {
-          date: "2025 年 4 月",
+        // Use the same structure for:
+        // hospitalAlliance
+        // jpmorgan2025
+        // bioEurope2024
+        // orphanDesignation
+        // karolinskaAgreement
+        references:
+          "媒體報導與參考資料",
+
+        share:
+          "分享",
+
+        shareLinkedIn:
+          "分享到 LinkedIn",
+
+        shareX:
+          "分享到 X",
+
+        related: {
+          label:
+            "相關消息",
+
           title:
-            "最新研究驗證 Repurgenesis AI 模型於纖維化標靶的預測能力",
-          excerpt:
-            "研究結果顯示，模型預測與體外纖維化實驗結果達到 87% 的一致性。",
+            "你可能也會喜歡",
+
+          readArticle:
+            "閱讀全文",
         },
 
-        hospitalAlliance: {
-          date: "2025 年 2 月",
-          title:
-            "宣布與大學醫院網絡建立策略合作",
-          excerpt:
-            "合作將運用 28,000 名病患的生物資料庫資訊，推動五個治療領域的下一代疾病分群模型。",
-        },
-
-        jpmorgan2025: {
-          date: "2025 年 1 月",
-          title:
-            "Repurgenesis 於 2025 年摩根大通醫療健康大會發表",
-          excerpt:
-            "執行長 Wei-Lin Chen 博士於舊金山向全球醫療投資人說明公司的研發管線進展與長期發展願景。",
-        },
-
-        benchmarkResults: {
-          date: "2024 年 11 月",
-          title:
-            "Repurgenesis 於 Cell Chemical Biology 發表基準測試結果",
-          excerpt:
-            "我們的多體學分析流程在 14 個疾病類別的化合物與標靶交互作用預測中，優於現有方法。",
-        },
-
-        bioEurope2024: {
-          date: "2024 年 10 月",
-          title:
-            "Repurgenesis 受邀於 BIO-Europe 2024 發表",
-          excerpt:
-            "科學長向超過 4,000 名與會者介紹分子再利用平台，並促成三項新的合作討論。",
-        },
-
-        orphanDesignation: {
-          date: "2024 年 8 月",
-          title:
-            "Repurgenesis 主要開發項目獲得 EMA 孤兒藥資格認定",
-          excerpt:
-            "歐洲藥品管理局已授予 RG-201 孤兒藥資格，用於治療一種罕見的肺纖維化亞型。",
-        },
-
-        karolinskaAgreement: {
-          date: "2024 年 7 月",
-          title:
-            "與卡羅琳斯卡學院簽署共同研究協議",
-          excerpt:
-            "雙方將結合 Repurgenesis 的專有 AI 技術與卡羅琳斯卡學院的病患資料，探索神經退化性疾病的新標靶。",
-        },
-
-        rg101Publication: {
-          date: "2024 年 5 月",
-          title:
-            "RG-101 臨床前研究結果發表於 Journal of Medicinal Chemistry",
-          excerpt:
-            "再利用激酶抑制劑 RG-101 在 ALS 運動神經元模型中展現顯著活性，並具有良好的中樞神經系統穿透能力。",
-        },
       },
     },
     // contact page
@@ -2017,50 +2212,103 @@ export const HOME_HERO_HIGHLIGHTS = [
   },
 ] as const;
 
-export const HOME_EVIDENCE_LAYERS = [
-  {
-    id: "expression",
-    icon: "📊",
-    titleKey:
-      "home.evidence.layers.expression.title",
-    descriptionKey:
-      "home.evidence.layers.expression.description",
-  },
-  {
-    id: "structure",
-    icon: "🧬",
-    titleKey:
-      "home.evidence.layers.structure.title",
-    descriptionKey:
-      "home.evidence.layers.structure.description",
-  },
-  {
-    id: "knowledge",
-    icon: "🔗",
-    titleKey:
-      "home.evidence.layers.knowledge.title",
-    descriptionKey:
-      "home.evidence.layers.knowledge.description",
-  },
-] as const;
+export type HomeWorkflowDefinition = {
+  id: string;
+  direction: string;
+  icon: "pill" | "dna";
+  titleKey: string;
+  descriptionKey: string;
+};
 
 export const HOME_WORKFLOWS = [
   {
-    id: "drug-to-disease",
-    direction: "01",
-    icon: "pill",
-    labelKey:
-      "home.workflows.drugToDisease.label",
+    id:
+      "drug-to-disease",
+
+    direction:
+      "01",
+
+    icon:
+      "pill",
+
+    titleKey:
+      "home.workflows.drugToDisease.title",
+
+    descriptionKey:
+      "home.workflows.drugToDisease.description",
   },
 
   {
-    id: "disease-to-drug",
-    direction: "02",
-    icon: "dna",
-    labelKey:
-      "home.workflows.diseaseToDrug.label",
+    id:
+      "disease-to-drug",
+
+    direction:
+      "02",
+
+    icon:
+      "dna",
+
+    titleKey:
+      "home.workflows.diseaseToDrug.title",
+
+    descriptionKey:
+      "home.workflows.diseaseToDrug.description",
   },
-] as const;
+] as const satisfies ReadonlyArray<HomeWorkflowDefinition>;
+
+export type HomeEvidenceLayerDefinition = {
+  id:
+    | "expression"
+    | "structure"
+    | "knowledge";
+  number: string;
+  titleKey: string;
+  descriptionKey: string;
+};
+
+export const HOME_EVIDENCE_LAYERS = [
+  {
+    id:
+      "expression",
+
+    number:
+      "01",
+
+    titleKey:
+      "home.evidence.layers.expression.title",
+
+    descriptionKey:
+      "home.evidence.layers.expression.description",
+  },
+
+  {
+    id:
+      "structure",
+
+    number:
+      "02",
+
+    titleKey:
+      "home.evidence.layers.structure.title",
+
+    descriptionKey:
+      "home.evidence.layers.structure.description",
+  },
+
+  {
+    id:
+      "knowledge",
+
+    number:
+      "03",
+
+    titleKey:
+      "home.evidence.layers.knowledge.title",
+
+    descriptionKey:
+      "home.evidence.layers.knowledge.description",
+  },
+] as const satisfies ReadonlyArray<HomeEvidenceLayerDefinition>;
 
 export const HOME_TRANSLATION_STEPS = [
   {
@@ -2291,37 +2539,10 @@ export const steps = [
   },
 ] as const satisfies ReadonlyArray<TechnologyStepDefinition>;
 
-// ─── News ────────────────────────────────────────────────────────────────────
-export type NewsTagId =
-  | "pressRelease"
-  | "publication"
-  | "partnership"
-  | "event";
-
-export type NewsFilterId =
-  | "all"
-  | NewsTagId;
-
-export type NewsArticleDefinition = {
-  id: string;
-  dateKey: string;
-  tagId: NewsTagId;
-  tagKey: string;
-  titleKey: string;
-  excerptKey: string;
-  image: string;
-};
-
-export type LocalizedNewsArticle = {
-  id: string;
-  date: string;
-  tagId: NewsTagId;
-  tag: string;
-  tagColor: string;
-  title: string;
-  excerpt: string;
-  image: string;
-};
+// ─── News Page ────────────────────────────────────────────────────────────────────
+// ============================================================
+// News
+// ============================================================
 
 export const NEWS_FILTERS = [
   {
@@ -2329,12 +2550,8 @@ export const NEWS_FILTERS = [
     labelKey: "news.filters.all",
   },
   {
-    id: "pressRelease",
-    labelKey: "news.filters.pressRelease",
-  },
-  {
-    id: "publication",
-    labelKey: "news.filters.publication",
+    id: "press",
+    labelKey: "news.filters.press",
   },
   {
     id: "partnership",
@@ -2344,138 +2561,372 @@ export const NEWS_FILTERS = [
     id: "event",
     labelKey: "news.filters.event",
   },
-] as const satisfies ReadonlyArray<{
-  id: NewsFilterId;
-  labelKey: string;
-}>;
+] as const;
 
-export const TAG_COLOR: Record<
-  NewsFilterId,
-  string
-> = {
-  all: "#f09f74",
-  pressRelease: "#f09f74",
-  publication: "#5b8dd9",
-  partnership: "#62b08a",
-  event: "#a07fd4",
-};
+export type NewsFilterId =
+  (typeof NEWS_FILTERS)[number]["id"];
 
-export const ALL_NEWS = [
-  {
-    id: "series-b-2025",
-    dateKey: "news.articles.seriesB.date",
-    tagId: "pressRelease",
-    tagKey: "news.filters.pressRelease",
-    titleKey: "news.articles.seriesB.title",
-    excerptKey: "news.articles.seriesB.excerpt",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=300&fit=crop&auto=format",
-  },
+// Articles cannot use "all" as a category.
+export type NewsTagId =
+  Exclude<NewsFilterId, "all">;
 
-  {
-    id: "fibrosis-study-2025",
-    dateKey: "news.articles.fibrosisStudy.date",
-    tagId: "publication",
-    tagKey: "news.filters.publication",
-    titleKey: "news.articles.fibrosisStudy.title",
-    excerptKey: "news.articles.fibrosisStudy.excerpt",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop&auto=format",
-  },
+export const TAG_COLOR:
+  Record<NewsTagId, string> = {
+    press: "#ef8a62",
+    partnership: "#2f9e6f",
+    event: "#5b6ee1",
+  };
 
-  {
-    id: "hospital-alliance-2025",
-    dateKey: "news.articles.hospitalAlliance.date",
-    tagId: "partnership",
-    tagKey: "news.filters.partnership",
-    titleKey: "news.articles.hospitalAlliance.title",
-    excerptKey: "news.articles.hospitalAlliance.excerpt",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=300&fit=crop&auto=format",
-  },
+export interface NewsReference {
+  outlet: string;
+  titleKey: string;
+  url: string;
+}
 
-  {
-    id: "jpmorgan-healthcare-2025",
-    dateKey: "news.articles.jpmorgan2025.date",
-    tagId: "event",
-    tagKey: "news.filters.event",
-    titleKey: "news.articles.jpmorgan2025.title",
-    excerptKey: "news.articles.jpmorgan2025.excerpt",
-    image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=300&fit=crop&auto=format",
-  },
+export interface NewsArticle {
+  id: string;
 
-  {
-    id: "benchmark-results-2024",
-    dateKey: "news.articles.benchmarkResults.date",
-    tagId: "publication",
-    tagKey: "news.filters.publication",
-    titleKey: "news.articles.benchmarkResults.title",
-    excerptKey: "news.articles.benchmarkResults.excerpt",
-    image:
-      "https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,fl_progressive,q_auto,w_1024/68a7f67cc21cd2001dfa8ed9.jpg",
-  },
+  // Used for:
+  // ?article=<slug>
+  slug: string;
 
-  {
-    id: "bio-europe-2024",
-    dateKey: "news.articles.bioEurope2024.date",
-    tagId: "event",
-    tagKey: "news.filters.event",
-    titleKey: "news.articles.bioEurope2024.title",
-    excerptKey: "news.articles.bioEurope2024.excerpt",
-    image:
-      "https://images.unsplash.com/photo-1559223607-b4d0555ae227?w=600&h=300&fit=crop&auto=format",
-  },
+  tagId: NewsTagId;
 
-  {
-    id: "ema-orphan-designation-2024",
-    dateKey: "news.articles.orphanDesignation.date",
-    tagId: "pressRelease",
-    tagKey: "news.filters.pressRelease",
-    titleKey: "news.articles.orphanDesignation.title",
-    excerptKey: "news.articles.orphanDesignation.excerpt",
-    image:
-      "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=300&fit=crop&auto=format",
-  },
+  // Optional. Missing images use the branded fallback thumbnail.
+  image?: string;
+  imageAltKey?: string;
 
-  {
-    id: "karolinska-agreement-2024",
-    dateKey: "news.articles.karolinskaAgreement.date",
-    tagId: "partnership",
-    tagKey: "news.filters.partnership",
-    titleKey: "news.articles.karolinskaAgreement.title",
-    excerptKey: "news.articles.karolinskaAgreement.excerpt",
-    image:
-      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&h=300&fit=crop&auto=format",
-  },
+  dateKey: string;
+  titleKey: string;
+  excerptKey: string;
 
-  {
-    id: "rg101-publication-2024",
-    dateKey: "news.articles.rg101Publication.date",
-    tagId: "publication",
-    tagKey: "news.filters.publication",
-    titleKey: "news.articles.rg101Publication.title",
-    excerptKey: "news.articles.rg101Publication.excerpt",
-    image:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=300&fit=crop&auto=format",
-  },
-] as const satisfies ReadonlyArray<NewsArticleDefinition>;
+  // Full article content
+  leadKey: string;
+  bodyKeys: readonly string[];
+
+  references: readonly NewsReference[];
+}
+
+export interface LocalizedNewsReference {
+  outlet: string;
+  title: string;
+  url: string;
+}
+
+export interface LocalizedNewsArticle {
+  id: string;
+  slug: string;
+  tagId: NewsTagId;
+
+  tag: string;
+  tagColor: string;
+
+  image?: string;
+  imageAlt?: string;
+
+  date: string;
+  title: string;
+  excerpt: string;
+  lead: string;
+  body: string[];
+
+  references:
+    LocalizedNewsReference[];
+}
 
 export function localizeNewsArticle(
-  article: NewsArticleDefinition,
+  article: NewsArticle,
   t: Translator,
 ): LocalizedNewsArticle {
   return {
-    id: article.id,
-    date: t(article.dateKey),
-    tagId: article.tagId,
-    tag: t(article.tagKey),
-    tagColor: TAG_COLOR[article.tagId],
-    title: t(article.titleKey),
-    excerpt: t(article.excerptKey),
-    image: article.image,
+    id:
+      article.id,
+
+    slug:
+      article.slug,
+
+    tagId:
+      article.tagId,
+
+    tag:
+      t(
+        `news.categories.${article.tagId}`,
+      ),
+
+    tagColor:
+      TAG_COLOR[article.tagId],
+
+    image:
+      article.image,
+
+    imageAlt:
+      article.imageAltKey
+        ? t(article.imageAltKey)
+        : undefined,
+
+    date:
+      t(article.dateKey),
+
+    title:
+      t(article.titleKey),
+
+    excerpt:
+      t(article.excerptKey),
+
+    lead:
+      t(article.leadKey),
+
+    body:
+      article.bodyKeys.map(
+        (key) => t(key),
+      ),
+
+    references:
+      article.references.map(
+        (reference) => ({
+          outlet:
+            reference.outlet,
+
+          title:
+            t(reference.titleKey),
+
+          url:
+            reference.url,
+        }),
+      ),
   };
 }
+
+export const ALL_NEWS = [
+  {
+    id:
+      "series-b-2025",
+
+    slug:
+      "series-b-2025",
+
+    tagId:
+      "press",
+
+    dateKey:
+      "news.articles.seriesB.date",
+
+    titleKey:
+      "news.articles.seriesB.title",
+
+    excerptKey:
+      "news.articles.seriesB.excerpt",
+
+    leadKey:
+      "news.articles.seriesB.lead",
+
+    bodyKeys: [
+      "news.articles.seriesB.body.paragraph1",
+      "news.articles.seriesB.body.paragraph2",
+      "news.articles.seriesB.body.paragraph3",
+    ],
+
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=675&fit=crop&auto=format",
+
+    imageAltKey:
+      "news.articles.seriesB.imageAlt",
+
+    references: [],
+  },
+
+  {
+    id:
+      "hospital-alliance-2025",
+
+    slug:
+      "hospital-alliance-2025",
+
+    tagId:
+      "partnership",
+
+    dateKey:
+      "news.articles.hospitalAlliance.date",
+
+    titleKey:
+      "news.articles.hospitalAlliance.title",
+
+    excerptKey:
+      "news.articles.hospitalAlliance.excerpt",
+
+    leadKey:
+      "news.articles.hospitalAlliance.lead",
+
+    bodyKeys: [
+      "news.articles.hospitalAlliance.body.paragraph1",
+      "news.articles.hospitalAlliance.body.paragraph2",
+      "news.articles.hospitalAlliance.body.paragraph3",
+    ],
+
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&auto=format",
+
+    imageAltKey:
+      "news.articles.hospitalAlliance.imageAlt",
+
+    references: [],
+  },
+
+  {
+    id:
+      "jpmorgan-healthcare-2025",
+
+    slug:
+      "jpmorgan-healthcare-2025",
+
+    tagId:
+      "event",
+
+    dateKey:
+      "news.articles.jpmorgan2025.date",
+
+    titleKey:
+      "news.articles.jpmorgan2025.title",
+
+    excerptKey:
+      "news.articles.jpmorgan2025.excerpt",
+
+    leadKey:
+      "news.articles.jpmorgan2025.lead",
+
+    bodyKeys: [
+      "news.articles.jpmorgan2025.body.paragraph1",
+      "news.articles.jpmorgan2025.body.paragraph2",
+      "news.articles.jpmorgan2025.body.paragraph3",
+    ],
+
+    image:
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=675&fit=crop&auto=format",
+
+    imageAltKey:
+      "news.articles.jpmorgan2025.imageAlt",
+
+    references: [],
+  },
+
+  {
+    id:
+      "bio-europe-2024",
+
+    slug:
+      "bio-europe-2024",
+
+    tagId:
+      "event",
+
+    dateKey:
+      "news.articles.bioEurope2024.date",
+
+    titleKey:
+      "news.articles.bioEurope2024.title",
+
+    excerptKey:
+      "news.articles.bioEurope2024.excerpt",
+
+    leadKey:
+      "news.articles.bioEurope2024.lead",
+
+    bodyKeys: [
+      "news.articles.bioEurope2024.body.paragraph1",
+      "news.articles.bioEurope2024.body.paragraph2",
+      "news.articles.bioEurope2024.body.paragraph3",
+    ],
+
+    // Intentionally omitted to test the branded fallback thumbnail.
+    imageAltKey:
+      "news.articles.bioEurope2024.imageAlt",
+
+    references: [],
+  },
+
+  {
+    id:
+      "ema-orphan-designation-2024",
+
+    slug:
+      "ema-orphan-designation-2024",
+
+    tagId:
+      "press",
+
+    dateKey:
+      "news.articles.orphanDesignation.date",
+
+    titleKey:
+      "news.articles.orphanDesignation.title",
+
+    excerptKey:
+      "news.articles.orphanDesignation.excerpt",
+
+    leadKey:
+      "news.articles.orphanDesignation.lead",
+
+    bodyKeys: [
+      "news.articles.orphanDesignation.body.paragraph1",
+      "news.articles.orphanDesignation.body.paragraph2",
+      "news.articles.orphanDesignation.body.paragraph3",
+    ],
+
+    image:
+      "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&h=675&fit=crop&auto=format",
+
+    imageAltKey:
+      "news.articles.orphanDesignation.imageAlt",
+
+    references: [],
+  },
+
+  {
+    id:
+      "karolinska-agreement-2024",
+
+    slug:
+      "karolinska-agreement-2024",
+
+    tagId:
+      "partnership",
+
+    dateKey:
+      "news.articles.karolinskaAgreement.date",
+
+    titleKey:
+      "news.articles.karolinskaAgreement.title",
+
+    excerptKey:
+      "news.articles.karolinskaAgreement.excerpt",
+
+    leadKey:
+      "news.articles.karolinskaAgreement.lead",
+
+    bodyKeys: [
+      "news.articles.karolinskaAgreement.body.paragraph1",
+      "news.articles.karolinskaAgreement.body.paragraph2",
+      "news.articles.karolinskaAgreement.body.paragraph3",
+    ],
+
+    // No approved image yet.
+    imageAltKey:
+      "news.articles.karolinskaAgreement.imageAlt",
+
+    references: [],
+  },
+] as const satisfies
+  ReadonlyArray<NewsArticle>;
+
+export function getArticleBySlug(
+  slug: string,
+): NewsArticle | undefined {
+  return ALL_NEWS.find(
+    (article) =>
+      article.slug === slug,
+  );
+}
+
 
 // ─── Investor ─────────────────────────────────────────────────────────────────────
 type InvestorCardDefinition = {
