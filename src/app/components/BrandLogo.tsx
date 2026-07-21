@@ -3,9 +3,17 @@ import {
 } from "@app/data/content";
 
 type BrandLogoProps = {
-  variant?: "navbar" | "footer";
+  variant?:
+    | "navbar"
+    | "footer";
+
   light?: boolean;
-  footerTone?: "white" | "orange";
+
+  footerTone?:
+    | "white"
+    | "orange"
+    | "coral";
+
   className?: string;
 };
 
@@ -73,31 +81,42 @@ function LogoPair({
 export function BrandLogo({
   variant = "navbar",
   light = false,
-  footerTone = "white",
+  footerTone = "coral",
   className = "",
 }: BrandLogoProps) {
-  if (variant === "footer") {
-    const footerAssets =
-      footerTone === "white"
-        ? BRAND_ASSETS.navbar.light
-        : BRAND_ASSETS.navbar.color;
+  if (
+    variant === "footer"
+  ) {
+    // const footerAssets =
+    //   BRAND_ASSETS.footer[
+    //     footerTone
+    //   ];
+    // const footerAssets =
+    //   footerTone === "coral"
+    //     ? BRAND_ASSETS.navbar.light
+    //     : BRAND_ASSETS.navbar.color;
+    
+    if (variant === "footer") {
+      const footerAssets =
+        BRAND_ASSETS.footer[footerTone];
 
-    return (
-      <span
-        className={`
-          inline-flex
-          items-center
-          ${className}
-        `}
-      >
-        <LogoPair
-          logoSrc={footerAssets.logo}
-          textSrc={footerAssets.text}
-          alt="Repurgenesis"
-          footer
-        />
-      </span>
-    );
+      return (
+        <span
+          className={`
+            inline-flex
+            items-center
+            ${className}
+          `}
+        >
+          <LogoPair
+            logoSrc={footerAssets.logo}
+            textSrc={footerAssets.text}
+            alt="Repurgenesis"
+            footer
+          />
+        </span>
+      );
+    }
   }
 
   return (
@@ -131,16 +150,22 @@ export function BrandLogo({
       >
         <LogoPair
           logoSrc={
-            BRAND_ASSETS.navbar.light.logo
+            BRAND_ASSETS
+              .navbar
+              .light
+              .logo
           }
           textSrc={
-            BRAND_ASSETS.navbar.light.text
+            BRAND_ASSETS
+              .navbar
+              .light
+              .text
           }
           alt="Repurgenesis"
         />
       </span>
 
-      {/* Orange version */}
+      {/* Orange navbar version */}
       <span
         className={`
           absolute
@@ -159,10 +184,16 @@ export function BrandLogo({
       >
         <LogoPair
           logoSrc={
-            BRAND_ASSETS.navbar.color.logo
+            BRAND_ASSETS
+              .navbar
+              .color
+              .logo
           }
           textSrc={
-            BRAND_ASSETS.navbar.color.text
+            BRAND_ASSETS
+              .navbar
+              .color
+              .text
           }
           alt="Repurgenesis"
         />

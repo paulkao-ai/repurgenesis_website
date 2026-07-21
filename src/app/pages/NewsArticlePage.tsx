@@ -1,28 +1,90 @@
-import { ArrowLeft, ArrowUpRight, Newspaper, Linkedin } from "lucide-react";
-import { BiLogoLinkedinSquare } from "react-icons/bi";
-import { FaXTwitter } from "react-icons/fa6";
+import { useState } from "react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
-import { ALL_NEWS, getArticleBySlug, localizeNewsArticle } from "@app/data/content";
-import type { Translator, Language } from "@app/types";
+import {
+  ALL_NEWS,
+  getArticleBySlug,
+  localizeNewsArticle,
+  type LocalizedNewsArticle,
+} from "@app/data/content";
 
-function createArticleHref(
-  slug: string,
-  language: Language,
-) {
-  const params =
-    new URLSearchParams();
+import { NewsCard } from "@app/components/NewsCard";
 
-  params.set(
-    "article",
-    slug,
+import type { Language, Translator } from "@app/types";
+
+/**
+ * Render the approved article image only.
+ * Articles without an image, or with a failed image URL,
+ * continue directly to the article content.
+ */
+function ArticleImage({
+  article,
+}: {
+  article: LocalizedNewsArticle;
+}) {
+  const [
+    imageFailed,
+    setImageFailed,
+  ] = useState(false);
+
+  if (
+    !article.image ||
+    imageFailed
+  ) {
+    return null;
+  }
+
+  return (
+    /*
+     * This wrapper uses the same approximate width
+     * as the article heading and body.
+     *
+     * It stays aligned to the left side of the wider
+     * page container, while centering the image inside it.
+     */
+    <div
+      className="
+        mt-10
+        flex
+        w-full
+        max-w-[1000px]
+        justify-center
+      "
+    >
+      <figure
+        className="
+          w-fit
+          max-w-full
+          overflow-hidden
+          rounded-[24px]
+          border
+          border-[#e3ddd3]
+          bg-[#f3efe9]
+          shadow-[0_10px_30px_rgba(20,24,39,0.05)]
+        "
+      >
+        <img
+          src={article.image}
+          alt={
+            article.imageAlt ??
+            article.title
+          }
+          onError={() =>
+            setImageFailed(true)
+          }
+          className="
+            block
+            h-auto
+            max-h-[760px]
+            w-auto
+            max-w-full
+            object-contain
+          "
+        />
+      </figure>
+    </div>
   );
-
-  params.set(
-    "lang",
-    language,
-  );
-
-  return `/?${params.toString()}`;
 }
 
 export function NewsArticlePage({
@@ -35,578 +97,509 @@ export function NewsArticlePage({
   language: Language;
 }) {
   const sourceArticle = getArticleBySlug(slug);
+
   if (!sourceArticle) {
     return (
-      <div className="mx-auto max-w-[760px] px-6 py-40 text-center">
+      <main
+        className="
+          mx-auto
+          flex
+          min-h-[70vh]
+          max-w-3xl
+          flex-col
+          items-center
+          justify-center
+          px-6
+          pt-24
+          text-center
+        "
+      >
         <p className="text-muted-foreground">{t("news.notFound")}</p>
-        <a href="/" className="mt-4 inline-block font-bold text-[#c96a3e]">{t("news.backHome")}</a>
-      </div>
+
+        <a
+          href={`/?page=news&lang=${language}`}
+          className="
+            mt-4
+            inline-flex
+            items-center
+            gap-2
+            font-bold
+            text-[#c96a3e]
+          "
+        >
+          <ArrowLeft size={16} aria-hidden="true" />
+
+          {t("news.backToNews")}
+        </a>
+      </main>
     );
   }
-  const a = localizeNewsArticle(sourceArticle, t);
+
+  const article = localizeNewsArticle(sourceArticle, t);
+
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-  const openLinkedIn = () => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, "_blank", "noopener");
-  const openX = () => {
-    const currentUrl =
-        window.location.href;
 
-    const shareUrl =
-        new URL(
-        "https://x.com/intent/tweet",
-        );
+  const openLinkedIn = () => {
+    const url = new URL("https://www.linkedin.com/sharing/share-offsite/");
 
-    shareUrl.searchParams.set(
-        "url",
-        currentUrl,
-    );
-
-    shareUrl.searchParams.set(
-        "text",
-        a.title,
-    );
+    url.searchParams.set("url", shareUrl);
 
     window.open(
-        shareUrl.toString(),
-        "_blank",
-        "noopener,noreferrer,width=720,height=680",
+      url.toString(),
+      "_blank",
+      "noopener,noreferrer,width=720,height=680",
     );
-    };
-  
-  const sameCategoryArticles =
-    ALL_NEWS.filter(
-        (article) =>
-        article.slug !==
-            sourceArticle.slug &&
-        article.tagId ===
-            sourceArticle.tagId,
-    );
+  };
 
-    const otherArticles =
-    ALL_NEWS.filter(
-        (article) =>
-        article.slug !==
-            sourceArticle.slug &&
-        article.tagId !==
-            sourceArticle.tagId,
-    );
+  const openX = () => {
+    const url = new URL("https://x.com/intent/tweet");
 
-    const relatedArticles = [
-    ...sameCategoryArticles,
-    ...otherArticles,
-    ]
+    url.searchParams.set("url", shareUrl);
+
+    url.searchParams.set("text", article.title);
+
+    window.open(
+      url.toString(),
+      "_blank",
+      "noopener,noreferrer,width=720,height=680",
+    );
+  };
+
+  /*
+   * Prefer articles in the same category,
+   * then fill the remaining positions with other news.
+   */
+  const sameCategoryArticles = ALL_NEWS.filter(
+    (candidate) =>
+      candidate.slug !== sourceArticle.slug &&
+      candidate.tagId === sourceArticle.tagId,
+  );
+
+  const otherArticles = ALL_NEWS.filter(
+    (candidate) =>
+      candidate.slug !== sourceArticle.slug &&
+      candidate.tagId !== sourceArticle.tagId,
+  );
+
+  const relatedArticles = [...sameCategoryArticles, ...otherArticles]
     .slice(0, 3)
-    .map((article) =>
-        localizeNewsArticle(
-        article,
-        t,
-        ),
-    );
+    .map((candidate) => localizeNewsArticle(candidate, t));
 
   return (
-    <article className="mx-auto max-w-[760px] px-6 pb-24 pt-28">
-      <a href="/?page=news" className="mb-6 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.08em] text-[#8a8898] hover:text-foreground">
-        <ArrowLeft size={15} /> {t("news.backToNews")}
-      </a>
-
-      <div className="mb-4 flex items-center gap-3">
-        <span className="rounded-full px-3 py-1 text-[11px] font-bold text-white" style={{ background: a.tagColor }}>{a.tag}</span>
-        <span className="font-mono text-xs text-[#a7a4ad]">{a.date}</span>
-      </div>
-
-      <h1 className="mb-5 text-[clamp(1.75rem,4vw,2.625rem)] font-extrabold leading-[1.12] tracking-[-0.03em] text-balance" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-        {a.title}
-      </h1>
-
-      {/* hero: image or branded placeholder */}
-      <div className="relative mb-8 h-[360px] overflow-hidden rounded-[20px] bg-gradient-to-br from-[#f09f74] to-[#c96a3e]">
-        {a.image ? (
-          <img src={a.image} alt={a.title} className="h-full w-full object-cover" />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div aria-hidden className="absolute inset-0 opacity-50" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.16) 1px, transparent 1.5px)", backgroundSize: "18px 18px" }} />
-            <svg width="90" height="90" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#fff" strokeWidth="1.4" /><path d="M14 27V13h6a4 4 0 0 1 0 8h-6m6 0 5 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </div>
-        )}
-      </div>
-
-      <p className="mb-5 text-[19px] font-semibold leading-[1.7] text-[#3f3e49]">{a.lead}</p>
-      {a.body.map((p, i) => (
-        <p key={i} className="mb-5 text-base leading-[1.85] text-[#54535f]">{p}</p>
-      ))}
-
-      {/* references */}
-      {a.references.length > 0 && (
-        <section
-            className="
-            mt-14
-            border-t
-            border-[#e3ddd3]
-            pt-10
-            "
+    <main
+      className="
+        bg-background
+        pb-24
+        pt-28
+      "
+    >
+      <article
+        className="
+          mx-auto
+          max-w-[1240px]
+          px-6
+        "
+      >
+        {/* Article header */}
+        <header
+          className="
+            max-w-[1180px]
+            text-left
+          "
         >
-            <h2
+          {/* Back link aligned above the metadata */}
+          <a
+            href={`/?page=news&lang=${language}`}
             className="
-                mb-7
-                text-2xl
-                font-extrabold
-                uppercase
-                tracking-[-0.02em]
-                text-[#141827]
-                md:text-3xl
+                group
+                mb-8
+                inline-flex
+                items-center
+                gap-3
+                rounded-full
+                text-sm
+                font-semibold
+                text-[#ef8a62]
+                transition-colors
+                duration-200
+                hover:text-[#c96a3e]
+                focus-visible:outline
+                focus-visible:outline-2
+                focus-visible:outline-offset-4
+                focus-visible:outline-[#ef8a62]
+            "
+            >
+            <span
+                className="
+                inline-flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-[#ef8a62]/50
+                bg-[#ef8a62]/5
+                transition-all
+                duration-200
+                group-hover:-translate-x-0.5
+                group-hover:border-[#ef8a62]
+                group-hover:bg-[#ef8a62]
+                group-hover:text-white
+                "
+            >
+                <ArrowLeft
+                size={18}
+                strokeWidth={1.8}
+                aria-hidden="true"
+                />
+            </span>
+
+            <span>
+                {t("news.backToNews")}
+            </span>
+            </a>
+
+          {/* Category and date */}
+          <div
+            className="
+              mb-5
+              flex
+              flex-wrap
+              items-center
+              justify-start
+              gap-3
+            "
+          >
+            <span
+              className="
+                rounded-full
+                px-3
+                py-1
+                text-[11px]
+                font-bold
+                text-white
+              "
+              style={{
+                background: article.tagColor,
+              }}
+            >
+              {article.tag}
+            </span>
+
+            <span
+              className="
+                font-mono
+                text-xs
+                text-[#a7a4ad]
+              "
+            >
+              {article.date}
+            </span>
+          </div>
+
+          {/* Wide desktop title, intended to remain around two lines */}
+          <h1
+            className="
+              max-w-[1180px]
+              text-left
+              text-[clamp(2.1rem,3.7vw,3.35rem)]
+              font-extrabold
+              leading-[1.06]
+              tracking-[-0.045em]
+              text-[#141827]
+              lg:text-balance
             "
             style={{
-                fontFamily:
-                "'Plus Jakarta Sans', sans-serif",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
             }}
+          >
+            {article.title}
+          </h1>
+
+          {/* Short listing summary */}
+          {article.excerpt && (
+            <p
+              className="
+                mt-6
+                max-w-[1000px]
+                text-left
+                text-base
+                leading-[1.75]
+                text-[#666471]
+                md:text-lg
+              "
             >
-            {t("news.references")}
+              {article.excerpt}
+            </p>
+          )}
+        </header>
+
+        {/* No fallback block when the article has no image */}
+        <ArticleImage article={article} />
+
+        {/* Article introduction and body */}
+        <section
+          className="
+            mt-10
+            max-w-[1020px]
+            text-left
+          "
+        >
+          <p
+            className="
+              mb-7
+              max-w-[1000px]
+              text-left
+              text-[18px]
+              font-semibold
+              leading-[1.75]
+              text-[#3f3e49]
+              md:text-[19px]
+            "
+          >
+            {article.lead}
+          </p>
+
+          <div className="max-w-[940px]">
+            {article.body.map((paragraph, index) => (
+              <p
+                key={`${sourceArticle.id}-body-${index}`}
+                className="
+                    mb-6
+                    text-left
+                    text-base
+                    leading-[1.9]
+                    text-[#54535f]
+                  "
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* News coverage and references */}
+        {article.references.length > 0 && (
+          <section
+            className="
+              mt-16
+              max-w-[1080px]
+              border-t
+              border-[#e3ddd3]
+              pt-9
+            "
+          >
+            <h2
+              className="
+                mb-6
+                text-lg
+                font-extrabold
+                uppercase
+                tracking-[0.01em]
+                text-[#141827]
+                md:text-xl
+              "
+              style={{
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+              }}
+            >
+              {t("news.references")}
             </h2>
 
             <div
-            className="
+              className="
                 flex
                 flex-col
-                gap-5
-            "
+                gap-3
+              "
             >
-            {a.references.map(
-                (reference, index) => (
+              {article.references.map((reference) => (
                 <a
-                    key={`${reference.url}-${index}`}
-                    href={reference.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                    group/reference
-                    flex
-                    min-h-[118px]
-                    items-center
-                    justify-between
-                    gap-6
-                    rounded-[26px]
-                    border
-                    border-[#e3ddd3]
-                    bg-white
-                    px-7
-                    py-6
-                    transition-all
-                    duration-300
-                    hover:-translate-y-0.5
-                    hover:border-[#ef8a62]/60
-                    hover:shadow-[0_14px_34px_rgba(20,24,39,0.07)]
-                    md:px-9
+                  key={reference.url}
+                  href={reference.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                      group/reference
+                      flex
+                      items-center
+                      justify-between
+                      gap-5
+                      rounded-[18px]
+                      border
+                      border-[#e3ddd3]
+                      bg-white
+                      px-6
+                      py-4
+                      transition-all
+                      duration-300
+                      hover:-translate-y-0.5
+                      hover:border-[#ef8a62]/60
+                      hover:shadow-[0_10px_26px_rgba(20,24,39,0.06)]
                     "
                 >
-                    <span className="min-w-0">
+                  <span className="min-w-0">
                     <span
-                        className="
-                        mb-2
-                        block
-                        font-mono
-                        text-sm
-                        font-bold
-                        uppercase
-                        tracking-[0.12em]
-                        text-[#c96a3e]
-                        md:text-base
+                      className="
+                          mb-1
+                          block
+                          font-mono
+                          text-[11px]
+                          font-bold
+                          uppercase
+                          tracking-[0.11em]
+                          text-[#c96a3e]
+                          sm:text-xs
                         "
                     >
-                        {reference.outlet}
+                      {reference.outlet}
                     </span>
 
                     <span
-                        className="
-                        block
-                        text-lg
-                        font-bold
-                        leading-snug
-                        tracking-[-0.015em]
-                        text-[#141827]
-                        md:text-2xl
+                      className="
+                          block
+                          text-base
+                          font-bold
+                          leading-snug
+                          tracking-[-0.01em]
+                          text-[#141827]
+                          md:text-lg
                         "
-                        style={{
-                        fontFamily:
-                            "'Plus Jakarta Sans', sans-serif",
-                        }}
+                      style={{
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      }}
                     >
-                        {reference.title}
+                      {reference.title}
                     </span>
-                    </span>
+                  </span>
 
-                    <ArrowUpRight
-                    size={25}
+                  <ArrowUpRight
+                    size={20}
                     aria-hidden="true"
                     className="
                         shrink-0
                         text-[#c96a3e]
                         transition-transform
                         duration-300
-                        group-hover/reference:-translate-y-1
-                        group-hover/reference:translate-x-1
-                    "
-                    />
+                        group-hover/reference:-translate-y-0.5
+                        group-hover/reference:translate-x-0.5
+                      "
+                  />
                 </a>
-                ),
-            )}
+              ))}
             </div>
-        </section>
+          </section>
         )}
-        
-      {/* Related articles */}
-      {relatedArticles.length > 0 && (
-        <section
+
+        {/* Related articles */}
+        {relatedArticles.length > 0 && (
+          <section
             className="
-            mt-16
-            border-t
-            border-[#e3ddd3]
-            pt-10
+              mt-16
+              border-t
+              border-[#e3ddd3]
+              pt-10
             "
-        >
+          >
             <div className="mb-8">
-            <div
+              <div
                 className="
-                mb-3
-                flex
-                items-center
-                gap-3
-                font-mono
-                text-xs
-                font-semibold
-                uppercase
-                tracking-[0.14em]
-                text-[#ef8a62]
+                  mb-3
+                  flex
+                  items-center
+                  gap-3
+                  font-mono
+                  text-xs
+                  font-semibold
+                  uppercase
+                  tracking-[0.14em]
+                  text-[#ef8a62]
                 "
-            >
+              >
                 <span
-                className="
+                  className="
                     h-px
                     w-6
+                    shrink-0
                     bg-[#ef8a62]
-                "
+                  "
                 />
 
                 {t("news.related.label")}
-            </div>
+              </div>
 
-            <h2
+              <h2
                 className="
-                text-3xl
-                font-bold
-                tracking-[-0.03em]
-                text-[#141827]
-                md:text-4xl
+                  text-2xl
+                  font-bold
+                  tracking-[-0.03em]
+                  text-[#141827]
+                  md:text-3xl
                 "
                 style={{
-                fontFamily:
-                    "'Plus Jakarta Sans', sans-serif",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                 }}
-            >
+              >
                 {t("news.related.title")}
-            </h2>
+              </h2>
             </div>
 
             <div
-            className="
+              className="
                 grid
                 grid-cols-1
                 gap-6
                 md:grid-cols-2
-                xl:grid-cols-3
-            "
+                lg:grid-cols-3
+              "
             >
-            {relatedArticles.map(
-                (relatedArticle) => (
-                <a
-                    key={relatedArticle.id}
-                    href={createArticleHref(
-                    relatedArticle.slug,
-                    language,
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                    group/card
-                    flex
-                    h-full
-                    flex-col
-                    overflow-hidden
-                    rounded-[24px]
-                    border
-                    border-[#e3ddd3]
-                    bg-white
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:border-[#ef8a62]/45
-                    hover:shadow-[0_18px_40px_rgba(20,24,39,0.09)]
-                    "
-                >
-                    {/* Thumbnail */}
-                    <div
-                    className="
-                        relative
-                        aspect-[16/9]
-                        overflow-hidden
-                        bg-[#141827]
-                    "
-                    >
-                    {relatedArticle.image ? (
-                        <>
-                        <img
-                            src={
-                            relatedArticle.image
-                            }
-                            alt={
-                            relatedArticle.imageAlt ??
-                            relatedArticle.title
-                            }
-                            className="
-                            h-full
-                            w-full
-                            object-cover
-                            transition-transform
-                            duration-500
-                            group-hover/card:scale-[1.04]
-                            "
-                        />
-
-                        <div
-                            aria-hidden="true"
-                            className="
-                            absolute
-                            inset-0
-                            bg-gradient-to-t
-                            from-[#141827]/35
-                            to-transparent
-                            "
-                        />
-                        </>
-                    ) : (
-                        <>
-                        <div
-                            aria-hidden="true"
-                            className="
-                            absolute
-                            inset-0
-                            bg-gradient-to-br
-                            from-[#f09f74]
-                            via-[#e8845a]
-                            to-[#a6533a]
-                            "
-                        />
-
-                        <div
-                            aria-hidden="true"
-                            className="
-                            absolute
-                            inset-0
-                            opacity-35
-                            "
-                            style={{
-                            backgroundImage:
-                                "radial-gradient(rgba(255,255,255,0.42) 1px, transparent 1.5px)",
-
-                            backgroundSize:
-                                "18px 18px",
-                            }}
-                        />
-
-                        <div
-                            className="
-                            absolute
-                            inset-0
-                            flex
-                            items-center
-                            justify-center
-                            "
-                        >
-                            <div
-                            className="
-                                flex
-                                h-16
-                                w-16
-                                items-center
-                                justify-center
-                                rounded-2xl
-                                border
-                                border-white/30
-                                bg-white/15
-                                text-white
-                                backdrop-blur-sm
-                            "
-                            >
-                            <Newspaper
-                                size={29}
-                                strokeWidth={1.6}
-                                aria-hidden="true"
-                            />
-                            </div>
-                        </div>
-                        </>
-                    )}
-
-                    <span
-                        className="
-                        absolute
-                        bottom-4
-                        left-4
-                        rounded-full
-                        bg-white/90
-                        px-3
-                        py-1
-                        text-xs
-                        font-semibold
-                        backdrop-blur-sm
-                        "
-                        style={{
-                        color:
-                            relatedArticle.tagColor,
-                        }}
-                    >
-                        {relatedArticle.tag}
-                    </span>
-                    </div>
-
-                    {/* Card text */}
-                    <div
-                    className="
-                        flex
-                        flex-1
-                        flex-col
-                        p-6
-                    "
-                    >
-                    <span
-                        className="
-                        font-mono
-                        text-xs
-                        text-muted-foreground
-                        "
-                    >
-                        {relatedArticle.date}
-                    </span>
-
-                    <h3
-                        className="
-                        mt-3
-                        line-clamp-2
-                        text-xl
-                        font-bold
-                        leading-snug
-                        tracking-[-0.02em]
-                        text-[#141827]
-                        "
-                        style={{
-                        fontFamily:
-                            "'Plus Jakarta Sans', sans-serif",
-                        }}
-                    >
-                        {relatedArticle.title}
-                    </h3>
-
-                    <p
-                        className="
-                        mt-3
-                        line-clamp-3
-                        text-sm
-                        leading-6
-                        text-muted-foreground
-                        "
-                    >
-                        {relatedArticle.excerpt}
-                    </p>
-
-                    <div
-                        className="
-                        mt-auto
-                        flex
-                        items-center
-                        justify-between
-                        border-t
-                        border-[#e3ddd3]
-                        pt-5
-                        "
-                    >
-                        <span
-                        className="
-                            text-sm
-                            font-semibold
-                            text-[#141827]
-                            transition-colors
-                            group-hover/card:text-[#c96a3e]
-                        "
-                        >
-                        {t(
-                            "news.related.readArticle",
-                        )}
-                        </span>
-
-                        <span
-                        className="
-                            flex
-                            h-10
-                            w-10
-                            items-center
-                            justify-center
-                            rounded-full
-                            bg-[#141827]
-                            text-white
-                            transition-all
-                            duration-300
-                            group-hover/card:rotate-45
-                            group-hover/card:bg-[#ef8a62]
-                        "
-                        >
-                        <ArrowUpRight
-                            size={17}
-                            aria-hidden="true"
-                        />
-                        </span>
-                    </div>
-                    </div>
-                </a>
-                ),
-            )}
+              {relatedArticles.map((relatedArticle) => (
+                <NewsCard
+                  key={relatedArticle.id}
+                  article={relatedArticle}
+                  language={language}
+                />
+              ))}
             </div>
-        </section>
+          </section>
         )}
-                
-      {/* share */}
-      <section
-        className="
-            mt-12
+
+        {/* Share */}
+        <section
+          className="
+            mt-14
             flex
             flex-wrap
             items-center
+            justify-start
             gap-3
             border-t
             border-[#e3ddd3]
             pt-8
-        "
+          "
         >
-        <span
+          <span
             className="
-            mr-2
-            font-mono
-            text-xs
-            font-semibold
-            uppercase
-            tracking-[0.12em]
-            text-[#8a8898]
+              mr-2
+              font-mono
+              text-xs
+              font-bold
+              uppercase
+              tracking-[0.12em]
+              text-[#646270]
             "
-        >
+          >
             {t("news.share")}
-        </span>
+          </span>
 
-        <button
+          {/* LinkedIn */}
+          <button
             type="button"
             onClick={openLinkedIn}
-            aria-label={t(
-            "news.shareLinkedIn",
-            )}
-            title={t(
-            "news.shareLinkedIn",
-            )}
+            aria-label={t("news.shareLinkedIn")}
+            title={t("news.shareLinkedIn")}
             className="
             inline-flex
             h-11
@@ -619,55 +612,50 @@ export function NewsArticlePage({
             transition-all
             duration-200
             hover:-translate-y-0.5
-            hover:bg-[#ef8a62]
+            hover:bg-[#084f96]
             hover:shadow-md
             focus-visible:outline
             focus-visible:outline-2
             focus-visible:outline-offset-2
-            focus-visible:outline-[#ef8a62]
+            focus-visible:outline-[#0A66C2]
             "
         >
-            <BiLogoLinkedinSquare
-            size={23}
+            <FaLinkedinIn
+            size={20}
             aria-hidden="true"
+            className="text-white"
             />
         </button>
 
-        <button
+          <button
             type="button"
             onClick={openX}
-            aria-label={t(
-            "news.shareX",
-            )}
-            title={t(
-            "news.shareX",
-            )}
+            aria-label={t("news.shareX")}
+            title={t("news.shareX")}
             className="
-            inline-flex
-            h-11
-            w-11
-            items-center
-            justify-center
-            rounded-full
-            bg-[#141827]
-            text-white
-            transition-all
-            duration-200
-            hover:-translate-y-0.5
-            hover:bg-[#ef8a62]
-            hover:shadow-md
-            focus-visible:outline
-            focus-visible:outline-2
-            focus-visible:outline-offset-2
-            focus-visible:outline-[#ef8a62]
+              inline-flex
+              h-11
+              w-11
+              items-center
+              justify-center
+              rounded-full
+              bg-[#141827]
+              text-white
+              transition-all
+              duration-200
+              hover:-translate-y-0.5
+              hover:bg-[#ef8a62]
+              hover:shadow-md
+              focus-visible:outline
+              focus-visible:outline-2
+              focus-visible:outline-offset-2
+              focus-visible:outline-[#ef8a62]
             "
-        >
-            <FaXTwitter
-            size={19}
-            aria-hidden="true"
-            />
-        </button>
+          >
+            <FaXTwitter size={22} aria-hidden="true" />
+          </button>
         </section>
-    </article>
+      </article>
+    </main>
   );
 }

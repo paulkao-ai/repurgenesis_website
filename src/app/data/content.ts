@@ -5,27 +5,52 @@ import repurgenesisWhiteLogoTotal from
   "./company_logo/processed/bg_remove/repurgenesis_white.png";
 import repurgenesisWhiteLogo from "./company_logo/processed/bg_remove/repurgenesis_white1.png";
 import repurgenesisWhiteText from "./company_logo/processed/bg_remove/repurgenesis_white2.png";
+import repurgenesisCoralLogo from "./company_logo/processed/bg_remove/repurgenesis_coral1.png";
+import repurgenesisCoralText from "./company_logo/processed/bg_remove/repurgenesis_coral2.png";
 import repurgenesisColorLogo from "./company_logo/processed/bg_remove/repurgenesis_bg1.png";
 import repurgenesisColorText from "./company_logo/processed/bg_remove/repurgenesis_bg2.png";
 import memberOneImage from "./people/hsu.jpg?url";
+import intlConferencesImage from "./news/intlConferences.jpg";
 
 // ─── Company Assets (Logo + Text) ────────────────────────────────────────────────────────────
 export const BRAND_ASSETS = {
   navbar: {
     light: {
-      logo: repurgenesisWhiteLogo,
-      text: repurgenesisWhiteText,
+      logo:
+        repurgenesisWhiteLogo,
+      text:
+        repurgenesisWhiteText,
     },
 
     color: {
-      logo: repurgenesisColorLogo,
-      text: repurgenesisColorText,
+      logo:
+        repurgenesisColorLogo,
+      text:
+        repurgenesisColorText,
     },
   },
 
   footer: {
-    logo: repurgenesisWhiteLogo,
-    text: repurgenesisWhiteText,
+    white: {
+      logo:
+        repurgenesisWhiteLogo,
+      text:
+        repurgenesisWhiteText,
+    },
+
+    orange: {
+      logo:
+        repurgenesisColorLogo,
+      text:
+        repurgenesisColorText,
+    },
+
+    coral: {
+      logo:
+        repurgenesisCoralLogo,
+      text:
+        repurgenesisCoralText,
+    },
   },
 } as const;
 
@@ -441,7 +466,7 @@ export const TEXT = {
     technology: {
       hero: {
         label: "Intelligent Orchestrator",
-        title: "Orchestrated AI for evidence-driven drug repurposing",
+        title: "Orchestrated AI for Evidence-driven Drug Repurposing",
         description:
           "Coordinating AI agents, multimodal data, and domain experts to uncover new uses for existing medicines.",
       },
@@ -531,7 +556,7 @@ export const TEXT = {
     solutionsPage: {
       header: {
         label: "Therapeutic Focus",
-        title: "Solutions across disease areas",
+        title: "Solutions Across Disease Areas",
         description:
           "We partner with pharmaceutical companies, academic institutions, and patient advocacy organizations to address diseases where conventional drug development timelines leave patients without treatment options.",
       },
@@ -594,228 +619,159 @@ export const TEXT = {
       },
     },
     // news & events
-   news: {
+    news: {
       label: "Company Updates",
       title: "Latest News & Events",
       filter: "Filter",
       scroll: "Scroll",
       allNews: "All News",
+      loadMore: "Load more",
+      references: "News Coverage & References",
+      share: "Share with",
+      shareLinkedIn: "Share on LinkedIn",
+      shareX: "Share on X",
+      backToNews: "Back to News",
+      notFound: "Article not found.",
+      backHome: "Back to home",
 
       filters: {
-        all:
-          "All",
-
-        press:
-          "Press Releases",
-
-        partnership:
-          "Partnerships",
-
-        event:
-          "Events",
+        all: "All",
+        press: "Press",
+        partnership: "Partnership",
+        event: "Event",
       },
 
       categories: {
-        press:
-          "Press Release",
+        press: "Press",
+        partnership: "Partnership",
+        event: "Event",
+      },
 
-        partnership:
-          "Partnership",
-
-        event:
-          "Event",
+      related: {
+        label: "Keep Reading",
+        title: "You may also like",
+        readArticle: "Read article",
       },
 
       articles: {
-        seriesB: {
-          date:
-            "2025",
-
+        altosPartnership: {
+          date: "October 2025",
           title:
-            "Replace with the approved announcement title",
-
+            "Repurgenesis Partners with Altos Computing to Build a High-Performance AI Drug-Development Platform",
           excerpt:
-            "Add a concise summary for the news-card listing.",
-
+            "Repurgenesis and Acer group's Altos Computing signed an agreement to jointly develop a next-generation AI platform for drug discovery.",
           lead:
-            "Add a concise introductory paragraph presenting the main announcement and its significance.",
-
-          imageAlt:
-            "Repurgenesis company announcement",
-
+            "Repurgenesis, a wholly owned subsidiary of Energenesis Biomedical, has signed a partnership agreement with Altos Computing, an Acer group company, to jointly build a next-generation, high-performance AI drug-development platform.",
           body: {
             paragraph1:
-              "Add the first approved article paragraph here.",
-
+              "The collaboration combines Repurgenesis's core AI drug-discovery technology with Altos Computing's strengths in high-performance computing and AI infrastructure, aiming to accelerate the practical application of precision and intelligent medicine.",
             paragraph2:
-              "Add the second approved article paragraph here.",
-
+              "Repurgenesis operates the Intelligent Orchestrator platform, a multimodal, multi-method drug-repurposing system designed to shorten early-stage development timelines, improve candidate success rates, and reduce the cost of bringing new indications forward.",
             paragraph3:
-              "Add the final approved article paragraph here.",
+              "Under the agreement, Repurgenesis will leverage the Altos aiWorks platform to support large-scale AI model training and optimize resource allocation, advancing candidate discovery and expanding related intelligent-medicine initiatives.",
+          },
+          references: {
+            gbi: "源華智醫、安圖斯科技攜手 高效AI攻藥物開發",
           },
         },
 
-        hospitalAlliance: {
-          date:
-            "2025",
-
+        intlConferences: {
+          date: "April 2026",
           title:
-            "Replace with the approved partnership title",
-
+            "Repurgenesis Selected to Present at Two Major International Biomedical Conferences",
           excerpt:
-            "Add a concise summary of the collaboration.",
-
+            "Following its NVIDIA GTC presentation, Repurgenesis will present its AI drug-repurposing research at two leading international conferences.",
           lead:
-            "Add an introductory paragraph explaining the partnership and its intended value.",
-
-          imageAlt:
-            "Repurgenesis healthcare partnership",
-
+            "Following its research presentation at NVIDIA GTC earlier this year, Repurgenesis has been notified that it will present at two major international biomedical conferences, further demonstrating the strength of its AI drug-development platform.",
+          imageAlt: "Repurgenesis presenting its AI drug-repurposing platform at an international biomedical conference",
           body: {
             paragraph1:
-              "Add the first approved article paragraph here.",
-
+              "The company will present at the International Conference of Drug Repurposing (iDR26) and at Bio-IT World, two representative international forums in life sciences and biomedical informatics.",
             paragraph2:
-              "Add the second approved article paragraph here.",
-
+              "These presentation opportunities reflect growing recognition of the Repurgenesis platform methodology within the international AI drug-development and drug-repurposing communities.",
             paragraph3:
-              "Add the final approved article paragraph here.",
+              "The company views these engagements as a foundation for future international collaboration, technology validation, and deeper integration into the global drug-repurposing ecosystem.",
+          },
+          references: {
+            ltn: "華安醫學子公司源華智醫再登兩大國際舞台 展現AI藥物研發實力",
+          },
+        },
+
+        Partnership2: {
+          date: "October 2025",
+          title:
+            "Repurgenesis Partners with Altos Computing to Build a High-Performance AI Drug-Development Platform",
+          excerpt:
+            "Repurgenesis and Acer group's Altos Computing signed an agreement to jointly develop a next-generation AI platform for drug discovery.",
+          lead:
+            "Repurgenesis, a wholly owned subsidiary of Energenesis Biomedical, has signed a partnership agreement with Altos Computing, an Acer group company, to jointly build a next-generation, high-performance AI drug-development platform.",
+          body: {
+            paragraph1:
+              "The collaboration combines Repurgenesis's core AI drug-discovery technology with Altos Computing's strengths in high-performance computing and AI infrastructure, aiming to accelerate the practical application of precision and intelligent medicine.",
+            paragraph2:
+              "Repurgenesis operates the Intelligent Orchestrator platform, a multimodal, multi-method drug-repurposing system designed to shorten early-stage development timelines, improve candidate success rates, and reduce the cost of bringing new indications forward.",
+            paragraph3:
+              "Under the agreement, Repurgenesis will leverage the Altos aiWorks platform to support large-scale AI model training and optimize resource allocation, advancing candidate discovery and expanding related intelligent-medicine initiatives.",
+          },
+          references: {
+            gbi: "源華智醫、安圖斯科技攜手 高效AI攻藥物開發",
           },
         },
 
         jpmorgan2025: {
-          date:
-            "2025",
-
-          title:
-            "Replace with the approved event title",
-
-          excerpt:
-            "Add a short overview of the company's participation.",
-
+          date: "2025",
+          title: "Replace with the approved event title",
+          excerpt: "Add a short overview of the company's participation.",
           lead:
             "Add an introductory paragraph explaining the event and Repurgenesis's participation.",
-
-          imageAlt:
-            "Repurgenesis at an industry event",
-
+          imageAlt: "Repurgenesis at an industry event",
           body: {
-            paragraph1:
-              "Add the first approved article paragraph here.",
-
-            paragraph2:
-              "Add the second approved article paragraph here.",
-
-            paragraph3:
-              "Add the final approved article paragraph here.",
+            paragraph1: "Add the first approved article paragraph here.",
+            paragraph2: "Add the second approved article paragraph here.",
+            paragraph3: "Add the final approved article paragraph here.",
           },
         },
 
         bioEurope2024: {
-          date:
-            "2024",
-
-          title:
-            "Replace with the approved BIO-Europe title",
-
-          excerpt:
-            "Add a short summary of the event update.",
-
+          date: "2024",
+          title: "Replace with the approved BIO-Europe title",
+          excerpt: "Add a short summary of the event update.",
           lead:
             "Add an introductory paragraph describing Repurgenesis's participation.",
-
-          imageAlt:
-            "Repurgenesis BIO-Europe update",
-
+          imageAlt: "Repurgenesis BIO-Europe update",
           body: {
-            paragraph1:
-              "Add the first approved article paragraph here.",
-
-            paragraph2:
-              "Add the second approved article paragraph here.",
-
-            paragraph3:
-              "Add the final approved article paragraph here.",
+            paragraph1: "Add the first approved article paragraph here.",
+            paragraph2: "Add the second approved article paragraph here.",
+            paragraph3: "Add the final approved article paragraph here.",
           },
         },
 
         orphanDesignation: {
-          date:
-            "2024",
-
-          title:
-            "Replace with the approved company announcement",
-
-          excerpt:
-            "Add a concise summary of the regulatory milestone.",
-
+          date: "2024",
+          title: "Replace with the approved company announcement",
+          excerpt: "Add a concise summary of the regulatory milestone.",
           lead:
             "Add an introductory paragraph describing the milestone and its relevance.",
-
-          imageAlt:
-            "Repurgenesis regulatory announcement",
-
+          imageAlt: "Repurgenesis regulatory announcement",
           body: {
-            paragraph1:
-              "Add the first approved article paragraph here.",
-
-            paragraph2:
-              "Add the second approved article paragraph here.",
-
-            paragraph3:
-              "Add the final approved article paragraph here.",
+            paragraph1: "Add the first approved article paragraph here.",
+            paragraph2: "Add the second approved article paragraph here.",
+            paragraph3: "Add the final approved article paragraph here.",
           },
         },
 
         karolinskaAgreement: {
-          date:
-            "2024",
-
-          title:
-            "Replace with the approved collaboration title",
-
-          excerpt:
-            "Add a short summary of the research collaboration.",
-
+          date: "2024",
+          title: "Replace with the approved collaboration title",
+          excerpt: "Add a short summary of the research collaboration.",
           lead:
             "Add an introductory paragraph explaining the agreement and shared objectives.",
-
-          imageAlt:
-            "Repurgenesis research collaboration",
-
+          imageAlt: "Repurgenesis research collaboration",
           body: {
-            paragraph1:
-              "Add the first approved article paragraph here.",
-
-            paragraph2:
-              "Add the second approved article paragraph here.",
-
-            paragraph3:
-              "Add the final approved article paragraph here.",
+            paragraph1: "Add the first approved article paragraph here.",
+            paragraph2: "Add the second approved article paragraph here.",
+            paragraph3: "Add the final approved article paragraph here.",
           },
-        },
-
-        references:
-          "News Coverage & References",
-
-        share:
-          "Share",
-
-        shareLinkedIn:
-          "Share on LinkedIn",
-
-        shareX:
-          "Share on X",
-
-        related: {
-          label:
-            "Related News",
-
-          title:
-            "You may also like",
-
-          readArticle:
-            "Read article",
         },
       },
     },
@@ -844,7 +800,7 @@ export const TEXT = {
         openMap: "View on Google Maps",
       },
       form: {
-        title: "Send us a message",
+        title: "Send us a Message",
         description:
           "Fill in the form below and our team will respond shortly.",
         enquiryType: "Question Type",
@@ -1688,92 +1644,149 @@ export const TEXT = {
       label: "公司動態",
       title: "最新消息與活動",
       filter: "分類",
-      scroll: "scroll",
+      scroll: "捲動",
       allNews: "所有消息",
+      loadMore: "載入更多",
+      references: "媒體報導與參考來源",
+      share: "分享到平台",
+      shareLinkedIn: "分享至 LinkedIn",
+      shareX: "分享至 X",
+      backToNews: "返回最新消息",
+      notFound: "找不到文章。",
+      backHome: "返回首頁",
 
       filters: {
-        all:
-          "全部",
-
-        press:
-          "新聞發布",
-
-        partnership:
-          "合作消息",
-
-        event:
-          "活動資訊",
+        all: "全部",
+        press: "新聞發布",
+        partnership: "合作消息",
+        event: "活動資訊",
       },
 
       categories: {
-        press:
-          "新聞發布",
+        press: "新聞發布",
+        partnership: "合作消息",
+        event: "活動資訊",
+      },
 
-        partnership:
-          "合作消息",
-
-        event:
-          "活動資訊",
+      related: {
+        label: "延伸閱讀",
+        title: "你可能也感興趣",
+        readArticle: "閱讀全文",
       },
 
       articles: {
-        seriesB: {
-          date:
-            "2025 年",
-
-          title:
-            "請替換為經公司核准的公告標題",
-
+        altosPartnership: {
+          date: "2025 年 10 月",
+          title: "源華智醫攜手安圖斯科技 共建高效能 AI 藥物開發平台",
           excerpt:
-            "請加入適合顯示於消息列表中的簡短摘要。",
-
+            "源華智醫與宏碁旗下安圖斯科技簽署合作協議，共同打造新世代 AI 藥物開發平台。",
           lead:
-            "請加入簡潔的開場段落，說明本次公告及其重要性。",
-
-          imageAlt:
-            "源華智醫公司公告",
-
+            "華安醫學全資子公司源華智醫，與宏碁旗下安圖斯科技正式簽署合作協議，將共同打造新世代高效能 AI 藥物開發平台。",
           body: {
             paragraph1:
-              "請在此加入第一段經公司核准的文章內容。",
-
+              "雙方將結合源華智醫在 AI 藥物研發的核心技術，與安圖斯科技於高效能運算及 AI 基礎架構的實力，加速精準醫療與智慧醫療的落地與產業化應用。",
             paragraph2:
-              "請在此加入第二段經公司核准的文章內容。",
-
+              "源華智醫以「智慧協奏（Intelligent Orchestrator）」平台為核心，整合多類別、多模態、多方法的藥物再利用流程，協助縮短新藥開發前期時程、提高候選藥物成功率並降低開發成本。",
             paragraph3:
-              "請在此加入最後一段經公司核准的文章內容。",
+              "透過本次合作，源華智醫將運用安圖斯科技的 Altos aiWorks 平台，支援大規模 AI 模型訓練並優化資源配置，加速候選藥物發掘並拓展智慧醫療相關業務。",
+          },
+          references: {
+            gbi: "源華智醫、安圖斯科技攜手 高效 AI 攻藥物開發",
           },
         },
 
-        // Use the same structure for:
-        // hospitalAlliance
-        // jpmorgan2025
-        // bioEurope2024
-        // orphanDesignation
-        // karolinskaAgreement
-        references:
-          "媒體報導與參考資料",
-
-        share:
-          "分享",
-
-        shareLinkedIn:
-          "分享到 LinkedIn",
-
-        shareX:
-          "分享到 X",
-
-        related: {
-          label:
-            "相關消息",
-
-          title:
-            "你可能也會喜歡",
-
-          readArticle:
-            "閱讀全文",
+        intlConferences: {
+          date: "2026 年 4 月",
+          title: "源華智醫再登兩大國際舞台 展現 AI 藥物研發實力",
+          excerpt:
+            "繼 NVIDIA GTC 發表後，源華智醫獲選於兩大國際生醫大會發表 AI 藥物再利用研究成果。",
+          lead:
+            "繼今年於 NVIDIA GTC 大會發表研發成果後，源華智醫再獲兩大指標性國際生醫年度大會通知，將發表研究成果，展現其 AI 藥物研發平台實力。",
+          imageAlt: "源華智醫於國際生醫會議展示 AI 藥物再利用平台",
+          body: {
+            paragraph1:
+              "公司將於國際藥物再利用大會（iDR26）及 Bio-IT World 發表，兩者皆為生命科學與生醫資訊領域具代表性的國際場合。",
+            paragraph2:
+              "此次發表機會顯示，源華智醫的平台方法論持續受到國際 AI 藥物研發與藥物再利用社群的關注與肯定。",
+            paragraph3:
+              "公司將以此為基礎，持續拓展國際合作、技術驗證，並深化與全球藥物再利用生態鏈的連結。",
+          },
+          references: {
+            ltn: "華安醫學子公司源華智醫再登兩大國際舞台 展現 AI 藥物研發實力",
+          },
+        },
+        
+        Partnership2: {
+          date: "2025 年 10 月",
+          title: "源華智醫攜手安圖斯科技 共建高效能 AI 藥物開發平台",
+          excerpt:
+            "源華智醫與宏碁旗下安圖斯科技簽署合作協議，共同打造新世代 AI 藥物開發平台。",
+          lead:
+            "華安醫學全資子公司源華智醫，與宏碁旗下安圖斯科技正式簽署合作協議，將共同打造新世代高效能 AI 藥物開發平台。",
+          body: {
+            paragraph1:
+              "雙方將結合源華智醫在 AI 藥物研發的核心技術，與安圖斯科技於高效能運算及 AI 基礎架構的實力，加速精準醫療與智慧醫療的落地與產業化應用。",
+            paragraph2:
+              "源華智醫以「智慧協奏（Intelligent Orchestrator）」平台為核心，整合多類別、多模態、多方法的藥物再利用流程，協助縮短新藥開發前期時程、提高候選藥物成功率並降低開發成本。",
+            paragraph3:
+              "透過本次合作，源華智醫將運用安圖斯科技的 Altos aiWorks 平台，支援大規模 AI 模型訓練並優化資源配置，加速候選藥物發掘並拓展智慧醫療相關業務。",
+          },
+          references: {
+            gbi: "源華智醫、安圖斯科技攜手 高效 AI 攻藥物開發",
+          },
         },
 
+        jpmorgan2025: {
+          date: "2025 年",
+          title: "請替換為經公司核准的活動標題",
+          excerpt: "請加入公司參與活動的簡短摘要。",
+          lead: "請加入開場段落，說明活動內容與源華智醫的參與方式。",
+          imageAlt: "源華智醫參與產業活動",
+          body: {
+            paragraph1: "請在此加入第一段經公司核准的文章內容。",
+            paragraph2: "請在此加入第二段經公司核准的文章內容。",
+            paragraph3: "請在此加入最後一段經公司核准的文章內容。",
+          },
+        },
+
+        bioEurope2024: {
+          date: "2024 年",
+          title: "請替換為經公司核准的 BIO-Europe 標題",
+          excerpt: "請加入活動消息的簡短摘要。",
+          lead: "請加入開場段落，說明源華智醫參與本次活動的情形。",
+          imageAlt: "源華智醫 BIO-Europe 活動消息",
+          body: {
+            paragraph1: "請在此加入第一段經公司核准的文章內容。",
+            paragraph2: "請在此加入第二段經公司核准的文章內容。",
+            paragraph3: "請在此加入最後一段經公司核准的文章內容。",
+          },
+        },
+
+        orphanDesignation: {
+          date: "2024 年",
+          title: "請替換為經公司核准的公告標題",
+          excerpt: "請加入法規里程碑的簡短摘要。",
+          lead: "請加入開場段落，說明本次里程碑及其重要性。",
+          imageAlt: "源華智醫法規進展公告",
+          body: {
+            paragraph1: "請在此加入第一段經公司核准的文章內容。",
+            paragraph2: "請在此加入第二段經公司核准的文章內容。",
+            paragraph3: "請在此加入最後一段經公司核准的文章內容。",
+          },
+        },
+
+        karolinskaAgreement: {
+          date: "2024 年",
+          title: "請替換為經公司核准的合作標題",
+          excerpt: "請加入研究合作的簡短摘要。",
+          lead: "請加入開場段落，說明合作協議與共同目標。",
+          imageAlt: "源華智醫研究合作消息",
+          body: {
+            paragraph1: "請在此加入第一段經公司核准的文章內容。",
+            paragraph2: "請在此加入第二段經公司核准的文章內容。",
+            paragraph3: "請在此加入最後一段經公司核准的文章內容。",
+          },
+        },
       },
     },
     // contact page
@@ -2572,7 +2585,7 @@ export type NewsTagId =
 
 export const TAG_COLOR:
   Record<NewsTagId, string> = {
-    press: "#ef8a62",
+    press: "#B5473C",
     partnership: "#2f9e6f",
     event: "#5b6ee1",
   };
@@ -2699,79 +2712,74 @@ export function localizeNewsArticle(
 
 export const ALL_NEWS = [
   {
-    id:
-      "series-b-2025",
-
-    slug:
-      "series-b-2025",
-
-    tagId:
-      "press",
-
-    dateKey:
-      "news.articles.seriesB.date",
-
-    titleKey:
-      "news.articles.seriesB.title",
-
-    excerptKey:
-      "news.articles.seriesB.excerpt",
-
-    leadKey:
-      "news.articles.seriesB.lead",
-
+    id: "altos-partnership-2025",
+    slug: "altos-partnership-2025",
+    tagId: "partnership",
+    dateKey: "news.articles.altosPartnership.date",
+    titleKey: "news.articles.altosPartnership.title",
+    excerptKey: "news.articles.altosPartnership.excerpt",
+    leadKey: "news.articles.altosPartnership.lead",
     bodyKeys: [
-      "news.articles.seriesB.body.paragraph1",
-      "news.articles.seriesB.body.paragraph2",
-      "news.articles.seriesB.body.paragraph3",
+      "news.articles.altosPartnership.body.paragraph1",
+      "news.articles.altosPartnership.body.paragraph2",
+      "news.articles.altosPartnership.body.paragraph3",
     ],
-
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=675&fit=crop&auto=format",
-
-    imageAltKey:
-      "news.articles.seriesB.imageAlt",
-
-    references: [],
+    // no image → branded placeholder thumbnail
+    references: [
+      {
+        outlet: "環球生技月刊 GBI Monthly",
+        titleKey: "news.articles.altosPartnership.references.gbi",
+        url: "https://news.gbimonthly.com/tw/invest/show.php?num=81158",
+      },
+    ],
   },
-
   {
-    id:
-      "hospital-alliance-2025",
-
-    slug:
-      "hospital-alliance-2025",
-
-    tagId:
-      "partnership",
-
-    dateKey:
-      "news.articles.hospitalAlliance.date",
-
-    titleKey:
-      "news.articles.hospitalAlliance.title",
-
-    excerptKey:
-      "news.articles.hospitalAlliance.excerpt",
-
-    leadKey:
-      "news.articles.hospitalAlliance.lead",
-
+    id: "intl-conferences-2026",
+    slug: "intl-conferences-2026",
+    tagId: "event",
+    dateKey: "news.articles.intlConferences.date",
+    titleKey: "news.articles.intlConferences.title",
+    excerptKey: "news.articles.intlConferences.excerpt",
+    leadKey: "news.articles.intlConferences.lead",
     bodyKeys: [
-      "news.articles.hospitalAlliance.body.paragraph1",
-      "news.articles.hospitalAlliance.body.paragraph2",
-      "news.articles.hospitalAlliance.body.paragraph3",
+      "news.articles.intlConferences.body.paragraph1",
+      "news.articles.intlConferences.body.paragraph2",
+      "news.articles.intlConferences.body.paragraph3",
     ],
-
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=675&fit=crop&auto=format",
-
+      intlConferencesImage,
     imageAltKey:
-      "news.articles.hospitalAlliance.imageAlt",
-
-    references: [],
+      "news.articles.intlConferences.imageAlt",
+    references: [
+      {
+        outlet: "自由時報 Liberty Times",
+        titleKey: "news.articles.intlConferences.references.ltn",
+        url: "https://stock.ltn.com.tw/article/z0jnewsudvhk",
+      },
+    ],
   },
-
+  {
+    id: "partnership2",
+    slug: "partnership2",
+    tagId: "partnership",
+    dateKey: "news.articles.altosPartnership.date",
+    titleKey: "news.articles.altosPartnership.title",
+    excerptKey: "news.articles.altosPartnership.excerpt",
+    leadKey: "news.articles.altosPartnership.lead",
+    bodyKeys: [
+      "news.articles.altosPartnership.body.paragraph1",
+      "news.articles.altosPartnership.body.paragraph2",
+      "news.articles.altosPartnership.body.paragraph3",
+    ],
+    // no image → branded placeholder thumbnail
+    references: [
+      {
+        outlet: "環球生技月刊 GBI Monthly",
+        titleKey: "news.articles.altosPartnership.references.gbi",
+        url: "https://news.gbimonthly.com/tw/invest/show.php?num=81158",
+      },
+    ],
+  },
   {
     id:
       "jpmorgan-healthcare-2025",

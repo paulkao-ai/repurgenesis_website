@@ -80,7 +80,7 @@ export function Footer({
           >
             <BrandLogo
               variant="footer"
-              footerTone="white"
+              footerTone="coral"
               className="
                 transition-transform
                 duration-300

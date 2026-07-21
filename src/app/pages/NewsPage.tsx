@@ -1,11 +1,75 @@
-import { useState } from "react";
-import { ArrowDown } from "lucide-react";
-import { ALL_NEWS, NEWS_FILTERS, localizeNewsArticle, type NewsFilterId } from "@app/data/content";
-import { NewsCard } from "@app/components/NewsCard";
-import { SectionHeading, SectionLabel } from "@app/components/Section";
-import type { Translator, Language } from "@app/types";
+import {
+  useMemo,
+  useState,
+} from "react";
 
-const PAGE = 3;
+import {
+  ChevronDown,
+} from "lucide-react";
+
+import {
+  ALL_NEWS,
+  NEWS_FILTERS,
+  localizeNewsArticle,
+  type NewsFilterId,
+} from "@app/data/content";
+
+import {
+  NewsCard,
+} from "@app/components/NewsCard";
+
+import {
+  SectionHeading,
+  SectionLabel,
+} from "@app/components/Section";
+
+import type {
+  Language,
+  Translator,
+} from "@app/types";
+
+const INITIAL_VISIBLE_COUNT = 6;
+const LOAD_MORE_COUNT = 3;
+
+const FILTER_TAB_STYLES: Record<
+  NewsFilterId,
+  {
+    active: string;
+    inactive: string;
+  }
+> = {
+  all: {
+    active:
+      "border-[#141827] text-[#141827]",
+
+    inactive:
+      "border-transparent text-[#8a8898] hover:border-[#141827] hover:text-[#141827]",
+  },
+
+  press: {
+    active:
+      "border-[#B5473C] text-[#B5473C]",
+
+    inactive:
+      "border-transparent text-[#8a8898] hover:border-[#B5473C] hover:text-[#B5473C]",
+  },
+
+  partnership: {
+    active:
+      "border-[#2f9e6f] text-[#2f9e6f]",
+
+    inactive:
+      "border-transparent text-[#8a8898] hover:border-[#2f9e6f] hover:text-[#2f9e6f]",
+  },
+
+  event: {
+    active:
+      "border-[#5b6ee1] text-[#5b6ee1]",
+
+    inactive:
+      "border-transparent text-[#8a8898] hover:border-[#5b6ee1] hover:text-[#5b6ee1]",
+  },
+};
 
 export function NewsPage({
   t,
@@ -14,56 +78,259 @@ export function NewsPage({
   t: Translator;
   language: Language;
 }) {
-  const [filter, setFilter] = useState<NewsFilterId>("all");
-  const [visible, setVisible] = useState(6);
+  const [
+    filter,
+    setFilter,
+  ] = useState<NewsFilterId>(
+    "all",
+  );
 
-  const matched = (filter === "all" ? ALL_NEWS : ALL_NEWS.filter((a) => a.tagId === filter))
-    .map((a) => localizeNewsArticle(a, t));
-  const shown = matched.slice(0, visible);
+  const [
+    visibleCount,
+    setVisibleCount,
+  ] = useState(
+    INITIAL_VISIBLE_COUNT,
+  );
 
-  const changeFilter = (id: NewsFilterId) => { setFilter(id); setVisible(6); };
+  const matchedArticles =
+    useMemo(() => {
+      const source =
+        filter === "all"
+          ? ALL_NEWS
+          : ALL_NEWS.filter(
+              (article) =>
+                article.tagId ===
+                filter,
+            );
+
+      return source.map(
+        (article) =>
+          localizeNewsArticle(
+            article,
+            t,
+          ),
+      );
+    }, [
+      filter,
+      t,
+    ]);
+
+  const visibleArticles =
+    matchedArticles.slice(
+      0,
+      visibleCount,
+    );
+
+  const hasMore =
+    visibleCount <
+    matchedArticles.length;
+
+  const changeFilter = (
+    nextFilter: NewsFilterId,
+  ) => {
+    setFilter(nextFilter);
+
+    setVisibleCount(
+      INITIAL_VISIBLE_COUNT,
+    );
+  };
+
+  const showMore = () => {
+    setVisibleCount(
+      (currentCount) =>
+        Math.min(
+          currentCount +
+            LOAD_MORE_COUNT,
+
+          matchedArticles.length,
+        ),
+    );
+  };
 
   return (
-    <div className="min-h-screen bg-background pt-24">
-      <section className="mx-auto max-w-[1180px] px-6 py-16">
-        <div className="mb-12 text-center">
-          <SectionLabel>{t("news.label")}</SectionLabel>
-          <SectionHeading>{t("news.title")}</SectionHeading>
+    <div
+      className="
+        min-h-screen
+        bg-background
+        pt-24
+      "
+    >
+      <section
+        className="
+          mx-auto
+          max-w-[1180px]
+          px-6
+          py-16
+        "
+      >
+        <div
+          className="
+            mb-12
+            text-center
+          "
+        >
+          <SectionLabel>
+            {t("news.label")}
+          </SectionLabel>
+
+          <SectionHeading>
+            {t("news.title")}
+          </SectionHeading>
         </div>
 
-        {/* filters */}
-        <div className="mb-9 flex flex-wrap gap-1 border-b border-[#e3ddd3]">
-          {NEWS_FILTERS.map((item) => {
-            const active = filter === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => changeFilter(item.id)}
-                className={`-mb-px border-b-2 px-[18px] py-2.5 text-sm font-semibold transition-colors ${
-                  active ? "border-[#ef8a62] text-foreground" : "border-transparent text-[#8a8898] hover:text-foreground"
-                }`}
-              >
-                {t(item.labelKey)}
-              </button>
-            );
-          })}
+        {/* Filters */}
+        <div
+          className="
+            mb-9
+            flex
+            flex-wrap
+            gap-1
+            border-b
+            border-[#e3ddd3]
+          "
+          aria-label={t(
+            "news.filter",
+          )}
+        >
+          {NEWS_FILTERS.map(
+            (item) => {
+              const isActive =
+                filter === item.id;
+
+              const filterStyle =
+                FILTER_TAB_STYLES[
+                  item.id
+                ];
+
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() =>
+                    changeFilter(
+                      item.id,
+                    )
+                  }
+                  aria-pressed={
+                    isActive
+                  }
+                  className={`
+                    -mb-px
+                    select-none
+                    border-b-2
+                    px-[18px]
+                    py-2.5
+                    text-sm
+                    font-semibold
+                    transition-colors
+                    duration-200
+                    ${
+                      isActive
+                        ? filterStyle.active
+                        : filterStyle.inactive
+                    }
+                  `}
+                >
+                  {t(item.labelKey)}
+                </button>
+              );
+            },
+          )}
         </div>
 
-        {/* grid */}
-        <div className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 lg:grid-cols-3">
-          {shown.map((a) => <NewsCard key={a.id} article={a} />)}
+        {/* News grid */}
+        <div
+          className="
+            grid
+            grid-cols-1
+            items-stretch
+            gap-6
+            sm:grid-cols-2
+            lg:grid-cols-3
+          "
+        >
+          {visibleArticles.map(
+            (article) => (
+              <NewsCard
+                key={article.id}
+                article={article}
+                language={language}
+              />
+            ),
+          )}
         </div>
 
-        {visible < matched.length && (
-          <div className="mt-11 flex justify-center">
+        {/* Leadership-style load-more arrow */}
+        {hasMore && (
+          <div
+            className="
+              relative
+              mt-7
+              flex
+              items-center
+              justify-center
+            "
+          >
+            {/* Horizontal line */}
+            <span
+              aria-hidden="true"
+              className="
+                absolute
+                inset-x-0
+                top-1/2
+                h-px
+                -translate-y-1/2
+                bg-[#cec7bd]
+              "
+            />
+
+            {/* Down arrow */}
             <button
               type="button"
-              onClick={() => setVisible((v) => v + PAGE)}
-              className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-br from-[#f09f74] to-[#e8845a] px-[30px] py-3.5 text-[15px] font-bold text-white shadow-[0_12px_26px_rgba(232,132,90,0.32)] transition-all hover:-translate-y-0.5"
+              onClick={showMore}
+              aria-label={t(
+                "news.loadMore",
+              )}
+              title={t(
+                "news.loadMore",
+              )}
+              className="
+                group
+                relative
+                z-[1]
+                inline-flex
+                h-12
+                w-12
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-[#ef8a62]
+                bg-[#faf7f2]
+                text-[#141827]
+                shadow-[0_4px_12px_rgba(20,24,39,0.04)]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:bg-[#ef8a62]
+                hover:text-white
+                hover:shadow-[0_8px_20px_rgba(201,106,62,0.20)]
+                focus-visible:outline
+                focus-visible:outline-2
+                focus-visible:outline-offset-4
+                focus-visible:outline-[#ef8a62]
+              "
             >
-              {t("news.loadMore")}
-              <ArrowDown size={18} />
+              <ChevronDown
+                size={22}
+                strokeWidth={1.9}
+                aria-hidden="true"
+                className="
+                  transition-transform
+                  duration-300
+                  group-hover:translate-y-0.5
+                "
+              />
             </button>
           </div>
         )}
