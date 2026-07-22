@@ -221,7 +221,12 @@ export function AboutPage({
                   <img
                     src={ABOUT_PAGE_DATA.introImage}
                     alt={t(ABOUT_PAGE_DATA.introImageAltKey)}
-                    className="h-full w-full object-cover"
+                    className=" h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-500
+                      group-hover:scale-[1.02]"
                   />
                 </div>
               </div>

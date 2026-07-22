@@ -1454,8 +1454,15 @@ export const TEXT = {
         zoomIn: "Zoom in",
         zoomOut: "Zoom out",
         resetZoom: "Reset map zoom",
-
         showPartner: "Show partner",
+
+        light: "Light",
+        dark: "Dark",
+        legendTitle: "Partner Types",
+        selectAll: "All",
+        selectNone: "None",
+        directions: "Directions",
+        closeDetails: "Close partner details",
       },
       categories: {
         bioData: "BioData",
@@ -2907,16 +2914,23 @@ export const TEXT = {
       },
 
       map: {
-        all: "All",
-        website: "Website",
-        googleMaps: "Google Maps",
-        logo: "logo",
+        all: "全部",
+        website: "官方網站",
+        googleMaps: "Google 地圖",
+        logo: "標誌",
 
-        zoomIn: "Zoom in",
-        zoomOut: "Zoom out",
-        resetZoom: "Reset map zoom",
+        zoomIn: "放大",
+        zoomOut: "縮小",
+        resetZoom: "重設地圖",
+        showPartner: "查看合作夥伴",
 
-        showPartner: "Show partner",
+        light: "淺色",
+        dark: "深色",
+        legendTitle: "合作夥伴類型",
+        selectAll: "全選",
+        selectNone: "清除",
+        directions: "查看路線",
+        closeDetails: "關閉合作夥伴資訊",
       },
 
       categories: {
@@ -4584,7 +4598,8 @@ const CHEN_PROFILE = {
    * inside the cropped image frame.
    */
   imagePosition:
-    "c 10%",
+    // "center 5%",
+    "center -20%",
 
   nameKey:
     "about.leadership.members.memberOne.name",
