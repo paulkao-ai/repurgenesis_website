@@ -1,19 +1,35 @@
-import type {InvestorSection, Page, Language, Translator } from "@app/types";
+import type {
+  InvestorSection,
+  Page,
+  Language,
+  Translator,
+} from "@app/types";
+
 import energenesisBiomedicalLogo from "./company_logo/processed/bg_remove/partner/energenesis_biomedical_bg.jpg";
 import repurgenesisLogo from "./company_logo/processed/bg_remove/repurgenesis_bg.jpg";
-import repurgenesisWhiteLogoTotal from
-  "./company_logo/processed/bg_remove/repurgenesis_white.png";
+import repurgenesisWhiteLogoTotal from "./company_logo/processed/bg_remove/repurgenesis_white.png";
 import repurgenesisWhiteLogo from "./company_logo/processed/bg_remove/repurgenesis_white1.png";
 import repurgenesisWhiteText from "./company_logo/processed/bg_remove/repurgenesis_white2.png";
 import repurgenesisCoralLogo from "./company_logo/processed/bg_remove/repurgenesis_coral1.png";
 import repurgenesisCoralText from "./company_logo/processed/bg_remove/repurgenesis_coral2.png";
 import repurgenesisColorLogo from "./company_logo/processed/bg_remove/repurgenesis_bg1.png";
 import repurgenesisColorText from "./company_logo/processed/bg_remove/repurgenesis_bg2.png";
-import memberOneImage from "./people/hsu.jpg?url";
+import memberOneImage from "./people/chen.jpg?url";
+import memberTwoImage from "./people/hsu.jpg?url";
 import intlConferencesImage from "./news/intlConferences.jpg";
 import gtcTaipei2026Image from "./news/gtcTaipei2026.jpg";
 import bioAsiaTaiwan2026Image from "./news/bioAsia2026.jpg";
 import AICompanionImage from "./news/AICompanion.jpg";
+
+import gtc2026PosterPdf from "./news/posters/GTC POSTER_REPURGENESIS_final.pdf?url";
+import bioIt2026PosterPdf from "./news/posters/BioIT_poster_v6.pdf?url";
+import idr26PosterPdf from "./news/posters/idr26_poster A0.pdf?url";
+
+// ─── Feature Flags ────────────────────────────────────────────────────────────
+export const FEATURE_FLAGS = {
+  investors:
+    false,
+} as const;
 
 // ─── Company Assets (Logo + Text) ────────────────────────────────────────────────────────────
 export const BRAND_ASSETS = {
@@ -386,7 +402,7 @@ export const TEXT = {
 
         stats: {
           programs: {
-            value: "40+",
+            value: "20+",
             label: "Programs screened",
           },
           assets: {
@@ -395,30 +411,81 @@ export const TEXT = {
           },
           signals: {
             eyebrow: "AI-Orchestrated",
-            value: "1.2M",
-            label: "Evidence signals analyzed per candidate",
+            value: "2000",
+            label:
+              "Small-molecule drugs in screening scope"
           },
         },
       },
       journey: {
-        label: "Our Journey",
-        title: "A decade of discovery",
+        label:
+          "Our Journey",
+
+        title:
+          "Repurgenesis Development Journey",
+
+        description:
+          "From early academic collaboration to an independent Bio + AI company presenting its research on the international stage.",
+
+        phases: {
+          preparation:
+            "Preparation",
+
+          operations:
+            "Official Operations",
+        },
+
+        dragHint:
+          "Drag to explore",
 
         timeline: {
-          year2013:
-            "Founded in Taipei with a mandate to reduce time-to-treatment in orphan diseases.",
-          year2016:
-            "First computational platform deployed; 120 compounds analyzed in the first year.",
-          year2018:
-            "Series A funding, laboratory expansion, and the first wet-lab validation of a repurposed compound in fibrosis.",
-          year2021:
-            "Lead program entered IND-enabling studies and the multi-omics pipeline was launched.",
-          year2023:
-            "Nature Medicine publication and European regulatory dialogue initiated.",
-          year2025:
-            "Series B completed, Phase II trial design finalized, and three new therapeutic programs opened.",
+          teamEstablished: {
+            event:
+              "Established the AI research team.",
+          },
+
+          ntuCollaboration: {
+            event:
+              "Energenesis Biomedical began an industry–academia collaboration with National Taiwan University.",
+          },
+
+          nycuCollaboration: {
+            event:
+              "The Energenesis team began an industry–academia collaboration with National Yang Ming Chiao Tung University.",
+          },
+
+          companyEstablished: {
+            event:
+              "Repurgenesis was officially established.",
+          },
+
+          nvidiaInception: {
+            event:
+              "Repurgenesis joined the NVIDIA Inception program.",
+          },
+
+          vitiligoPatent: {
+            event:
+              "Filed a patent application covering a potential therapeutic indication for vitiligo.",
+          },
+
+          gtcTopEight: {
+            event:
+              "The Intelligent Orchestrator research was selected among the top eight poster finalists at NVIDIA GTC 2026.",
+          },
+
+          idr26Presentation: {
+            event:
+              "Selected to present research at the International Drug Repurposing Conference (iDR26).",
+          },
+
+          bioItPresentation: {
+            event:
+              "Selected to present research at Bio-IT World 2026.",
+          },
         },
       },
+
       leadership: {
         label:
           "Leadership",
@@ -443,15 +510,14 @@ export const TEXT = {
         members: {
           memberOne: {
             name:
-              "Dr. Yin-Hsong Hsu",
+              "Dr. Han-Min Chen",
 
             role:
-              "President",
+              "CEO",
 
             bio:
-              "Dr. Yin-Hsong Hsu is the President of Repurgenesis. He leads the development of the company's Bio + AI platform for drug repurposing that combines basic biomedical practice together with computer-based methods, trials, experimental validation and strategic collaboration.",
+              "Dr. Han-Min Chen is the CEO of Repurgenesis and Chairman of Energenesis Biomedical (6657). With more than two decades of experience in biomedical research and drug development, he brings deep expertise in biochemistry, enzyme chemistry, monoclonal antibody production, and systems-biology-based drug discovery. At Repurgenesis, he guides the company's long-term strategy, bringing together established drug-development experience and AI-driven drug repurposing to advance promising therapeutic opportunities toward experimental validation, intellectual property development, and global collaboration.",
           },
-
           memberTwo: {
             name:
               "Dr. Yin-Hsong Hsu",
@@ -468,34 +534,224 @@ export const TEXT = {
     // technology page
     technology: {
       hero: {
-        label: "Intelligent Orchestrator",
-        title: "Orchestrated AI for Evidence-driven Drug Repurposing",
+        label: "Technology",
+        title: "An AI-powered, multi-modal discovery engine",
         description:
-          "Coordinating AI agents, multimodal data, and domain experts to uncover new uses for existing medicines.",
+          "A unified AI framework for drug repurposing—coordinating specialized agents, multimodal biomedical data, and domain experts to uncover new uses for existing medicines.",
+        imageAlt:
+          "Unified AI framework integrating gene, structure, and knowledge-graph evidence",
       },
+
+      flow: {
+        label: "Our Platform Flow",
+        title: "Two directions, one framework",
+        description:
+          "Repurgenesis runs discovery both ways—starting from a known drug or from disease biology—bringing structure, gene expression, knowledge graphs, and literature into one orchestrated flow.",
+
+        drugToDisease: {
+          source: "Drug",
+          target: "Disease",
+          mode: "Structure-based",
+          imageAlt:
+            "Drug-to-disease workflow moving from a known compound through structure-based screening and expert review toward a new indication",
+        },
+
+        diseaseToDrug: {
+          source: "Disease",
+          target: "Drug",
+          mode: "Knowledge-driven",
+          imageAlt:
+            "Disease-to-drug workflow moving from disease signals and knowledge graphs through candidate agents toward a potential drug",
+        },
+      },
+
+      bidirectional: {
+        label: "Bidirectional Discovery",
+        title:
+          "One disease, one target, one drug. That model is too simple.",
+        description:
+          "Repurgenesis runs discovery in both directions—drug to disease and disease to drug—in parallel and at scale, so evidence guides every candidate rather than a single up-front guess.",
+      },
+
+      approaches: {
+        drugTarget: {
+          label: "Drug → Disease",
+          title: "Drug-Target Driven",
+          description:
+            "Structure-based screening and AI-powered binding prediction for small molecules and proteins—moving from a known drug toward promising new disease indications.",
+          imageAlt:
+            "Data collection and AI-assisted binding prediction with wet-lab validation",
+
+          tags: {
+            docking:
+              "Docking & rescoring",
+            binding:
+              "Binding prediction",
+            wetLab:
+              "Wet-lab validation",
+          },
+        },
+
+        diseaseGene: {
+          label: "Disease → Drug",
+          title: "Disease-Gene Driven",
+          description:
+            "AI agents operate on biomedical knowledge graphs and retrieval-augmented generation, supported by gene-expression analysis—moving from disease biology toward viable candidates.",
+          imageAlt:
+            "Biomedical knowledge graph, AI agent, and gene-expression tools",
+
+          tags: {
+            knowledgeGraphs:
+              "Knowledge graphs",
+            ragAgents:
+              "RAG agents",
+            geneExpression:
+              "Gene expression",
+          },
+        },
+      },
+
+      challenges: {
+        label: "The Problem",
+        title: "Challenges we're solving",
+
+        items: {
+          integration: {
+            title:
+              "Integration Complexity",
+            body:
+              "Unify heterogeneous data types—including proteins, genes, small molecules, and literature—across text, graphs, sequences, and three-dimensional structures.",
+          },
+
+          scale: {
+            title:
+              "Scalability",
+            body:
+              "Orchestrate multiple AI models across large and complex biomedical datasets.",
+          },
+
+          workflow: {
+            title:
+              "Workflow Orchestration",
+            body:
+              "Connect dry-lab predictions with wet-lab validation to support translational relevance and real-world impact.",
+          },
+
+          interoperability: {
+            title:
+              "Interoperability",
+            body:
+              "Streamline drug-repurposing workflows so therapeutic innovation can become faster, more affordable, and more scalable.",
+          },
+        },
+      },
+
+      accelerated: {
+        label:
+          "Accelerated Computing",
+        title:
+          "An intelligent, orchestrated platform",
+        description:
+          "An AI-orchestrated platform for drug repurposing that integrates multimodal data, data sources, and analytical methods, powered by NVIDIA BioNeMo and NVIDIA cuGraph to support scalable coordination across diverse AI models.",
+        imageAlt:
+          "NVIDIA BioNeMo powering the Intelligent Orchestrator pipeline",
+
+        tags: {
+          bioNeMo:
+            "NVIDIA BioNeMo",
+          cuGraph:
+            "NVIDIA cuGraph",
+          inception:
+            "Member of NVIDIA Inception",
+        },
+      },
+
+      portfolio: {
+        label:
+          "Portfolio",
+        title:
+          "Translational pipeline",
+        description:
+          "Drug-repurposing programs advancing across disease areas, with each program progressing in stages as evidence, validation, and intellectual property mature.",
+
+        columns: {
+          diseaseArea:
+            "Disease Area",
+          indication:
+            "Indication",
+        },
+
+        stages: {
+          drugId:
+            "Drug ID",
+          pocValidation:
+            "PoC Validation",
+          ipFiling:
+            "IP Filing",
+          preClinical:
+            "Pre-Clinical",
+        },
+
+        rows: {
+          autoimmune: {
+            area:
+              "Autoimmune",
+            indication:
+              "Vitiligo",
+          },
+
+          fibrosis: {
+            area:
+              "Fibrosis",
+            indication:
+              "Idiopathic Pulmonary Fibrosis",
+          },
+
+          neurology: {
+            area:
+              "Neurology",
+            indication:
+              "Spinocerebellar Ataxia",
+          },
+        },
+
+        legend: {
+          reached:
+            "Stage reached",
+          upcoming:
+            "Upcoming",
+        },
+      },
+
       cards: {
         orchestration: {
           title: "Multi-Agent Orchestration",
-          description: "AI agents coordinate retrieval, analysis, and evaluation.",
+          description:
+            "AI agents coordinate retrieval, analysis, and evaluation.",
         },
         evidence: {
           title: "Multimodal Evidence Integration",
-          description: "Structure, gene expression, graphs, and literature as one.",
+          description:
+            "Structure, gene expression, graphs, and literature as one.",
         },
         prioritization: {
           title: "Candidate Prioritization",
-          description: "Ranked by rationale, feasibility, and commercial value.",
+          description:
+            "Ranked by rationale, feasibility, and commercial value.",
         },
         validation: {
           title: "Validation & IP Readiness",
-          description: "Expert review, wet-lab testing, and IP assessment.",
+          description:
+            "Expert review, wet-lab testing, and IP assessment.",
         },
       },
+
       pipeline: {
         label: "Discovery Workflow",
         titleLine1: "From research question to",
         titleLine2: "validated opportunity",
       },
+
       pipelineSteps: {
         definition: {
           label: "Research Definition",
@@ -519,104 +775,98 @@ export const TEXT = {
         },
       },
     },
-    validation: {
-      label:
-        "Platform Validation",
-      title:
-        "Connecting computational insight with experimental evidence",
-      overview:
-        "Platform generated candidates are treated as research hypotheses rather than final conclusions. Opportunities must undergo expert assessment and appropriate experimental validation before advancing to intellectual property development or commercial partnership evaluation.",
-      candidateStrategy:
-        "Candidates are assessed using evidence strength, biological plausibility, unmet medical need, experimental feasibility, intellectual property potential, and commercial relevance.",
-      portfolio:
-        "Repurgenesis is developing a portfolio of drug repurposing opportunities across selected disease areas. Each program advances in stages according to available evidence, expert review, and validation results.",
-    },
-    business: {
-      label:
-        "Business Model",
-      title:
-        "An IP focused and partnership driven business model",
-      overview:
-        "Repurgenesis operates an asset light model focused on AI enabled candidate discovery, early validation, intellectual property creation, and strategic collaboration.",
-      models: {
-        assetLicensing: {
-          title:
-            "New Indication and Therapeutic Use Licensing",
-          description:
-            "Following expert review, initial validation, and intellectual property assessment, qualified opportunities may progress through licensing, joint development, or revenue sharing arrangements with pharmaceutical companies, biotechnology companies, and research organizations.",
-        },
-        platformPartnership: {
-          title:
-            "Platform and Technology Partnerships",
-          description:
-            "Repurgenesis supports partners through research projects, technology licensing, platform access, and joint development programs designed around specific diseases, medicines, combinations, or data environments.",
-        },
-      },
-      value:
-        "This model enables Repurgenesis to focus on creating differentiated therapeutic opportunities while working with partners that possess clinical, regulatory, manufacturing, and commercialization capabilities.",
-    },
+
     // solution page
     solutionsPage: {
       header: {
-        label: "Therapeutic Focus",
-        title: "Solutions Across Disease Areas",
+        label:
+          "Therapeutic Focus",
+
+        title:
+          "Solutions Across Disease Areas",
+
         description:
-          "We partner with pharmaceutical companies, academic institutions, and patient advocacy organizations to address diseases where conventional drug development timelines leave patients without treatment options.",
+          "We apply Bio + AI to identify new therapeutic opportunities for existing medicines, with a current emphasis on immune-mediated skin diseases such as vitiligo and psoriasis.",
       },
+
       solutionCards: {
         rareDiseases: {
-          label: "Rare Diseases",
+          label:
+            "Rare Diseases",
+
           description:
-            "Accelerating treatment timelines for orphan conditions where new drug development is too slow.",
+            "Exploring new therapeutic options for conditions where limited patient populations and long development timelines leave major unmet needs.",
         },
-        oncology: {
-          label: "Oncology",
+
+        dermatology: {
+          label:
+            "Immune-Mediated Skin Diseases",
+
           description:
-            "Repositioning established compounds for combination regimens with better tolerability.",
+            "Exploring new therapeutic uses for existing medicines in vitiligo, psoriasis, and other immune-mediated skin conditions.",
         },
+
         neurodegeneration: {
-          label: "Neurodegeneration",
+          label:
+            "Neurodegeneration",
+
           description:
-            "Targeting CNS pathways with repurposed molecules to slow disease progression.",
+            "Evaluating existing medicines against disease-relevant pathways in neurological and neurodegenerative conditions.",
         },
+
         metabolicDisorders: {
-          label: "Metabolic Disorders",
+          label:
+            "Metabolic Disorders",
+
           description:
-            "Applying existing metabolic modulators against emerging targets in metabolic disease.",
+            "Investigating new therapeutic applications for existing metabolic and immunomodulatory medicines.",
         },
       },
+
       faq: {
-        label: "FAQ",
-        title: "Common Questions",
-        askDirectly: "Ask us directly",
-        closeAll: "Collapse all",
+        label:
+          "FAQ",
+
+        title:
+          "Common Questions",
+
+        askDirectly:
+          "Ask us directly",
+
+        closeAll:
+          "Collapse all",
+
         items: {
           efficiency: {
             question:
-              "What makes drug repurposing more efficient than de novo development?",
+              "What makes drug repurposing different from developing a completely new medicine?",
+
             answer:
-              "Repurposed compounds have already completed important safety evaluation steps. This can reduce early development time and risk. Our AI platform further evaluates candidates by predicted efficacy, helping narrow thousands of compounds into a smaller group of high-confidence candidates.",
+              "Existing medicines may already have pharmacological, safety, manufacturing, or clinical information that can support evaluation for a new therapeutic use. This can reduce selected early-stage uncertainties, although every new indication still requires appropriate experimental, regulatory, and clinical validation.",
           },
 
           diseaseAreas: {
             question:
               "Which disease areas does Repurgenesis currently focus on?",
+
             answer:
-              "Our current focus includes rare diseases, oncology, neurodegeneration, and metabolic disorders. We also work with pharmaceutical and biotechnology partners that bring target hypotheses to our platform for feasibility assessment.",
+              "Our current priority is immune-mediated skin disease, particularly vitiligo and psoriasis. We also evaluate opportunities in rare diseases, neurodegeneration, and metabolic disorders, while working with partners on additional indications where drug repurposing may provide meaningful scientific and commercial value.",
           },
 
           validation: {
             question:
               "How do you validate computational predictions?",
+
             answer:
-              "Each computational hypothesis follows a structured experimental validation process. Depending on the project, this may include target engagement assays, disease-relevant cell models, and patient-derived biological models.",
+              "Each computational hypothesis moves through expert review and a structured validation process. Depending on the program, this may include mechanistic studies, disease-relevant cell assays, skin or tissue models, organoids, animal studies, and additional translational evaluation.",
           },
 
           licensing: {
             question:
-              "Can established pharmaceutical companies license your platform?",
+              "Can pharmaceutical and biotechnology companies work with Repurgenesis?",
+
             answer:
-              "We support several collaboration models, including platform access, co-development agreements, and milestone-based partnerships. Contact our business development team to discuss the most appropriate structure.",
+              "Yes. We support several collaboration models, including research projects, candidate evaluation, platform partnerships, technology licensing, co-development, and milestone-based agreements. The appropriate structure depends on the disease, medicine, available evidence, and development objective.",
           },
         },
       },
@@ -642,12 +892,14 @@ export const TEXT = {
         press: "Press",
         partnership: "Partnership",
         event: "Event",
+        publication: "Publications",
       },
 
       categories: {
         press: "Press",
         partnership: "Partnership",
         event: "Event",
+        publication: "Publication",
       },
 
       related: {
@@ -655,8 +907,98 @@ export const TEXT = {
         title: "You may also like",
         readArticle: "Read article",
       },
+      posters: {
+        label:
+          "Research Posters",
 
+        title:
+          "Explore Our Conference Posters",
+
+        description:
+          "View the research presented by Repurgenesis at NVIDIA GTC, Bio-IT World, and iDR26.",
+
+        preview:
+          "Preview Poster",
+
+        closePreview:
+          "Close Preview",
+
+        openPdf:
+          "Open Full PDF",
+
+        pdfLabel:
+          "Research Poster · PDF",
+
+        cards: {
+          gtc2026: {
+            event:
+              "NVIDIA GTC 2026",
+
+            title:
+              "AI-Driven Drug Repurposing with Intelligent Orchestration",
+
+            description:
+              "Poster P81062 presents how coordinated AI agents and multimodal biomedical evidence support the discovery of new indications for existing medicines.",
+
+            meta:
+              "San Jose · Poster P81062",
+          },
+
+          bioIt2026: {
+            event:
+              "Bio-IT World 2026",
+
+            title:
+              "Drug Repurposing with an Intelligent Orchestrating Platform",
+
+            description:
+              "A research poster introducing the Intelligent Orchestrator and its integrated workflow for evidence-driven drug-repurposing research.",
+
+            meta:
+              "Boston · Poster P62",
+          },
+
+          idr26: {
+            event:
+              "iDR26",
+
+            title:
+              "AI-Orchestrated Multimodal Evidence for Drug Repurposing",
+
+            description:
+              "An integrated approach combining knowledge graphs, structure modeling, and gene-expression evidence for more traceable candidate evaluation.",
+
+            meta:
+              "Brussels · International Drug Repurposing Conference",
+          },
+        },
+      },
       articles: {
+        researchPosters2026: {
+          date:
+            "May 2026",
+
+          title:
+            "2026 Conference Research Poster Collection",
+
+          excerpt:
+            "Explore Repurgenesis research presented at NVIDIA GTC, Bio-IT World, and iDR26.",
+
+          lead:
+            "This dedicated poster collection brings together three international conference presentations showcasing how Repurgenesis applies intelligent orchestration, multimodal biomedical evidence, and AI-driven workflows to drug repurposing.",
+
+          body: {
+            paragraph1:
+              "The collection includes Repurgenesis research presented at NVIDIA GTC 2026 in San Jose, Bio-IT World 2026 in Boston, and the International Drug Repurposing Conference iDR26 in Brussels.",
+
+            paragraph2:
+              "Together, the posters introduce the Intelligent Orchestrator and demonstrate how knowledge graphs, structure-based analysis, gene-expression evidence, biomedical data, and coordinated AI workflows can support the discovery and evaluation of new therapeutic uses for existing medicines.",
+
+            paragraph3:
+              "Select a poster below to preview the full high-resolution PDF directly in the browser, or open the original file in a separate tab for closer reading.",
+          },
+        },
+
         bioAsiaTaiwan2026: {
           date:
             "July 16, 2026",
@@ -774,6 +1116,7 @@ export const TEXT = {
             scienceOpen:
               "AI-Orchestrated Integration of Knowledge Graph, Structure, and Gene-Expression Evidence for Drug Repurposing",
           },
+
         },
 
         gtcFinalist2026: {
@@ -799,27 +1142,74 @@ export const TEXT = {
         },
 
         gtcPreview2026: {
-          date: "January 22, 2026",
+          date:
+            "March 2026",
+
           title:
-            "Repurgenesis to Debut Its AI Drug-Repurposing Platform at NVIDIA GTC 2026",
+            "Meet Repurgenesis at NVIDIA GTC 2026",
+
           excerpt:
-            "The company will make its first major international AI-conference presentation in San Jose this March.",
+            "At Poster P81062, Repurgenesis will present how its AI-orchestrated platform accelerates the search for new therapeutic uses of existing medicines.",
+
           lead:
-            "Repurgenesis is preparing for its first appearance at NVIDIA GTC, where it will introduce the Intelligent Orchestrator and share how AI can uncover new therapeutic possibilities for existing medicines.",
+            "Repurgenesis is heading to NVIDIA GTC 2026 in San Jose to share how coordinated AI, multimodal biomedical evidence, and drug-repurposing expertise can turn existing medicines into new therapeutic opportunities.",
+
+          imageAlt:
+            "Repurgenesis presenting its Intelligent Orchestrator platform at NVIDIA GTC 2026",
+
           body: {
             paragraph1:
-              "The Intelligent Orchestrator brings multiple data types, analytical methods, and AI technologies into one coordinated drug-repurposing workflow. By incorporating NVIDIA BioNeMo and specialized biomedical models, the platform is designed to improve the speed and consistency of early candidate evaluation.",
+              "Visitors can meet the Repurgenesis team and explore Poster P81062, which presents the company's AI-powered drug-repurposing platform and its approach to identifying potential new indications for existing medicines.",
+
             paragraph2:
-              "Repurgenesis is developing the platform around two complementary business directions: creating intellectual property for new therapeutic uses of existing medicines, and working with pharmaceutical partners through platform, algorithm, and project-based collaborations.",
+              "The Intelligent Orchestrator integrates structure-based analysis, gene-expression evidence, biomedical knowledge graphs, literature, and coordinated AI workflows. Rather than relying on a single model, the platform brings complementary evidence together to support more traceable candidate prioritization and experimental planning.",
+
             paragraph3:
-              "The upcoming GTC presentation is an important first step onto the international stage. It gives the team an opportunity to test its ideas with the global AI community, strengthen its technology roadmap, and build momentum for future validation and commercialization.",
+              "NVIDIA GTC offers an exciting opportunity to exchange ideas with AI researchers, biotechnology teams, pharmaceutical companies, and technology partners. Repurgenesis looks forward to discussing how orchestrated Bio + AI can make drug-repurposing research faster, more systematic, and more actionable.",
           },
           references: {
+            linkedin:
+              "Meet Repurgenesis at NVIDIA GTC 2026 and visit Poster P81062",
+
+            nvidia:
+              "NVIDIA GTC San Jose 2026",
+
             gbi:
-              "Repurgenesis to Present AI Drug-Development Research at NVIDIA GTC",
+              "Repurgenesis Presents Its AI Drug-Repurposing Platform and Reaches the GTC Top Eight",
           },
         },
+        presidentAiInterview2026: {
+          date:
+            "January 10, 2026",
 
+          title:
+            "Dr. Yin-Hsong Hsu on AI Companions, Critical Thinking, and Staying Human",
+
+          excerpt:
+            "Repurgenesis President Dr. Yin-Hsong Hsu discusses how AI may reshape work, learning, companionship, and human decision-making.",
+
+          lead:
+            "As AI becomes more capable and more personal, Dr. Yin-Hsong Hsu believes the defining human advantage will not be access to information, but the ability to question, interpret, and make thoughtful decisions.",
+
+          imageAlt:
+            "Dr. Yin-Hsong Hsu discussing AI companions, critical thinking, and human judgment",
+
+          body: {
+            paragraph1:
+              "In an interview with UDN Health, Dr. Hsu described a future in which people may rely on several AI companions: one for work, another for daily life, and perhaps another for personal conversation. These systems may become increasingly personalized, multimodal, and integrated into everyday routines.",
+
+            paragraph2:
+              "He also emphasized that AI should remain a tool rather than a decision-maker. As AI becomes more persuasive and capable, people need stronger critical-thinking skills, clearer personal judgment, and the confidence to question the information and recommendations they receive.",
+
+            paragraph3:
+              "For Dr. Hsu, technological progress should ultimately help people return to meaningful real-world relationships. Responsible AI therefore requires not only better models, but also empathy, governance, transparency, and an ongoing connection to family, community, and the physical world.",
+          },
+
+          references: {
+            udn:
+              "Can AI Hear Loneliness? Yin-Hsong Hsu on the Boundary Between Human Judgment and Artificial Intelligence",
+          },
+        },
         altosPartnership: {
           date: "October 30, 2025",
           title:
@@ -857,7 +1247,7 @@ export const TEXT = {
         fax: "Fax",
         office: "Office",
         addressLine1:
-          "Neihu Technology Park 6F, No. 21, Ln. 583, Ruiguang Rd.", 
+          "5F, No. 21, Ln. 583, Ruiguang Rd.", 
         addressLine2:
           "Neihu Dist, Taipei City 114694, Taiwan.",
       },
@@ -1470,38 +1860,87 @@ export const TEXT = {
 
         stats: {
           programs: {
-            value: "40+",
+            value: "20+",
             label: "評估項目",
           },
           assets: {
             value: "6",
-            label: "驗證中資產",
+            label: "驗證中專利",
           },
           signals: {
             eyebrow: "AI 智慧協奏",
-            value: "1.2M",
-            label: "每項候選分析之證據訊號",
+            value: "2000",
+            label: "AI 篩選範圍的小分子藥物",
           },
         },
       },
 
       journey: {
-        label: "發展歷程",
-        title: "十年的探索與突破",
+        label:
+          "發展歷程",
+
+        title:
+          "源華智醫發展歷程",
+
+        description:
+          "從跨校產學合作、AI 研發團隊建立，到正式成立並登上國際生醫與人工智慧舞台。",
+
+        phases: {
+          preparation:
+            "籌備期",
+
+          operations:
+            "正式營運期",
+        },
+
+        dragHint:
+          "拖曳查看更多",
 
         timeline: {
-          year2013:
-            "於台北成立，致力於縮短罕見疾病患者取得治療的時間。",
-          year2016:
-            "完成首個運算平台部署，第一年即分析 120 種化合物。",
-          year2018:
-            "完成 A 輪募資、擴建實驗室，並首次於纖維化研究中完成再利用藥物的濕實驗驗證。",
-          year2021:
-            "主要開發項目進入 IND 支持研究階段，並正式啟動多體學分析平台。",
-          year2023:
-            "研究成果發表於 Nature Medicine，並開始與歐洲監管機構進行交流。",
-          year2025:
-            "完成 B 輪募資、確定第二期臨床試驗設計，並啟動三項新的治療開發計畫。",
+          teamEstablished: {
+            event:
+              "AI 研發團隊成立。",
+          },
+
+          ntuCollaboration: {
+            event:
+              "華安醫學與國立臺灣大學展開產學合作。",
+          },
+
+          nycuCollaboration: {
+            event:
+              "華安團隊與國立陽明交通大學展開產學合作。",
+          },
+
+          companyEstablished: {
+            event:
+              "源華智醫正式成立。",
+          },
+
+          nvidiaInception: {
+            event:
+              "源華智醫成為 NVIDIA Inception 新創計畫成員。",
+          },
+
+          vitiligoPatent: {
+            event:
+              "提出白斑症潛在治療適應症的專利申請。",
+          },
+
+          gtcTopEight: {
+            event:
+              "智慧協奏研究成果入選 NVIDIA GTC 2026 前八名優選海報。",
+          },
+
+          idr26Presentation: {
+            event:
+              "獲選於國際藥物再利用大會 iDR26 發表研究成果。",
+          },
+
+          bioItPresentation: {
+            event:
+              "獲選於 Bio-IT World 2026 發表研究成果。",
+          },
         },
       },
       leadership: {
@@ -1528,13 +1967,13 @@ export const TEXT = {
         members: {
           memberOne: {
             name:
-              "許銀雄 博士",
+              "陳翰民 博士",
 
             role:
-              "總經理",
+              "董事長",
 
             bio:
-              "許銀雄博士 為 源華智醫之總經理，帶領公司發展 Bio + AI 老藥新用平台，結合生醫研究、人工智慧、實驗驗證以及策略合作，推動極具潛力的治療機會 進入後續轉譯與商業評估。",
+              "陳翰民博士為源華智醫創辦人暨董事長，並擔任華安醫學（6657）董事長。擁有逾二十年生物醫學研究與藥物開發經驗，專長涵蓋生物化學、酵素化學、單株抗體製備及系統生物學藥物開發。於源華智醫，他負責公司長期策略與發展方向，結合既有的新藥研發經驗與 AI 驅動的藥物再利用能力，推動具潛力的治療機會進入實驗驗證、智慧財產布局與國際合作。",
           },
 
           memberTwo: {
@@ -1553,14 +1992,193 @@ export const TEXT = {
     // technology page
     technology: {
       hero: {
-        label:
-          "智慧協奏平台",
-
-        title:
-          "以協奏式 AI 推動證據導向的藥物再利用",
-
+        label: "技術平台",
+        title: "AI 驅動的多模態藥物探索引擎",
         description:
-          "智慧協奏（Intelligent Orchestrator）是源華智醫自主研發的藥物再利用平台。平台協調專業 AI Agent、多模態生醫資料、分析模型與領域知識，系統化探索並評估既有藥物的新治療機會。",
+          "一套整合式 AI 藥物再利用框架，協調專業 AI Agent、多模態生醫資料與領域專家，系統化探索既有藥物的新治療用途。",
+        imageAlt:
+          "整合基因、結構與知識圖譜證據的統一 AI 框架",
+      },
+
+      flow: {
+        label: "平台流程",
+        title: "雙向探索，同一套智慧協奏框架",
+        description:
+          "源華智醫可從既有藥物或疾病生物學雙向啟動探索，將結構、基因表現、知識圖譜與科學文獻整合於同一套協奏流程。",
+
+        drugToDisease: {
+          source: "藥物",
+          target: "疾病",
+          mode: "結構導向",
+          imageAlt:
+            "從既有藥物出發，經結構式篩選與專家審議，探索新適應症的藥物至疾病研發流程",
+        },
+
+        diseaseToDrug: {
+          source: "疾病",
+          target: "藥物",
+          mode: "知識導向",
+          imageAlt:
+            "從疾病訊號與知識圖譜出發，經候選分析尋找潛在藥物的疾病至藥物研發流程",
+        },
+      },
+
+      bidirectional: {
+        label: "雙向探索",
+        title:
+          "單一疾病、單一標的、單一藥物的研發模型，過於簡化。",
+        description:
+          "源華智醫以「藥物到疾病」與「疾病到藥物」兩條路徑並行且規模化地進行探索，讓每一項候選機會由整合證據引導，而非依賴單一的前置假設。",
+      },
+
+      approaches: {
+        drugTarget: {
+          label: "藥物 → 疾病",
+          title: "藥物－標的導向",
+          description:
+            "透過結構式篩選與 AI 結合預測分析小分子與蛋白質，從既有藥物出發，探索具潛力的新疾病適應症。",
+          imageAlt:
+            "資料蒐集、AI 輔助結合預測與濕實驗驗證流程",
+
+          tags: {
+            docking:
+              "分子對接與重新評分",
+            binding:
+              "結合預測",
+            wetLab:
+              "濕實驗驗證",
+          },
+        },
+
+        diseaseGene: {
+          label: "疾病 → 藥物",
+          title: "疾病－基因導向",
+          description:
+            "AI Agent 運行於生醫知識圖譜與檢索增強生成（RAG）流程，並搭配基因表現分析，從疾病生物學出發尋找可行的候選藥物。",
+          imageAlt:
+            "生醫知識圖譜、AI Agent 與基因表現分析工具",
+
+          tags: {
+            knowledgeGraphs:
+              "生醫知識圖譜",
+            ragAgents:
+              "RAG Agent",
+            geneExpression:
+              "基因表現",
+          },
+        },
+      },
+
+      challenges: {
+        label: "研發挑戰",
+        title: "我們正在解決的關鍵問題",
+
+        items: {
+          integration: {
+            title:
+              "整合複雜度",
+            body:
+              "整合蛋白質、基因、小分子與科學文獻等異質資料，並涵蓋文字、圖譜、序列與三維結構等不同形式。",
+          },
+
+          scale: {
+            title:
+              "可擴展性",
+            body:
+              "在龐大且複雜的生醫資料環境中，協調多種 AI 模型進行分析。",
+          },
+
+          workflow: {
+            title:
+              "研發流程協奏",
+            body:
+              "串聯乾實驗預測與濕實驗驗證，提升研究成果的轉譯價值與實際應用潛力。",
+          },
+
+          interoperability: {
+            title:
+              "系統互通性",
+            body:
+              "簡化藥物再利用研發流程，使治療創新更快速、更具成本效益，也更容易擴展。",
+          },
+        },
+      },
+
+      accelerated: {
+        label:
+          "加速運算",
+        title:
+          "智慧協奏的一體化平台",
+        description:
+          "以 AI 智慧協奏推動藥物再利用，整合多模態資料、資料來源與分析方法，並運用 NVIDIA BioNeMo 與 NVIDIA cuGraph，支援多元 AI 模型的可擴展協同運作。",
+        imageAlt:
+          "由 NVIDIA BioNeMo 支援的智慧協奏藥物研發流程",
+
+        tags: {
+          bioNeMo:
+            "NVIDIA BioNeMo",
+          cuGraph:
+            "NVIDIA cuGraph",
+          inception:
+            "NVIDIA Inception 計畫成員",
+        },
+      },
+
+      portfolio: {
+        label:
+          "候選組合",
+        title:
+          "轉譯研發管線",
+        description:
+          "跨疾病領域的藥物再利用專案，依據證據、驗證結果與智慧財產成熟度分階段推進。",
+
+        columns: {
+          diseaseArea:
+            "疾病領域",
+          indication:
+            "適應症",
+        },
+
+        stages: {
+          drugId:
+            "藥物辨識",
+          pocValidation:
+            "概念驗證",
+          ipFiling:
+            "智財申請",
+          preClinical:
+            "臨床前研究",
+        },
+
+        rows: {
+          autoimmune: {
+            area:
+              "自體免疫",
+            indication:
+              "白斑症",
+          },
+
+          fibrosis: {
+            area:
+              "纖維化疾病",
+            indication:
+              "特發性肺纖維化",
+          },
+
+          neurology: {
+            area:
+              "神經疾病",
+            indication:
+              "脊髓小腦共濟失調",
+          },
+        },
+
+        legend: {
+          reached:
+            "已達成階段",
+          upcoming:
+            "後續階段",
+        },
       },
 
       cards: {
@@ -1581,11 +2199,13 @@ export const TEXT = {
           description: "專家審議、濕實驗驗證與智財評估。",
         },
       },
+
       pipeline: {
         label: "研發流程",
         titleLine1: "從研發問題",
         titleLine2: "到可驗證的治療機會",
       },
+
       pipelineSteps: {
         definition: {
           label: "研發問題定義",
@@ -1609,100 +2229,97 @@ export const TEXT = {
         },
       },
     },
-    validation: {
-      label:
-        "平台能力驗證",
-      title:
-        "連結運算洞察與實驗證據",
-      overview:
-        "平台產出的候選藥物與新適應症屬於研究假說，而非最終結論。候選機會必須經過專家評估及適當的實驗驗證，才會進一步進入智慧財產權布局或商業合作評估。",
-      candidateStrategy:
-        "候選機會將依證據強度、生物合理性、未滿足醫療需求、實驗可行性、智財潛力及商業價值進行綜合評估。",
-      portfolio:
-        "源華智醫正逐步建立跨疾病領域的藥物再利用候選組合，各項目將依據現有證據、專家審議及驗證結果分階段推進。",
-    },
-    business: {
-      label:
-        "商業模式",
-      title:
-        "以智慧財產權為核心、以策略合作為導向的商業模式",
-      overview:
-        "源華智醫採取輕資產模式，聚焦於 AI 候選機會發掘、早期驗證、智慧財產權創造及策略合作。",
-      models: {
-        assetLicensing: {
-          title:
-            "新適應症與治療用途授權",
-          description:
-            "候選機會完成專家審議、初步驗證及智財評估後，可與藥廠、生技公司或研究機構推進授權、共同開發或分潤合作。",
-        },
-        platformPartnership: {
-          title:
-            "平台與技術合作",
-          description:
-            "源華智醫可透過研究專案、技術授權、平台使用及共同開發，支援合作夥伴針對特定疾病、藥物、組合或資料環境進行分析與候選機會探索。",
-        },
-      },
-      value:
-        "此模式使源華智醫能聚焦於創造差異化治療機會，並與具備臨床、法規、製造及市場能力的合作夥伴共同推進後續開發。",
-    },
     // solution page
     solutionsPage: {
       header: {
-        label: "治療領域",
-        title: "跨疾病領域的解決方案",
+        label:
+          "治療領域",
+
+        title:
+          "跨疾病領域的治療解決方案",
+
         description:
-          "我們與製藥公司、學術研究機構及病友倡議組織合作，致力於改善傳統藥物開發時程過長，導致病患缺乏治療選項的疾病領域。",
+          "源華智醫運用 Bio + AI，探索既有藥物的新治療機會，目前特別聚焦於白斑症、乾癬等免疫相關皮膚疾病。",
       },
+
       solutionCards: {
         rareDiseases: {
-          label: "罕見疾病",
-          description: "為新藥開發過於緩慢的孤兒疾病加速治療時程。",
+          label:
+            "罕見疾病",
+
+          description:
+            "針對病患人數有限、開發時程較長且治療選擇不足的疾病，探索既有藥物的新治療機會。",
         },
-        oncology: {
-          label: "腫瘤疾病",
-          description: "將既有藥物重新定位於耐受性更佳的組合療法。",
+
+        dermatology: {
+          label:
+            "免疫相關皮膚疾病",
+
+          description:
+            "聚焦白斑症、乾癬及其他免疫相關皮膚疾病，探索既有藥物的新適應症與轉譯潛力。",
         },
+
         neurodegeneration: {
-          label: "神經退化性疾病",
-          description: "以再利用分子作用於中樞神經路徑，延緩疾病進程。",
+          label:
+            "神經退化性疾病",
+
+          description:
+            "依據疾病相關機制與生醫證據，評估既有藥物於神經及神經退化疾病中的新用途。",
         },
+
         metabolicDisorders: {
-          label: "代謝疾病",
-          description: "運用既有代謝調節藥物，針對代謝疾病的新標的。",
+          label:
+            "代謝疾病",
+
+          description:
+            "探索既有代謝調節與免疫調節藥物於其他疾病領域中的潛在治療應用。",
         },
       },
+
       faq: {
-        label: "常見問題",
-        title: "常見問題與解答",
-        askDirectly: "直接聯絡我們",
-        closeAll: "全部收合",
+        label:
+          "常見問題",
+
+        title:
+          "常見問題與解答",
+
+        askDirectly:
+          "直接聯絡我們",
+
+        closeAll:
+          "全部收合",
+
         items: {
           efficiency: {
             question:
-              "藥物再利用為什麼比全新藥物開發更有效率？",
+              "藥物再利用與開發全新藥物有什麼不同？",
+
             answer:
-              "再利用藥物通常已完成部分重要的安全性評估，因此可減少早期開發所需的時間與風險。我們的 AI 平台會進一步依照預測療效評估候選藥物，將數千種化合物縮小為少量高可信度候選項目。",
+              "既有藥物通常已累積部分藥理、安全性、製造或臨床資訊，可作為評估新治療用途的重要基礎，並降低部分早期研發的不確定性。不過，每一項新適應症仍須經過適當的實驗、法規及臨床驗證。",
           },
 
           diseaseAreas: {
             question:
-              "Repurgenesis 目前專注於哪些疾病領域？",
+              "源華智醫目前聚焦哪些疾病領域？",
+
             answer:
-              "我們目前聚焦於罕見疾病、腫瘤疾病、神經退化性疾病及代謝疾病。我們也與製藥及生技公司合作，透過平台評估合作夥伴所提出的疾病標靶假說。",
+              "目前的優先方向為免疫相關皮膚疾病，特別是白斑症與乾癬。我們也持續評估罕見疾病、神經退化性疾病及代謝疾病中的藥物再利用機會，並與合作夥伴共同探索其他具有科學與商業發展潛力的適應症。",
           },
 
           validation: {
             question:
               "你們如何驗證運算模型提出的預測？",
+
             answer:
-              "每一項運算假說都會經過結構化的實驗驗證流程。依照不同專案需求，驗證方式可能包括標靶結合實驗、疾病相關細胞模型及病患來源的生物模型。",
+              "每一項運算假說都會先經過領域專家審議，再進入結構化的驗證流程。依照不同研發項目，驗證方式可能包括作用機制研究、疾病相關細胞實驗、皮膚或組織模型、類器官、動物實驗及其他轉譯評估。",
           },
 
           licensing: {
             question:
-              "大型製藥公司可以授權使用你們的平台嗎？",
+              "製藥與生技公司可以如何與源華智醫合作？",
+
             answer:
-              "我們提供多種合作模式，包括平台使用、共同開發協議及依里程碑執行的合作方案。歡迎聯絡商務開發團隊，討論適合雙方需求的合作方式。",
+              "我們提供多種合作模式，包括研究專案、候選藥物評估、平台合作、技術授權、共同開發及里程碑式合作。實際合作架構將依疾病、藥物、現有證據與開發目標進行規劃。",
           },
         },
       },
@@ -1741,8 +2358,98 @@ export const TEXT = {
         title: "你可能也感興趣",
         readArticle: "閱讀全文",
       },
+      posters: {
+        label:
+          "研究海報",
 
+        title:
+          "國際會議研究海報",
+
+        description:
+          "查看源華智醫於 NVIDIA GTC、Bio-IT World 與 iDR26 發表的研究成果。",
+
+        preview:
+          "預覽海報",
+
+        closePreview:
+          "關閉預覽",
+
+        openPdf:
+          "開啟完整 PDF",
+
+        pdfLabel:
+          "研究海報 · PDF",
+
+        cards: {
+          gtc2026: {
+            event:
+              "NVIDIA GTC 2026",
+
+            title:
+              "以智慧協奏 AI 推動藥物再利用",
+
+            description:
+              "P81062 研究海報介紹如何協調 AI Agent 與多模態生醫證據，探索既有藥物的新治療用途。",
+
+            meta:
+              "美國聖荷西 · P81062 海報",
+          },
+
+          bioIt2026: {
+            event:
+              "Bio-IT World 2026",
+
+            title:
+              "以智慧協奏平台推動藥物再利用",
+
+            description:
+              "介紹智慧協奏平台如何整合多元證據與研究流程，推動證據導向的藥物再利用研究。",
+
+            meta:
+              "美國波士頓 · P62 海報",
+          },
+
+          idr26: {
+            event:
+              "iDR26",
+
+            title:
+              "以 AI 協奏整合多模態藥物再利用證據",
+
+            description:
+              "整合知識圖譜、結構建模與基因表現證據，使候選藥物評估更具可追溯性。",
+
+            meta:
+              "比利時布魯塞爾 · 國際藥物再利用大會",
+          },
+        },
+},
       articles: {
+        researchPosters2026: {
+          date:
+            "2026 年 5 月",
+
+          title:
+            "2026 國際會議研究海報專區",
+
+          excerpt:
+            "一次查看源華智醫於 NVIDIA GTC、Bio-IT World 與 iDR26 發表的研究成果。",
+
+          lead:
+            "本專區收錄源華智醫於三項國際會議發表的研究海報，呈現智慧協奏平台如何整合多模態生醫證據、AI 技術與智慧化工作流程，推動藥物再利用研究。",
+
+          body: {
+            paragraph1:
+              "本次收錄的研究成果分別發表於美國聖荷西 NVIDIA GTC 2026、美國波士頓 Bio-IT World 2026，以及比利時布魯塞爾國際藥物再利用大會 iDR26。",
+
+            paragraph2:
+              "三份研究海報共同介紹智慧協奏（Intelligent Orchestrator）平台，並展示如何整合知識圖譜、結構式分析、基因表現證據、生醫資料與 AI 協同工作流程，協助探索及評估既有藥物的新治療用途。",
+
+            paragraph3:
+              "您可以在下方選擇任一研究海報，直接於網頁中預覽高解析度 PDF，或另開分頁查看完整原始檔案。",
+          },
+        },
+
         bioAsiaTaiwan2026: {
           date:
             "2026 年 7 月 16 日",
@@ -1885,27 +2592,75 @@ export const TEXT = {
         },
 
         gtcPreview2026: {
-          date: "2026 年 1 月 22 日",
+          date:
+            "2026 年 3 月",
+
           title:
-            "源華智醫將首登 NVIDIA GTC，展示 AI 藥物再利用平台",
+            "與源華智醫相約 NVIDIA GTC 2026",
+
           excerpt:
-            "公司將於三月在聖荷西首次登上大型國際 AI 技術會議，公開智慧協奏平台研發成果。",
+            "歡迎參觀 P81062 海報，了解智慧協奏平台如何運用 AI，加速探索既有藥物的新治療用途。",
+
           lead:
-            "源華智醫即將首次參與 NVIDIA GTC，正式向全球 AI 社群介紹智慧協奏（Intelligent Orchestrator），並分享如何運用 AI 為既有藥物探索新的治療可能。",
+            "源華智醫將前往美國聖荷西參與 NVIDIA GTC 2026，分享如何結合智慧協奏 AI、多模態生醫證據與藥物再利用專業，為既有藥物開拓新的治療機會。",
+
+          imageAlt:
+            "源華智醫於 NVIDIA GTC 2026 展示智慧協奏平台",
+
           body: {
             paragraph1:
-              "智慧協奏平台將多元資料、分析方法與 AI 技術整合於同一套藥物再利用流程中，並導入 NVIDIA BioNeMo 與專業生醫模型，以提升早期候選評估的速度、一致性與可擴展性。",
+              "歡迎於 NVIDIA GTC 2026 與源華智醫團隊交流，並參觀編號 P81062 的研究海報。海報將介紹公司自主研發的 AI 藥物再利用平台，以及如何運用人工智慧探索既有藥物的新適應症。",
+
             paragraph2:
-              "源華智醫的發展策略包含兩個互補方向：一是發掘既有藥物的新治療用途並建立相關智慧財產；二是透過平台、演算法與專案合作，協助藥廠與生技夥伴導入 AI 研發能力。",
+              "智慧協奏平台整合結構式分析、基因表現證據、生醫知識圖譜、科學文獻與 AI 協同工作流程。平台不依賴單一模型，而是交叉整合互補證據，協助候選機會排序更具可追溯性，並建立後續實驗驗證方向。",
+
             paragraph3:
-              "此次 GTC 發表是公司走向國際舞台的重要起點。團隊期待藉由全球 AI 社群的交流，驗證研究方向、強化技術藍圖，並為後續實驗驗證與商業化累積更多動能。",
+              "NVIDIA GTC 是與全球 AI 研究者、生技團隊、藥廠及技術夥伴交流的重要機會。源華智醫期待分享智慧協奏 Bio + AI 如何讓藥物再利用研究更快速、更系統化，也更接近實際研發應用。",
           },
+
           references: {
+            linkedin:
+              "歡迎於 NVIDIA GTC 2026 與源華智醫交流並參觀 P81062 海報",
+
+            nvidia:
+              "NVIDIA GTC San Jose 2026",
+
             gbi:
-              "華安子公司源華智醫將登 NVIDIA GTC，發表 AI 藥物開發研究成果",
+              "華安攜源華智醫發表 AI 老藥新用平台，入選 GTC 前八名優選",
           },
         },
+        presidentAiInterview2026: {
+          date:
+            "2026 年 1 月 10 日",
 
+          title:
+            "許銀雄談 AI 夥伴、思辨力與人之所以為人",
+
+          excerpt:
+            "源華智醫總經理許銀雄分享 AI 如何改變工作、學習、陪伴與人類決策。",
+
+          lead:
+            "當 AI 變得更強大、更個人化，許銀雄博士認為，人類真正重要的能力不只是取得資訊，而是質疑、理解、轉化資訊，並做出屬於自己的判斷。",
+
+          imageAlt:
+            "許銀雄博士分享 AI 夥伴、思辨力與人類判斷的重要性",
+
+          body: {
+            paragraph1:
+              "接受元氣網專訪時，許銀雄博士描繪了一個每個人都擁有多個 AI 夥伴的未來：有些協助工作，有些照顧生活，也可能有些成為日常對話與情感陪伴的角色。隨著文字、圖像與聲音整合，AI 將更自然地進入人們的日常生活。",
+
+            paragraph2:
+              "他同時強調，AI 應該是工具，而不是替人做主的主人。AI 能協助整理資料、補足思考盲點並提供不同觀點，但使用者仍需要保有自己的立場、判斷力與思辨能力，主動質疑 AI 的回答，而不是被動接受。",
+
+            paragraph3:
+              "在許銀雄博士看來，科技最終仍應協助人們回到真實世界，建立更有溫度的人際關係。負責任的 AI 除了需要更好的模型，也需要同理心、透明度、治理機制，以及對家庭、朋友、社群與真實生活的重視。",
+          },
+
+          references: {
+            udn:
+              "AI 能聽見孤獨嗎？許銀雄：思辨力，是人與人工智慧的界線",
+          },
+        },
         altosPartnership: {
           date: "2025 年 10 月 30 日",
           title:
@@ -2312,14 +3067,63 @@ export const TEXT = {
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 // ─── Navbar ─────────────────────────────────────────────────────────────────────
-export const NAV_ITEMS: { key: string; page: Page }[] = [
-  { key: "nav.about", page: "about" },
-  { key: "nav.technology", page: "technology" },
-  { key: "nav.solutions", page: "solutions" },
-  { key: "nav.news", page: "news" },
-  { key: "nav.investors", page: "investors" },
-  { key: "nav.partners", page: "partners" },
+const ALL_NAV_ITEMS: {
+  key: string;
+  page: Page;
+}[] = [
+  {
+    key:
+      "nav.about",
+
+    page:
+      "about",
+  },
+
+  {
+    key:
+      "nav.technology",
+
+    page:
+      "technology",
+  },
+
+  {
+    key:
+      "nav.solutions",
+
+    page:
+      "solutions",
+  },
+
+  {
+    key:
+      "nav.news",
+
+    page:
+      "news",
+  },
+
+  {
+    key:
+      "nav.investors",
+
+    page:
+      "investors",
+  },
+
+  {
+    key:"nav.partners",
+    page:"partners",
+  },
 ];
+
+export const NAV_ITEMS =
+  ALL_NAV_ITEMS.filter(
+    (item) =>
+      FEATURE_FLAGS.investors ||
+      item.page !==
+        "investors",
+  );
 
 // ─── Homepage ─────────────────────────────────────────────────────────────────────
 export const HOME_PAGE_DATA = {
@@ -2507,6 +3311,25 @@ export const HOME_LOGO_MARQUEE_ITEMS:
 
 // ─── Solutions ────────────────────────────────────────────────────────────────────
 export const SOLUTIONS = [
+    {
+    id:
+      "immune-mediated-skin-diseases",
+
+    label:
+      "Immune-Mediated Skin Diseases",
+
+    description:
+      "Exploring new therapeutic uses for existing medicines in vitiligo, psoriasis, and other immune-mediated skin conditions.",
+
+    labelKey:
+      "solutionsPage.solutionCards.dermatology.label",
+
+    descriptionKey:
+      "solutionsPage.solutionCards.dermatology.description",
+
+    image:
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=400&fit=crop&auto=format",
+  },
   {
     id:
       "rare-diseases",
@@ -2520,20 +3343,6 @@ export const SOLUTIONS = [
       "solutionsPage.solutionCards.rareDiseases.description",
     image:
       "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=400&fit=crop&auto=format",
-  },
-  {
-    id:
-      "oncology",
-    label:
-      "Oncology",
-    description:
-      "Re-engineering established compounds for combination oncology regimens with improved tolerability profiles.",
-    labelKey:
-      "solutionsPage.solutionCards.oncology.label",
-    descriptionKey:
-      "solutionsPage.solutionCards.oncology.description",
-    image:
-      "https://www.sciencedaily.com/images/1920/targeting-cancer-cells-ultrasound.webp",
   },
   {
     id:
@@ -2607,56 +3416,144 @@ export const SOLUTION_FAQS = [
 ] as const satisfies ReadonlyArray<SolutionFaqDefinition>;
 
 // ─── Technology ────────────────────────────────────────────────────────────────────
-export type TechnologyCardDefinition = {
-  id: string;
-  icon: string;
-  titleKey: string;
-  descriptionKey: string;
-  tagKey: string;
-};
+export const TECHNOLOGY_DRUG_TARGET_TAGS = [
+  {
+    id: "docking",
+    labelKey:
+      "technology.approaches.drugTarget.tags.docking",
+  },
+  {
+    id: "binding",
+    labelKey:
+      "technology.approaches.drugTarget.tags.binding",
+  },
+  {
+    id: "wet-lab",
+    labelKey:
+      "technology.approaches.drugTarget.tags.wetLab",
+  },
+] as const;
 
-export const TECHNOLOGY_CARDS = [
+export const TECHNOLOGY_DISEASE_GENE_TAGS = [
   {
-    id: "orchestration",
-    icon: "🧬",
-    titleKey:
-      "technology.cards.orchestration.title",
-    descriptionKey:
-      "technology.cards.orchestration.description",
-    tagKey:
-      "technology.cards.orchestration.tag",
+    id: "knowledge-graphs",
+    labelKey:
+      "technology.approaches.diseaseGene.tags.knowledgeGraphs",
   },
   {
-    id: "evidence",
-    icon: "🔗",
-    titleKey:
-      "technology.cards.evidence.title",
-    descriptionKey:
-      "technology.cards.evidence.description",
-    tagKey:
-      "technology.cards.evidence.tag",
+    id: "rag-agents",
+    labelKey:
+      "technology.approaches.diseaseGene.tags.ragAgents",
   },
   {
-    id: "prioritization",
-    icon: "🎯",
-    titleKey:
-      "technology.cards.prioritization.title",
-    descriptionKey:
-      "technology.cards.prioritization.description",
-    tagKey:
-      "technology.cards.prioritization.tag",
+    id: "gene-expression",
+    labelKey:
+      "technology.approaches.diseaseGene.tags.geneExpression",
+  },
+] as const;
+
+export const TECHNOLOGY_ACCELERATED_TAGS = [
+  {
+    id: "bionemo",
+    labelKey:
+      "technology.accelerated.tags.bioNeMo",
   },
   {
-    id: "validation",
-    icon: "🔬",
-    titleKey:
-      "technology.cards.validation.title",
-    descriptionKey:
-      "technology.cards.validation.description",
-    tagKey:
-      "technology.cards.validation.tag",
+    id: "cugraph",
+    labelKey:
+      "technology.accelerated.tags.cuGraph",
   },
-] as const satisfies ReadonlyArray<TechnologyCardDefinition>;
+  {
+    id: "inception",
+    labelKey:
+      "technology.accelerated.tags.inception",
+  },
+] as const;
+
+export const TECHNOLOGY_CHALLENGES = [
+  {
+    id: "integration",
+    num: "01",
+    titleKey:
+      "technology.challenges.items.integration.title",
+    bodyKey:
+      "technology.challenges.items.integration.body",
+  },
+  {
+    id: "scale",
+    num: "02",
+    titleKey:
+      "technology.challenges.items.scale.title",
+    bodyKey:
+      "technology.challenges.items.scale.body",
+  },
+  {
+    id: "workflow",
+    num: "03",
+    titleKey:
+      "technology.challenges.items.workflow.title",
+    bodyKey:
+      "technology.challenges.items.workflow.body",
+  },
+  {
+    id: "interop",
+    num: "04",
+    titleKey:
+      "technology.challenges.items.interoperability.title",
+    bodyKey:
+      "technology.challenges.items.interoperability.body",
+  },
+] as const;
+
+export const TECHNOLOGY_PIPELINE_STAGES = [
+  {
+    id: "drug-id",
+    labelKey:
+      "technology.portfolio.stages.drugId",
+  },
+  {
+    id: "poc-validation",
+    labelKey:
+      "technology.portfolio.stages.pocValidation",
+  },
+  {
+    id: "ip-filing",
+    labelKey:
+      "technology.portfolio.stages.ipFiling",
+  },
+  {
+    id: "pre-clinical",
+    labelKey:
+      "technology.portfolio.stages.preClinical",
+  },
+] as const;
+
+export const TECHNOLOGY_PIPELINE_ROWS = [
+  {
+    id: "autoimmune-vitiligo",
+    areaKey:
+      "technology.portfolio.rows.autoimmune.area",
+    indicationKey:
+      "technology.portfolio.rows.autoimmune.indication",
+    reached: 3,
+  },
+  {
+    id: "fibrosis-ipf",
+    areaKey:
+      "technology.portfolio.rows.fibrosis.area",
+    indicationKey:
+      "technology.portfolio.rows.fibrosis.indication",
+    reached: 1,
+  },
+  {
+    id: "neurology-sca",
+    areaKey:
+      "technology.portfolio.rows.neurology.area",
+    indicationKey:
+      "technology.portfolio.rows.neurology.indication",
+    reached: 1,
+  },
+] as const;
 
 export type TechnologyStepDefinition = {
   step: string;
@@ -2714,6 +3611,10 @@ export const NEWS_FILTERS = [
     id: "event",
     labelKey: "news.filters.event",
   },
+  {
+    id: "publication",
+    labelKey: "news.filters.publication",
+  },
 ] as const;
 
 export type NewsFilterId =
@@ -2728,6 +3629,7 @@ export const TAG_COLOR:
     press: "#B5473C",
     partnership: "#2f9e6f",
     event: "#5b6ee1",
+    publication: "#2F6B8A",
   };
 
 export interface NewsReference {
@@ -2738,26 +3640,20 @@ export interface NewsReference {
 
 export interface NewsArticle {
   id: string;
-
-  // Used for:
-  // ?article=<slug>
   slug: string;
-
   tagId: NewsTagId;
 
-  // Optional. Missing images use the branded fallback thumbnail.
   image?: string;
   imageAltKey?: string;
 
   dateKey: string;
   titleKey: string;
   excerptKey: string;
-
-  // Full article content
   leadKey: string;
   bodyKeys: readonly string[];
 
-  references: readonly NewsReference[];
+  references:
+    readonly NewsReference[];
 }
 
 export interface LocalizedNewsReference {
@@ -2841,7 +3737,9 @@ export function localizeNewsArticle(
             reference.outlet,
 
           title:
-            t(reference.titleKey),
+            t(
+              reference.titleKey,
+            ),
 
           url:
             reference.url,
@@ -2981,6 +3879,21 @@ export const ALL_NEWS = [
     ],
   },
   {
+    id: "research-posters-2026",
+    slug: "research-posters-2026",
+    tagId: "publication",
+    dateKey: "news.articles.researchPosters2026.date",
+    titleKey: "news.articles.researchPosters2026.title",
+    excerptKey: "news.articles.researchPosters2026.excerpt",
+    leadKey: "news.articles.researchPosters2026.lead",
+    bodyKeys: [
+      "news.articles.researchPosters2026.body.paragraph1",
+      "news.articles.researchPosters2026.body.paragraph2",
+      "news.articles.researchPosters2026.body.paragraph3",
+    ],
+    references: [],
+  },
+  {
     id: "idr-bioit-selected-2026",
     slug: "idr-bioit-selected-2026",
     tagId: "event",
@@ -3049,9 +3962,42 @@ export const ALL_NEWS = [
     ],
     references: [
       {
+        outlet: "Repurgenesis LinkedIn",
+        titleKey: "news.articles.gtcPreview2026.references.linkedin",
+        url: "https://www.linkedin.com/posts/tzutang-lin_nvidiagtc-ai-drugdiscovery-activity-7439267330905354240-09jS",
+      },
+      {
+        outlet: "NVIDIA",
+        titleKey: "news.articles.gtcPreview2026.references.nvidia",
+        url: "https://www.nvidia.com/gtc/",
+      },
+      {
         outlet: "環球生技月刊 GBI Monthly",
         titleKey: "news.articles.gtcPreview2026.references.gbi",
-        url: "https://news.gbimonthly.com/tw/invest/show.php?num=83210&range=news",
+        url: "https://news.gbimonthly.com/tw/invest/show.php?num=84630",
+      },
+    ],
+  },
+  {
+    id: "president-ai-interview-2026",
+    slug: "president-ai-interview-2026",
+    tagId: "press",
+    dateKey: "news.articles.presidentAiInterview2026.date",
+    titleKey: "news.articles.presidentAiInterview2026.title",
+    excerptKey: "news.articles.presidentAiInterview2026.excerpt",
+    leadKey: "news.articles.presidentAiInterview2026.lead",
+    image: AICompanionImage,
+    imageAltKey: "news.articles.presidentAiInterview2026.imageAlt",
+    bodyKeys: [
+      "news.articles.presidentAiInterview2026.body.paragraph1",
+      "news.articles.presidentAiInterview2026.body.paragraph2",
+      "news.articles.presidentAiInterview2026.body.paragraph3",
+    ],
+    references: [
+      {
+        outlet: "元氣網 UDN Health",
+        titleKey: "news.articles.presidentAiInterview2026.references.udn",
+        url: "https://health.udn.com/health/story/5999/9247942",
       },
     ],
   },
@@ -3088,6 +4034,107 @@ export function getArticleBySlug(
   );
 }
 
+export type NewsPosterCardDefinition = {
+  id: string;
+
+  eventKey: string;
+  titleKey: string;
+  descriptionKey: string;
+  metaKey: string;
+
+  pdfUrl: string;
+  filename: string;
+
+  /*
+   * Determines which article pages show
+   * this individual poster card.
+   */
+  articleSlugs: readonly string[];
+};
+
+export const NEWS_POSTER_CARDS:
+  ReadonlyArray<NewsPosterCardDefinition> = [
+    {
+      id:
+        "gtc-2026-poster",
+
+      eventKey:
+        "news.posters.cards.gtc2026.event",
+
+      titleKey:
+        "news.posters.cards.gtc2026.title",
+
+      descriptionKey:
+        "news.posters.cards.gtc2026.description",
+
+      metaKey:
+        "news.posters.cards.gtc2026.meta",
+
+      pdfUrl:
+        gtc2026PosterPdf,
+
+      filename:
+        "Repurgenesis-NVIDIA-GTC-2026-P81062.pdf",
+
+      articleSlugs: [
+        "research-posters-2026",
+      ],
+    },
+
+    {
+      id:
+        "bioit-2026-poster",
+
+      eventKey:
+        "news.posters.cards.bioIt2026.event",
+
+      titleKey:
+        "news.posters.cards.bioIt2026.title",
+
+      descriptionKey:
+        "news.posters.cards.bioIt2026.description",
+
+      metaKey:
+        "news.posters.cards.bioIt2026.meta",
+
+      pdfUrl:
+        bioIt2026PosterPdf,
+
+      filename:
+        "Repurgenesis-BioIT-World-2026-P62.pdf",
+
+      articleSlugs: [
+        "research-posters-2026",
+      ],
+    },
+
+    {
+      id:
+        "idr26-poster",
+
+      eventKey:
+        "news.posters.cards.idr26.event",
+
+      titleKey:
+        "news.posters.cards.idr26.title",
+
+      descriptionKey:
+        "news.posters.cards.idr26.description",
+
+      metaKey:
+        "news.posters.cards.idr26.meta",
+
+      pdfUrl:
+        idr26PosterPdf,
+
+      filename:
+        "Repurgenesis-iDR26-Poster.pdf",
+
+      articleSlugs: [
+        "research-posters-2026",
+      ],
+    },
+  ];
 
 // ─── Investor ─────────────────────────────────────────────────────────────────────
 type InvestorCardDefinition = {
@@ -3366,36 +4413,151 @@ export const INVESTOR_CONTENT: Record<
 };
 
 // ─── About  ─────────────────────────────────────────────────────────────────────
+export type AboutTimelinePhase =
+  | "preparation"
+  | "operations";
+
+export type AboutTimelineItem = {
+  id: string;
+  year: string;
+  month: string;
+  phase: AboutTimelinePhase;
+  eventKeys: readonly string[];
+};
+
 export const ABOUT_TIMELINE = [
   {
-    year: "2013",
-    eventKey: "about.journey.timeline.year2013",
+    id:
+      "2023-06-ai-team",
+
+    year:
+      "2023",
+
+    month:
+      "06",
+
+    phase:
+      "preparation",
+
+    eventKeys: [
+      "about.journey.timeline.teamEstablished.event",
+    ],
   },
+
   {
-    year: "2016",
-    eventKey: "about.journey.timeline.year2016",
+    id:
+      "2023-07-ntu-collaboration",
+
+    year:
+      "2023",
+
+    month:
+      "07",
+
+    phase:
+      "preparation",
+
+    eventKeys: [
+      "about.journey.timeline.ntuCollaboration.event",
+    ],
   },
+
   {
-    year: "2018",
-    eventKey: "about.journey.timeline.year2018",
+    id:
+      "2024-04-nycu-collaboration",
+
+    year:
+      "2024",
+
+    month:
+      "04",
+
+    phase:
+      "preparation",
+
+    eventKeys: [
+      "about.journey.timeline.nycuCollaboration.event",
+    ],
   },
+
   {
-    year: "2021",
-    eventKey: "about.journey.timeline.year2021",
+    id:
+      "2025-08-company-established",
+
+    year:
+      "2025",
+
+    month:
+      "08",
+
+    phase:
+      "operations",
+
+    eventKeys: [
+      "about.journey.timeline.companyEstablished.event",
+    ],
   },
+
   {
-    year: "2023",
-    eventKey: "about.journey.timeline.year2023",
+    id:
+      "2025-10-nvidia-inception",
+
+    year:
+      "2025",
+
+    month:
+      "10",
+
+    phase:
+      "operations",
+
+    eventKeys: [
+      "about.journey.timeline.nvidiaInception.event",
+    ],
   },
+
   {
-    year: "2025",
-    eventKey: "about.journey.timeline.year2025",
+    id:
+      "2026-03-patent-and-gtc",
+
+    year:
+      "2026",
+
+    month:
+      "03",
+
+    phase:
+      "operations",
+
+    eventKeys: [
+      "about.journey.timeline.vitiligoPatent.event",
+      "about.journey.timeline.gtcTopEight.event",
+    ],
   },
-];
+
+  {
+    id:
+      "2026-05-international-conferences",
+
+    year:
+      "2026",
+
+    month:
+      "05",
+
+    phase:
+      "operations",
+
+    eventKeys: [
+      "about.journey.timeline.idr26Presentation.event",
+      "about.journey.timeline.bioItPresentation.event",
+    ],
+  },
+] as const satisfies
+  ReadonlyArray<AboutTimelineItem>;
 
 export const ABOUT_PAGE_DATA = {
   introImage:
-    // "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&h=500&fit=crop&auto=format",
     AICompanionImage,
   introImageAltKey:
     "about.intro.imageAlt",
@@ -3405,15 +4567,24 @@ export const ABOUT_PAGE_DATA = {
 export type LeadershipMemberDefinition = {
   id: string;
   image: string;
+  imagePosition?: string;
+
   nameKey: string;
   roleKey: string;
   bioKey: string;
+
   email?: string;
   linkedinUrl?: string;
 };
 
-const HSU_PROFILE = {
+const CHEN_PROFILE = {
   image: memberOneImage,
+  /*
+   * Move the photo slightly downward
+   * inside the cropped image frame.
+   */
+  imagePosition:
+    "c 10%",
 
   nameKey:
     "about.leadership.members.memberOne.name",
@@ -3423,6 +4594,21 @@ const HSU_PROFILE = {
 
   bioKey:
     "about.leadership.members.memberOne.bio",
+  linkedinUrl:
+    "https://www.linkedin.com/in/steven-han-min-chen-b4341237/",
+} as const;
+
+const HSU_PROFILE = {
+  image: memberTwoImage,
+
+  nameKey:
+    "about.leadership.members.memberTwo.name",
+
+  roleKey:
+    "about.leadership.members.memberTwo.role",
+
+  bioKey:
+    "about.leadership.members.memberTwo.bio",
 
   email:
     "yh.hsu@repurgenesis.com",
@@ -3431,10 +4617,11 @@ const HSU_PROFILE = {
     "https://www.linkedin.com/in/yinhsong-hsu-740b0999/",
 } as const;
 
+
 export const LEADERSHIP_MEMBERS = [
   {
-    id: "hsu-1",
-    ...HSU_PROFILE,
+    id: "chen-1",
+    ...CHEN_PROFILE,
   },
   {
     id: "hsu-2",
@@ -3457,11 +4644,6 @@ export const LEADERSHIP_MEMBERS = [
     ...HSU_PROFILE,
   },
 ] as const satisfies ReadonlyArray<LeadershipMemberDefinition>;
-
-
-
-// export type Person = typeof ABOUT_PEOPLE[number];
-
 
 
 

@@ -3,6 +3,7 @@ import {
 } from "react";
 
 import {
+  BookOpenText,
   CalendarDays,
   Link2,
   Newspaper,
@@ -27,6 +28,7 @@ const CATEGORY_ICON: Record<
   press: Newspaper,
   partnership: Link2,
   event: CalendarDays,
+  publication: BookOpenText,
 };
 
 export function createArticleHref(

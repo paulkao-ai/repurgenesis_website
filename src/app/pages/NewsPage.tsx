@@ -69,6 +69,14 @@ const FILTER_TAB_STYLES: Record<
     inactive:
       "border-transparent text-[#8a8898] hover:border-[#5b6ee1] hover:text-[#5b6ee1]",
   },
+
+  publication: {
+    active:
+      "border-[#2F6B8A] text-[#2F6B8A]",
+
+    inactive:
+      "border-transparent text-[#8a8898] hover:border-[#2F6B8A] hover:text-[#2F6B8A]",
+  },
 };
 
 export function NewsPage({
@@ -128,7 +136,9 @@ export function NewsPage({
   const changeFilter = (
     nextFilter: NewsFilterId,
   ) => {
-    setFilter(nextFilter);
+    setFilter(
+      nextFilter,
+    );
 
     setVisibleCount(
       INITIAL_VISIBLE_COUNT,
@@ -163,6 +173,7 @@ export function NewsPage({
           py-16
         "
       >
+        {/* Page heading */}
         <div
           className="
             mb-12
@@ -170,11 +181,15 @@ export function NewsPage({
           "
         >
           <SectionLabel>
-            {t("news.label")}
+            {t(
+              "news.label",
+            )}
           </SectionLabel>
 
           <SectionHeading>
-            {t("news.title")}
+            {t(
+              "news.title",
+            )}
           </SectionHeading>
         </div>
 
@@ -217,6 +232,7 @@ export function NewsPage({
                   className={`
                     -mb-px
                     select-none
+                    whitespace-nowrap
                     border-b-2
                     px-[18px]
                     py-2.5
@@ -224,6 +240,7 @@ export function NewsPage({
                     font-semibold
                     transition-colors
                     duration-200
+
                     ${
                       isActive
                         ? filterStyle.active
@@ -231,7 +248,9 @@ export function NewsPage({
                     }
                   `}
                 >
-                  {t(item.labelKey)}
+                  {t(
+                    item.labelKey,
+                  )}
                 </button>
               );
             },
@@ -252,15 +271,21 @@ export function NewsPage({
           {visibleArticles.map(
             (article) => (
               <NewsCard
-                key={article.id}
-                article={article}
-                language={language}
+                key={
+                  article.id
+                }
+                article={
+                  article
+                }
+                language={
+                  language
+                }
               />
             ),
           )}
         </div>
 
-        {/* Leadership-style load-more arrow */}
+        {/* Load more */}
         {hasMore && (
           <div
             className="
@@ -287,7 +312,9 @@ export function NewsPage({
             {/* Down arrow */}
             <button
               type="button"
-              onClick={showMore}
+              onClick={
+                showMore
+              }
               aria-label={t(
                 "news.loadMore",
               )}
@@ -323,7 +350,9 @@ export function NewsPage({
             >
               <ChevronDown
                 size={22}
-                strokeWidth={1.9}
+                strokeWidth={
+                  1.9
+                }
                 aria-hidden="true"
                 className="
                   transition-transform

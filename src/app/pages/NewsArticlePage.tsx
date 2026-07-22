@@ -10,6 +10,7 @@ import {
 } from "@app/data/content";
 
 import { NewsCard } from "@app/components/NewsCard";
+import { NewsPosterCards } from "@app/components/NewsPosterCards";
 
 import type { Language, Translator } from "@app/types";
 
@@ -379,7 +380,13 @@ export function NewsArticlePage({
             ))}
           </div>
         </section>
-
+                
+        {/* Independent research-poster cards */}
+        <NewsPosterCards
+          articleSlug={article.slug}
+          t={t}
+        />
+        
         {/* News coverage and references */}
         {article.references.length > 0 && (
           <section

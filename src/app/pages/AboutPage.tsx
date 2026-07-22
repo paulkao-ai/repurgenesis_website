@@ -182,10 +182,10 @@ export function AboutPage({
                       "linear-gradient(135deg, rgba(240,159,116,0.10), rgba(255,255,255,0))",
                   }}
                 >
-                  <div className="bg-gradient-to-br from-[#f09f74] to-[#c96a3e] bg-clip-text text-[26px] font-extrabold leading-none tracking-[-0.03em] text-transparent">
+                  <div className="bg-gradient-to-br from-[#f09f74] to-[#c96a3e] bg-clip-text text-[30px] font-extrabold leading-none tracking-[-0.03em] text-transparent">
                     {t("about.intro.stats.assets.value")}
                   </div>
-                  <div className="font-mono text-[11px] uppercase leading-tight tracking-wide text-muted-foreground">
+                  <div className="text-[13px] font-semibold leading-tight tracking-wide text-muted-foreground">
                     {t("about.intro.stats.assets.label")}
                   </div>
                 </div>
@@ -258,16 +258,38 @@ export function AboutPage({
       {/* ===================== Journey — vertical, alternating, drag-to-scroll ===================== */}
       <section className="border-y border-border bg-white py-20">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="mb-12 text-center">
-            <SectionLabel>{t("about.journey.label")}</SectionLabel>
-            <SectionHeading>{t("about.journey.title")}</SectionHeading>
+          <div className="mb-9 text-center">
+            <SectionLabel>
+              {t("about.journey.label")}
+            </SectionLabel>
+
+            <SectionHeading>
+              {t("about.journey.title")}
+            </SectionHeading>
+
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#6f6d78]">
+              {t("about.journey.description")}
+            </p>
+          </div>
+
+          {/* Company-stage legend */}
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#7cc7c8]/35 bg-[#7cc7c8]/10 px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[#4f9fa1]">
+              <span className="h-2 w-2 rounded-full bg-[#7cc7c8]" />
+              {t("about.journey.phases.preparation")}
+            </span>
+
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#ef8a62]/35 bg-[#ef8a62]/10 px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[#c96a3e]">
+              <span className="h-2 w-2 rounded-full bg-[#ef8a62]" />
+              {t("about.journey.phases.operations")}
+            </span>
           </div>
 
           <div
             ref={timelineRef}
             className="mx-auto max-w-[860px] cursor-grab select-none overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             style={{
-              maxHeight: "460px",
+              maxHeight: "520px",
               WebkitMaskImage:
                 "linear-gradient(to bottom, transparent, #000 26px, #000 calc(100% - 26px), transparent)",
               maskImage:
@@ -275,46 +297,180 @@ export function AboutPage({
             }}
           >
             <div className="relative py-[18px]">
-              {/* center line */}
+              {/* Center line */}
               <div
                 aria-hidden
-                className="absolute left-1/2 top-6 bottom-6 w-0.5 -translate-x-1/2"
+                className="absolute bottom-6 left-1/2 top-6 w-0.5 -translate-x-1/2"
                 style={{
                   background:
-                    "linear-gradient(180deg,#f6ddcd,#ef8a62 12%,#ef8a62 88%,#f6ddcd)",
+                    "linear-gradient(180deg,#cde8e7,#7cc7c8 24%,#ef8a62 58%,#c96a3e 92%,#f6ddcd)",
                 }}
               />
 
               <div className="flex flex-col gap-[26px]">
                 {ABOUT_TIMELINE.map((item, index) => {
-                  const isLeft = index % 2 === 0;
+                  const isLeft =
+                    index % 2 === 0;
+
+                  const isPreparation =
+                    item.phase ===
+                    "preparation";
+
+                  const accentColor =
+                    isPreparation
+                      ? "#5faeb0"
+                      : "#c96a3e";
+
                   const card = (
-                    <div className="inline-block max-w-[320px] rounded-2xl border border-border bg-[#faf7f2] p-[16px_20px] text-left">
-                      <div className="mb-[5px] font-mono text-xs font-semibold text-[#c96a3e]">
-                        {item.year}
+                    <article
+                      className="
+                        inline-block
+                        w-full
+                        max-w-[340px]
+                        rounded-2xl
+                        border
+                        border-[#e7e0d7]
+                        bg-[#faf7f2]
+                        p-[17px_20px]
+                        text-left
+                        shadow-[0_8px_22px_rgba(20,24,39,0.045)]
+                        transition-all
+                        duration-300
+                        hover:-translate-y-0.5
+                        hover:border-[#ef8a62]/45
+                        hover:shadow-[0_14px_30px_rgba(20,24,39,0.08)]
+                      "
+                    >
+                      <div className="mb-3 flex items-center justify-between gap-3">
+                        <div
+                          className="font-mono text-xs font-bold tracking-[0.08em]"
+                          style={{
+                            color:
+                              accentColor,
+                          }}
+                        >
+                          {item.year}
+                          <span className="mx-1.5 opacity-45">
+                            /
+                          </span>
+                          {item.month}
+                        </div>
+
+                        <span
+                          className="
+                            rounded-full
+                            border
+                            px-2.5
+                            py-1
+                            font-mono
+                            text-[9px]
+                            font-semibold
+                            uppercase
+                            tracking-[0.1em]
+                          "
+                          style={{
+                            color:
+                              accentColor,
+
+                            borderColor:
+                              `${accentColor}42`,
+
+                            backgroundColor:
+                              `${accentColor}12`,
+                          }}
+                        >
+                          {t(
+                            item.phase ===
+                              "preparation"
+                              ? "about.journey.phases.preparation"
+                              : "about.journey.phases.operations",
+                          )}
+                        </span>
                       </div>
-                      <div className="text-sm font-semibold leading-[1.5] text-foreground">
-                        {t(item.eventKey)}
-                      </div>
-                    </div>
+
+                      <ul className="space-y-2">
+                        {item.eventKeys.map(
+                          (eventKey) => (
+                            <li
+                              key={
+                                eventKey
+                              }
+                              className="
+                                flex
+                                items-start
+                                gap-2.5
+                                text-sm
+                                font-semibold
+                                leading-[1.55]
+                                text-foreground
+                              "
+                            >
+                              <span
+                                aria-hidden="true"
+                                className="mt-[0.58em] h-1.5 w-1.5 shrink-0 rounded-full"
+                                style={{
+                                  backgroundColor:
+                                    accentColor,
+                                }}
+                              />
+
+                              <span>
+                                {t(
+                                  eventKey,
+                                )}
+                              </span>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </article>
                   );
 
                   return (
                     <div
-                      key={`${item.year}-${item.eventKey}`}
+                      key={item.id}
                       className="flex items-center"
                     >
                       <div
-                        className={`w-1/2 pr-[34px] text-right ${isLeft ? "" : "opacity-0"}`}
+                        className={`w-1/2 pr-[34px] text-right ${
+                          isLeft
+                            ? ""
+                            : "opacity-0"
+                        }`}
                       >
-                        {isLeft && card}
+                        {isLeft &&
+                          card}
                       </div>
 
-                      {/* small dot, grows on hover */}
-                      <div className="relative z-[1] h-2.5 w-2.5 shrink-0 cursor-pointer rounded-full border-2 border-white bg-gradient-to-br from-[#f09f74] to-[#c96a3e] shadow-[0_0_0_2px_#ef8a62] transition-[transform,box-shadow] duration-200 hover:scale-[1.7] hover:shadow-[0_0_0_3px_#ef8a62,0_4px_12px_rgba(201,106,62,0.45)]" />
+                      {/* Timeline node */}
+                      <div
+                        className="
+                          relative
+                          z-[1]
+                          h-3
+                          w-3
+                          shrink-0
+                          cursor-pointer
+                          rounded-full
+                          border-2
+                          border-white
+                          shadow-[0_0_0_2px_currentColor]
+                          transition-[transform,box-shadow]
+                          duration-200
+                          hover:scale-[1.55]
+                        "
+                        style={{
+                          color:
+                            accentColor,
+
+                          backgroundColor:
+                            accentColor,
+                        }}
+                      />
 
                       <div className="w-1/2 pl-[34px]">
-                        {!isLeft && card}
+                        {!isLeft &&
+                          card}
                       </div>
                     </div>
                   );
@@ -325,7 +481,11 @@ export function AboutPage({
 
           <div className="mt-4 flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-[#b3651f]">
             <span className="h-px w-[18px] bg-[#e6a37c]" />
-            Drag to explore
+
+            {t(
+              "about.journey.dragHint",
+            )}
+
             <span className="h-px w-[18px] bg-[#e6a37c]" />
           </div>
         </div>
